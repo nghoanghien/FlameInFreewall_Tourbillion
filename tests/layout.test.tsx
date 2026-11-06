@@ -94,7 +94,7 @@ describe('Layout System & StructPaper DockPill Navigation', () => {
       expect(handleClick).toHaveBeenCalledTimes(1);
     });
 
-    it('renders a Next.js Link when href is provided', () => {
+    it('renders a Next.js Link when href is provided without nested button', () => {
       render(
         <DockPillButton
           icon={<span>ICON</span>}
@@ -104,8 +104,9 @@ describe('Layout System & StructPaper DockPill Navigation', () => {
         />
       );
 
-      const link = screen.getByRole('link');
+      const link = screen.getByRole('link', { name: 'Explorer' });
       expect(link.getAttribute('href')).toBe('/explorer');
+      expect(link.querySelector('button')).toBeNull();
     });
   });
 
@@ -192,6 +193,24 @@ describe('Layout System & StructPaper DockPill Navigation', () => {
       expect(active.name).toBe('Artemis Lunar Habitat');
       expect(active.gravity).toBe(0.16);
       expect(active.oxygenPct).toBe(34);
+    });
+
+    it('closes preset dropdown on Escape key or outside click', () => {
+      render(<Header />);
+
+      const presetSelector = screen.getByTestId('scenario-preset-selector');
+      fireEvent.click(presetSelector);
+      expect(screen.getByTestId('scenario-preset-menu')).toBeDefined();
+
+      // Test Escape key
+      fireEvent.keyDown(document, { key: 'Escape' });
+      expect(screen.queryByTestId('scenario-preset-menu')).toBeNull();
+
+      // Open again and test outside click
+      fireEvent.click(presetSelector);
+      expect(screen.getByTestId('scenario-preset-menu')).toBeDefined();
+      fireEvent.mouseDown(document.body);
+      expect(screen.queryByTestId('scenario-preset-menu')).toBeNull();
     });
 
     it('displays active comparison badge and allows clearing comparisons', () => {

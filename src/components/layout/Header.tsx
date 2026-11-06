@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import {
@@ -65,6 +65,31 @@ export const Header: React.FC = () => {
   const pathname = usePathname();
   const { activeScenario, setActiveScenario, compareList, clearCompare } = useWorkspaceStore();
   const [presetDropdownOpen, setPresetDropdownOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    if (!presetDropdownOpen) return;
+
+    const handlePointerDown = (event: MouseEvent | TouchEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setPresetDropdownOpen(false);
+      }
+    };
+
+    const handleKeyDown = (event: KeyboardEvent) => {
+      if (event.key === 'Escape') {
+        setPresetDropdownOpen(false);
+      }
+    };
+
+    document.addEventListener('mousedown', handlePointerDown);
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('mousedown', handlePointerDown);
+      document.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [presetDropdownOpen]);
 
   const routeInfo = ROUTE_LABELS[pathname] || {
     title: pathname === '/' ? 'Home Overview' : pathname.replace('/', '').toUpperCase(),
@@ -154,8 +179,8 @@ export const Header: React.FC = () => {
             <span className="font-mono text-[11px] font-semibold">PSI 20 Studies</span>
           </div>
 
-          {/* Quick Scenario Preset Dropdown Launcher */}
-          <div className="relative">
+          {/* Quick Scenario Preset Dropdown Launcher with Outside-Click Dismiss */}
+          <div className="relative" ref={dropdownRef}>
             <button
               type="button"
               onClick={() => setPresetDropdownOpen(!presetDropdownOpen)}

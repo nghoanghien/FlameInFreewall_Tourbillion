@@ -22,9 +22,8 @@ export const BottomNav: React.FC = () => {
   const pathname = usePathname();
 
   const isNavActive = (path: string): boolean => {
-    if (path === '/dashboard' && (pathname === '/' || pathname === '/dashboard')) return true;
-    if (path !== '/' && pathname.startsWith(path)) return true;
-    return pathname === path;
+    if (path === '/dashboard' && pathname === '/') return true;
+    return pathname === path || pathname.startsWith(`${path}/`);
   };
 
   return (
