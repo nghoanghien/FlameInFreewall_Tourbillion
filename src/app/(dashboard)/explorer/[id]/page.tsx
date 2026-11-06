@@ -30,24 +30,23 @@ import { ComparisonModal } from '@/components/explorer/ComparisonModal';
 export type StudyDetailTab = 'overview' | 'runs' | 'telemetry' | 'claims' | 'psi-export';
 
 interface PageProps {
-  params?: Promise<{ id: string }> | { id: string };
+  params?: Promise<{ id: string }>;
 }
 
 export default function StudyDetailPage({ params }: PageProps) {
   const routerParams = useParams();
+  const unwrappedParams = params ? React.use(params) : undefined;
 
   // Handle both hook params and potential props
   const id = useMemo(() => {
     if (routerParams?.id) {
       return Array.isArray(routerParams.id) ? routerParams.id[0] : routerParams.id;
     }
-    if (params) {
-      if (typeof (params as { id?: string }).id === 'string') {
-        return (params as { id: string }).id;
-      }
+    if (unwrappedParams?.id) {
+      return unwrappedParams.id;
     }
     return '';
-  }, [routerParams, params]);
+  }, [routerParams, unwrappedParams]);
 
   const [activeTab, setActiveTab] = useState<StudyDetailTab>('overview');
 
