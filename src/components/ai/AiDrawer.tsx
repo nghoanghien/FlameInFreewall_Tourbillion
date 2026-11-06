@@ -187,8 +187,9 @@ export const AiDrawer: React.FC = () => {
                       <button
                         key={prompt.id}
                         type="button"
+                        disabled={isStreaming}
                         onClick={() => handleSend(prompt.query)}
-                        className="w-full text-left p-2.5 rounded-lg bg-[#0F172A] hover:bg-[#1E293B] border border-[#1E293B] hover:border-[#D4FC02]/40 text-xs text-gray-200 transition-all flex items-center justify-between group cursor-pointer"
+                        className="w-full text-left p-2.5 rounded-lg bg-[#0F172A] hover:bg-[#1E293B] border border-[#1E293B] hover:border-[#D4FC02]/40 disabled:opacity-40 disabled:pointer-events-none text-xs text-gray-200 transition-all flex items-center justify-between group cursor-pointer"
                       >
                         <span className="line-clamp-1">{prompt.label}</span>
                         <ArrowRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#D4FC02] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
