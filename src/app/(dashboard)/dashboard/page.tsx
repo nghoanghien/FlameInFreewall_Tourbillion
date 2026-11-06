@@ -5,12 +5,8 @@ import Link from 'next/link';
 import {
   Compass,
   Rocket,
-  Flame,
-  Layers,
   ArrowRight,
-  ExternalLink,
   RotateCcw,
-  Sparkles,
 } from 'lucide-react';
 import { KpiStatCards } from '@/components/dashboard/KpiStatCards';
 import { QuickScenarioTrigger } from '@/components/dashboard/QuickScenarioTrigger';

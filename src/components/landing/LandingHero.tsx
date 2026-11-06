@@ -10,7 +10,6 @@ import {
   ShieldAlert,
   Activity,
   Layers,
-  ExternalLink,
 } from 'lucide-react';
 
 export const LandingHero: React.FC = () => {

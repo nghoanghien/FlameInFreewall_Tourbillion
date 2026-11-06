@@ -2,11 +2,10 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
-import { Rocket, Orbit, Moon, Globe, ArrowRight, Zap, ShieldAlert } from 'lucide-react';
+import { Rocket, Orbit, Moon, Globe, ArrowRight, Zap } from 'lucide-react';
 import { SCENARIO_PRESETS } from '@/data/presets';
 import { useWorkspaceStore } from '@/store/useWorkspaceStore';
 import { toast } from '@/components/toast/toast-store';
-import type { ScenarioPreset } from '@/types';
 
 export interface QuickScenarioConfig {
   presetId: string;

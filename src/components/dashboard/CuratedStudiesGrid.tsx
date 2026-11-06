@@ -11,11 +11,9 @@ import {
   Check,
   Plus,
   User,
-  Gauge,
   Sparkles,
 } from 'lucide-react';
 import { INVESTIGATIONS } from '@/data/investigations';
-import { TEST_RUNS } from '@/data/testRuns';
 import { useWorkspaceStore } from '@/store/useWorkspaceStore';
 import { toast } from '@/components/toast/toast-store';
 import type { Investigation, FuelCategory } from '@/types';
@@ -132,7 +130,6 @@ export const CuratedStudiesGrid: React.FC = () => {
           const isComparing = compareList.includes(inv.id);
           const fuelConfig = getFuelBadgeConfig(inv.fuelType);
           const FuelIcon = fuelConfig.icon;
-          const verifiedRunsCount = TEST_RUNS.filter((r) => r.investigationId === inv.id).length;
 
           return (
             <article

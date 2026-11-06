@@ -117,7 +117,7 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
                 <span>Fuel Category</span>
               </span>
               {flags.isUniqueFuel && allStudies.length > 1 && (
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-purple-500/20 text-purple-300 border border-purple-500/30">
                   Distinct Phase
                 </span>
               )}
@@ -155,12 +155,12 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
                 <span>Oxygen Limits</span>
               </span>
               {flags.isHighestO2 && (
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-cyan-500/20 text-cyan-300 border border-cyan-500/30">
                   Highest O₂
                 </span>
               )}
               {flags.isLowestO2Moc && !flags.isHighestO2 && (
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                   Lowest MOC
                 </span>
               )}
@@ -181,7 +181,7 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
                 <span>Pressure Envelope</span>
               </span>
               {flags.isLowestPressure && (
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-amber-500/20 text-amber-300 border border-amber-500/30">
                   Exploration Hypobaric
                 </span>
               )}
@@ -202,7 +202,7 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
                 <span>Quench Diameter</span>
               </span>
               {flags.isNarrowestQuench && (
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-rose-500/20 text-rose-300 border border-rose-500/30">
                   Narrowest Gap
                 </span>
               )}
@@ -223,7 +223,7 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
                 <span>Flame Spread Velocity</span>
               </span>
               {flags.isFastestSpread && (
-                <span className="text-[9px] px-1.5 py-0.2 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-emerald-500/20 text-emerald-300 border border-emerald-500/30">
                   Fastest Velocity
                 </span>
               )}

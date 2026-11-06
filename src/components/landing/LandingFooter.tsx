@@ -2,7 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
-import { Flame, ShieldAlert, ExternalLink, Heart, Globe } from 'lucide-react';
+import { Flame, ShieldAlert, ExternalLink, Globe } from 'lucide-react';
 
 export const LandingFooter: React.FC = () => {
   return (

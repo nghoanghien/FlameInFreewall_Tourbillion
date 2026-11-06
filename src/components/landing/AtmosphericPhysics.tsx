@@ -5,10 +5,7 @@ import {
   ShieldAlert,
   Wind,
   Atom,
-  AlertTriangle,
   CheckCircle2,
-  HelpCircle,
-  Activity,
   Flame,
 } from 'lucide-react';
 

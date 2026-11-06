@@ -15,18 +15,6 @@ import { INVESTIGATIONS } from '@/data/investigations';
 import { TEST_RUNS } from '@/data/testRuns';
 import { EVIDENCE_CLAIMS } from '@/data/evidenceClaims';
 
-export interface TelemetryKpi {
-  id: string;
-  label: string;
-  value: string | number;
-  highlight?: string;
-  description: string;
-  icon: React.ComponentType<{ className?: string; strokeWidth?: number }>;
-  accentColor: string;
-  glowColor: string;
-  badge?: string;
-}
-
 export const KpiStatCards: React.FC = () => {
   const totalStudies = INVESTIGATIONS.length;
   const totalTestRuns = TEST_RUNS.length;

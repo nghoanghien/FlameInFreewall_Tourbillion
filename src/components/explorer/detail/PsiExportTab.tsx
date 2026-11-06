@@ -2,7 +2,6 @@
 
 import React from 'react';
 import {
-  Download,
   Database,
   ExternalLink,
   FileSpreadsheet,
@@ -35,7 +34,7 @@ export const PsiExportTab: React.FC<PsiExportTabProps> = ({ study }) => {
     link.href = url;
     link.download = `flameguard-${study.code.toLowerCase()}-psi-export.json`;
     link.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast.success(
       `Exported ${study.code} JSON metadata`,
       'Download started with full chamber conditions and test run parameters.'
@@ -80,7 +79,7 @@ export const PsiExportTab: React.FC<PsiExportTabProps> = ({ study }) => {
     link.href = url;
     link.download = `flameguard-${study.code.toLowerCase()}-runs.csv`;
     link.click();
-    URL.revokeObjectURL(url);
+    setTimeout(() => URL.revokeObjectURL(url), 1000);
     toast.success(
       `Exported ${studyRuns.length} test runs to CSV`,
       'Tabular dataset ready for numerical modeling or analysis.'

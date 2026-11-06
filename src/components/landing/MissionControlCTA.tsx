@@ -8,9 +8,7 @@ import {
   ShieldAlert,
   ArrowRight,
   Sparkles,
-  Flame,
   CheckCircle2,
-  AlertTriangle,
 } from 'lucide-react';
 
 interface MissionCard {
