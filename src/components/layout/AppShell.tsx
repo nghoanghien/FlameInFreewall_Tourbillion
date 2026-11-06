@@ -5,6 +5,8 @@ import { Sidebar } from './Sidebar';
 import { Header } from './Header';
 import { BottomNav } from './BottomNav';
 import { Toaster } from '@/components/DynamicIslandToast';
+import { FloatingAiDock } from '@/components/ai/FloatingAiDock';
+import { AiDrawer } from '@/components/ai/AiDrawer';
 
 export interface AppShellProps {
   children: React.ReactNode;
@@ -39,6 +41,10 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
           {children}
         </main>
       </div>
+
+      {/* Floating Grounded AI Assistant Dock & Slide-Over Drawer */}
+      <FloatingAiDock />
+      <AiDrawer />
 
       {/* Mobile Bottom Navigation Bar */}
       <BottomNav />

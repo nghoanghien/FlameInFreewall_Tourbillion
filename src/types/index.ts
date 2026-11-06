@@ -260,6 +260,7 @@ export interface AiCitation {
   claimText: string;
   badge: EvidenceBadgeType;
   doi?: string;
+  facility?: string;
 }
 
 export interface ChatMessage {
