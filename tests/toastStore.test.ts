@@ -98,7 +98,7 @@ describe('Liquid Glass Dynamic Island Toast Store', () => {
       toast.promise(failingPromise, {
         loading: 'Reading radiometer...',
         success: 'Radiometer ready',
-        error: (err: any) => `Error: ${err.message}`,
+        error: (err: unknown) => `Error: ${err instanceof Error ? err.message : String(err)}`,
       })
     ).rejects.toThrow('Sensor Timeout');
 

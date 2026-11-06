@@ -222,7 +222,7 @@ export const toast = {
     messages: {
       loading: string;
       success: string | ((data: T) => string);
-      error: string | ((err: any) => string);
+      error: string | ((err: unknown) => string);
     },
     opts?: ToastOptions
   ): Promise<T> => {
@@ -274,23 +274,31 @@ export const toast = {
 };
 
 export const sileo = {
-  success: (opts: any) => {
+  success: (opts: string | ToastOptions) => {
     if (typeof opts === 'string') return toast.success(opts);
     return toast.success(opts.title || '', opts.description, opts);
   },
-  error: (opts: any) => {
+  error: (opts: string | ToastOptions) => {
     if (typeof opts === 'string') return toast.error(opts);
     return toast.error(opts.title || '', opts.description, opts);
   },
-  warning: (opts: any) => {
+  warning: (opts: string | ToastOptions) => {
     if (typeof opts === 'string') return toast.warning(opts);
     return toast.warning(opts.title || '', opts.description, opts);
   },
-  info: (opts: any) => {
+  info: (opts: string | ToastOptions) => {
     if (typeof opts === 'string') return toast.info(opts);
     return toast.info(opts.title || '', opts.description, opts);
   },
-  promise: <T>(promise: Promise<T> | (() => Promise<T>), messages: any, opts?: any) => {
+  promise: <T>(
+    promise: Promise<T> | (() => Promise<T>),
+    messages: {
+      loading: string;
+      success: string | ((data: T) => string);
+      error: string | ((err: unknown) => string);
+    },
+    opts?: ToastOptions
+  ) => {
     return toast.promise(promise, messages, opts);
   },
   dismiss: (id?: string) => toast.dismiss(id),

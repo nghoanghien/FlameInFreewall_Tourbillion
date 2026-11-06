@@ -53,15 +53,15 @@ export const Toaster: React.FC = () => {
         {toasts.map((toastItem, index) => {
           let collapsedY = 0;
           if (index === 1) {
-            const h1 = toastHeights[toastItem.id] || 44;
+            const h1 = toastHeights[toasts[0]?.id] || 44;
             collapsedY = -(h1 + 8) + 12;
           } else if (index === 2) {
-            const h1 = toastHeights[toasts[1]?.id] || 44;
-            const h2 = toastHeights[toastItem.id] || 44;
+            const h1 = toastHeights[toasts[0]?.id] || 44;
+            const h2 = toastHeights[toasts[1]?.id] || 44;
             collapsedY = -(h1 + h2 + 16) + 22;
           } else if (index >= 3) {
-            const h1 = toastHeights[toasts[1]?.id] || 44;
-            const h2 = toastHeights[toasts[2]?.id] || 44;
+            const h1 = toastHeights[toasts[0]?.id] || 44;
+            const h2 = toastHeights[toasts[1]?.id] || 44;
             collapsedY = -(h1 + h2 + 16) + 28;
           }
 
