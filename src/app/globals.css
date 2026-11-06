@@ -1,0 +1,138 @@
+@import "tailwindcss";
+
+:root {
+  /* NASA Space Apps 2026 Core Brand Tokens */
+  --brand-lime: #D4FC02;
+  --brand-lime-hover: #E2FF3B;
+  --brand-navy: #0B2374;
+  --brand-navy-light: #102B82;
+  --brand-navy-deep: #071542;
+
+  /* Surfaces & Canvas */
+  --surface-cosmic: #080C18;
+  --surface-card: #111827;
+  --surface-card-elevated: #162036;
+  --surface-light: #F8F9FA;
+  --surface-glass: rgba(17, 24, 39, 0.72);
+  --surface-glass-border: rgba(255, 255, 255, 0.08);
+
+  /* Kurzgesagt Vector Physics & Telemetry Accents */
+  --flame-amber: #FFB454;
+  --flame-amber-hot: #F97316;
+  --flame-cyan: #4CC9F0;
+  --flame-cyan-glow: #06B6D4;
+  --flame-purple: #8B5CF6;
+  --flame-purple-core: #A855F7;
+  --flame-core: #F5F7FA;
+
+  /* NASA Evidence & Safety Badges */
+  --status-gap: #EF4444;
+  --status-partial: #F59E0B;
+  --status-measured: #10B981;
+  --status-modeled: #A855F7;
+  --status-illustrative: #94A3B8;
+
+  /* Typography Fallbacks */
+  --font-heading: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-body: 'Inter', system-ui, -apple-system, sans-serif;
+  --font-mono: 'JetBrains Mono', Consolas, monospace;
+
+  /* Glow Filters & Shadows */
+  --glow-lime: 0 0 24px rgba(212, 252, 2, 0.35);
+  --glow-cyan: 0 0 24px rgba(76, 201, 240, 0.35);
+  --glow-amber: 0 0 24px rgba(249, 115, 22, 0.35);
+
+  /* Motion Timing Curve */
+  --ease-spring: cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@theme inline {
+  --color-brand-lime: var(--brand-lime);
+  --color-brand-lime-hover: var(--brand-lime-hover);
+  --color-brand-navy: var(--brand-navy);
+  --color-brand-navy-light: var(--brand-navy-light);
+  --color-brand-navy-deep: var(--brand-navy-deep);
+  --color-surface-cosmic: var(--surface-cosmic);
+  --color-surface-card: var(--surface-card);
+  --color-surface-card-elevated: var(--surface-card-elevated);
+  --color-surface-light: var(--surface-light);
+
+  --color-flame-amber: var(--flame-amber);
+  --color-flame-amber-hot: var(--flame-amber-hot);
+  --color-flame-cyan: var(--flame-cyan);
+  --color-flame-cyan-glow: var(--flame-cyan-glow);
+  --color-flame-purple: var(--flame-purple);
+  --color-flame-purple-core: var(--flame-purple-core);
+
+  --color-status-gap: var(--status-gap);
+  --color-status-partial: var(--status-partial);
+  --color-status-measured: var(--status-measured);
+  --color-status-modeled: var(--status-modeled);
+  --color-status-illustrative: var(--status-illustrative);
+
+  --font-sans: var(--font-body);
+  --font-heading: var(--font-heading);
+  --font-mono: var(--font-mono);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  background-color: var(--surface-cosmic);
+  color: #F8F9FA;
+  font-family: var(--font-body), system-ui, -apple-system, sans-serif;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* StructPaper & Liquid Glass Classes */
+.glass-panel {
+  background: var(--surface-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid var(--surface-glass-border);
+  border-radius: 14px;
+}
+
+.glass-pill {
+  background: rgba(11, 35, 116, 0.45);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 252, 2, 0.2);
+}
+
+.glow-lime {
+  box-shadow: var(--glow-lime);
+}
+
+.glow-cyan {
+  box-shadow: var(--glow-cyan);
+}
+
+.glow-amber {
+  box-shadow: var(--glow-amber);
+}
+
+/* Custom Scrollbar for High-Density Scientific Tables & Panels */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(8, 12, 24, 0.6);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.16);
+  border-radius: 9999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(212, 252, 2, 0.4);
+}
