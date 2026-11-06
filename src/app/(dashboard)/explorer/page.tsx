@@ -15,13 +15,16 @@ import {
 } from '@/components/explorer/ExplorerFiltersBar';
 import { InvestigationCard } from '@/components/explorer/InvestigationCard';
 import { InvestigationTable } from '@/components/explorer/InvestigationTable';
-import { ExplorerComparisonBar } from '@/components/explorer/ExplorerComparisonBar';
+import { ComparisonBar } from '@/components/explorer/ComparisonBar';
+import { ComparisonModal } from '@/components/explorer/ComparisonModal';
 
 export default function ExplorerPage() {
   const compareList = useWorkspaceStore((state) => state.compareList);
   const toggleCompare = useWorkspaceStore((state) => state.toggleCompare);
   const removeFromCompare = useWorkspaceStore((state) => state.removeFromCompare);
   const clearCompare = useWorkspaceStore((state) => state.clearCompare);
+  const isComparisonModalOpen = useWorkspaceStore((state) => state.isComparisonModalOpen);
+  const setComparisonModalOpen = useWorkspaceStore((state) => state.setComparisonModalOpen);
 
   // Filter and view states
   const [searchQuery, setSearchQuery] = useState('');
@@ -253,10 +256,19 @@ export default function ExplorerPage() {
       )}
 
       {/* Floating Comparison Dock */}
-      <ExplorerComparisonBar
+      <ComparisonBar
         compareList={compareList}
         onRemove={removeFromCompare}
         onClear={clearCompare}
+        onOpenModal={() => setComparisonModalOpen(true)}
+      />
+
+      {/* Multi-Study Comparison Modal */}
+      <ComparisonModal
+        isOpen={isComparisonModalOpen}
+        onClose={() => setComparisonModalOpen(false)}
+        compareList={compareList}
+        onRemove={removeFromCompare}
       />
     </div>
   );

@@ -24,7 +24,8 @@ import { TestRunsTable } from '@/components/explorer/detail/TestRunsTable';
 import { TelemetryPane } from '@/components/explorer/detail/TelemetryPane';
 import { ClaimsList } from '@/components/explorer/detail/ClaimsList';
 import { PsiExportTab } from '@/components/explorer/detail/PsiExportTab';
-import { ExplorerComparisonBar } from '@/components/explorer/ExplorerComparisonBar';
+import { ComparisonBar } from '@/components/explorer/ComparisonBar';
+import { ComparisonModal } from '@/components/explorer/ComparisonModal';
 
 export type StudyDetailTab = 'overview' | 'runs' | 'telemetry' | 'claims' | 'psi-export';
 
@@ -54,6 +55,8 @@ export default function StudyDetailPage({ params }: PageProps) {
   const toggleCompare = useWorkspaceStore((state) => state.toggleCompare);
   const removeFromCompare = useWorkspaceStore((state) => state.removeFromCompare);
   const clearCompare = useWorkspaceStore((state) => state.clearCompare);
+  const isComparisonModalOpen = useWorkspaceStore((state) => state.isComparisonModalOpen);
+  const setComparisonModalOpen = useWorkspaceStore((state) => state.setComparisonModalOpen);
 
   const study = useMemo(() => {
     return INVESTIGATIONS.find((inv) => inv.id === id);
@@ -178,10 +181,19 @@ export default function StudyDetailPage({ params }: PageProps) {
       </section>
 
       {/* Floating Comparison Dock */}
-      <ExplorerComparisonBar
+      <ComparisonBar
         compareList={compareList}
         onRemove={removeFromCompare}
         onClear={clearCompare}
+        onOpenModal={() => setComparisonModalOpen(true)}
+      />
+
+      {/* Multi-Study Comparison Modal */}
+      <ComparisonModal
+        isOpen={isComparisonModalOpen}
+        onClose={() => setComparisonModalOpen(false)}
+        compareList={compareList}
+        onRemove={removeFromCompare}
       />
     </div>
   );

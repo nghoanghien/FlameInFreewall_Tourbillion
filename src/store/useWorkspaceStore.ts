@@ -40,6 +40,7 @@ export interface WorkspaceStoreState {
   compareList: string[]; // Max 3 items
   selectedInvestigationId: string | null;
   filters: WorkspaceFilters;
+  isComparisonModalOpen: boolean;
 
   // Scenario actions
   setActiveScenario: (scenario: ScenarioState) => void;
@@ -49,6 +50,9 @@ export interface WorkspaceStoreState {
   toggleCompare: (investigationId: string) => boolean;
   removeFromCompare: (investigationId: string) => void;
   clearCompare: () => void;
+  setComparisonModalOpen: (open: boolean) => void;
+  openComparisonModal: () => void;
+  closeComparisonModal: () => void;
 
   // Investigation selection
   setSelectedInvestigationId: (id: string | null) => void;
@@ -66,6 +70,7 @@ export const useWorkspaceStore = create<WorkspaceStoreState>((set, get) => ({
   compareList: [],
   selectedInvestigationId: null,
   filters: { ...DEFAULT_FILTERS },
+  isComparisonModalOpen: false,
 
   setActiveScenario: (scenario) =>
     set({
@@ -110,6 +115,22 @@ export const useWorkspaceStore = create<WorkspaceStoreState>((set, get) => ({
   clearCompare: () =>
     set({
       compareList: [],
+      isComparisonModalOpen: false,
+    }),
+
+  setComparisonModalOpen: (open: boolean) =>
+    set({
+      isComparisonModalOpen: open,
+    }),
+
+  openComparisonModal: () =>
+    set({
+      isComparisonModalOpen: true,
+    }),
+
+  closeComparisonModal: () =>
+    set({
+      isComparisonModalOpen: false,
     }),
 
   setSelectedInvestigationId: (id: string | null) =>
@@ -136,5 +157,6 @@ export const useWorkspaceStore = create<WorkspaceStoreState>((set, get) => ({
       compareList: [],
       selectedInvestigationId: null,
       filters: { ...DEFAULT_FILTERS },
+      isComparisonModalOpen: false,
     }),
 }));

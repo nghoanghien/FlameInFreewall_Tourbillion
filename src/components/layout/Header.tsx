@@ -2,7 +2,7 @@
 
 import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import {
   Flame,
   ChevronRight,
@@ -63,7 +63,9 @@ const SCENARIO_PRESETS: ScenarioState[] = [
 
 export const Header: React.FC = () => {
   const pathname = usePathname();
-  const { activeScenario, setActiveScenario, compareList, clearCompare } = useWorkspaceStore();
+  const router = useRouter();
+  const { activeScenario, setActiveScenario, compareList, clearCompare, setComparisonModalOpen } =
+    useWorkspaceStore();
   const [presetDropdownOpen, setPresetDropdownOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
 
@@ -152,11 +154,39 @@ export const Header: React.FC = () => {
         <div className="flex items-center gap-2.5 flex-wrap">
           {/* Active Comparison Pill */}
           {compareList.length > 0 && (
-            <div className="flex items-center gap-1.5 bg-[#D4FC02]/15 border border-[#D4FC02]/40 text-[#D4FC02] px-2.5 py-1 rounded-full text-xs font-bold shadow-[0_0_12px_rgba(212,252,2,0.2)]">
-              <Link href="/explorer" className="flex items-center gap-1.5 hover:underline">
+            <div
+              data-testid="header-compare-pill"
+              className="flex items-center gap-1.5 bg-[#D4FC02]/15 border border-[#D4FC02]/40 text-[#D4FC02] px-2.5 py-1 rounded-full text-xs font-bold shadow-[0_0_12px_rgba(212,252,2,0.2)]"
+            >
+              <button
+                type="button"
+                data-testid="header-compare-trigger"
+                onClick={() => {
+                  if (compareList.length >= 2) {
+                    setComparisonModalOpen(true);
+                    if (pathname !== '/explorer') {
+                      router.push('/explorer');
+                    }
+                  } else {
+                    toast.info(
+                      'Select 1 more study to compare',
+                      'Multi-study comparison requires at least 2 studies.'
+                    );
+                    if (pathname !== '/explorer') {
+                      router.push('/explorer');
+                    }
+                  }
+                }}
+                className="flex items-center gap-1.5 hover:underline cursor-pointer"
+                title={
+                  compareList.length >= 2
+                    ? 'Open multi-study comparison modal'
+                    : 'Select 1 more study to compare'
+                }
+              >
                 <Layers className="w-3.5 h-3.5" />
                 <span>Comparing {compareList.length}/3</span>
-              </Link>
+              </button>
               <button
                 type="button"
                 onClick={clearCompare}
