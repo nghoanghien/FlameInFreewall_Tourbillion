@@ -1,0 +1,24 @@
+import React from 'react';
+import { LandingHero } from '@/components/landing/LandingHero';
+import { KurzgesagtFlameScene } from '@/components/landing/KurzgesagtFlameScene';
+import { AtmosphericPhysics } from '@/components/landing/AtmosphericPhysics';
+import { MissionControlCTA } from '@/components/landing/MissionControlCTA';
+import { LandingFooter } from '@/components/landing/LandingFooter';
+
+export const metadata = {
+  title: 'FlameGuard AI — Flame in Freefall | NASA Space Apps Challenge 2026',
+  description:
+    'Visual storytelling and evidence-first intelligence platform exploring microgravity combustion investigations from NASA Physical Sciences Informatics (PSI).',
+};
+
+export default function LandingPage() {
+  return (
+    <main className="min-h-screen flex flex-col bg-[#080C18] text-[#F8F9FA] overflow-x-hidden">
+      <LandingHero />
+      <KurzgesagtFlameScene />
+      <AtmosphericPhysics />
+      <MissionControlCTA />
+      <LandingFooter />
+    </main>
+  );
+}
