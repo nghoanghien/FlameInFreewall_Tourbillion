@@ -73,7 +73,7 @@ export const CitationBadge: React.FC<CitationBadgeProps> = ({ citation, classNam
         onClick={() => setIsOpen((prev) => !prev)}
         aria-expanded={isOpen}
         aria-label={`Citation provenance: ${citation.code} (${citation.badge})`}
-        className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-mono font-bold border transition-colors cursor-pointer select-none focus:outline-none focus:ring-1 focus:ring-[#0B2374] bg-lime-50 border-lime-300 text-lime-950 hover:bg-lime-100"
+        className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full text-xs font-bold border transition-colors cursor-pointer select-none focus:outline-none focus:ring-1 focus:ring-[#0B2374] bg-lime-50 border-lime-300 text-lime-950 hover:bg-lime-100"
       >
         <span className={`w-1.5 h-1.5 rounded-full ${style.dot}`} aria-hidden="true" />
         <span>{label}</span>
@@ -92,7 +92,7 @@ export const CitationBadge: React.FC<CitationBadgeProps> = ({ citation, classNam
               <div className="flex items-center gap-2">
                 <span className="font-bold text-zinc-900 text-sm">{citation.code}</span>
                 <span
-                  className={`px-1.5 py-0.5 text-[10px] uppercase font-mono font-bold tracking-wider rounded-full border ${style.bg} ${style.text} ${style.border}`}
+                  className={`px-1.5 py-0.5 text-[10px] uppercase font-bold tracking-wider rounded-full border ${style.bg} ${style.text} ${style.border}`}
                 >
                   {citation.badge}
                 </span>
@@ -117,7 +117,7 @@ export const CitationBadge: React.FC<CitationBadgeProps> = ({ citation, classNam
           {/* Claim Evidence Text */}
           {citation.claimText && (
             <div className="bg-gray-50 p-2.5 rounded-xl border border-gray-200 text-zinc-800 text-[11px] leading-relaxed">
-              <span className="text-[#0B2374] font-mono text-[10px] font-bold block mb-0.5">
+              <span className="text-[#0B2374] text-[10px] font-bold block mb-0.5">
                 VERIFIED PSI CLAIM:
               </span>
               &ldquo;{citation.claimText}&rdquo;
@@ -125,7 +125,7 @@ export const CitationBadge: React.FC<CitationBadgeProps> = ({ citation, classNam
           )}
 
           {/* Metadata & Facility */}
-          <div className="space-y-1 text-[11px] text-zinc-500 font-mono">
+          <div className="space-y-1 text-[11px] text-zinc-500 font-medium">
             {citation.facility && (
               <div className="flex items-center gap-1.5">
                 <FlaskConical className="w-3 h-3 text-[#0B2374] shrink-0" />
@@ -144,7 +144,7 @@ export const CitationBadge: React.FC<CitationBadgeProps> = ({ citation, classNam
           <div className="pt-1.5 border-t border-gray-200 flex items-center justify-between gap-2">
             <Link
               href={`/explorer/${citation.investigationId}`}
-              className="inline-flex items-center gap-1 text-[#0B2374] hover:underline font-mono text-[11px] font-bold"
+              className="inline-flex items-center gap-1 text-[#0B2374] hover:underline text-[11px] font-bold"
             >
               <Database className="w-3 h-3" />
               <span>Inspect Investigation</span>

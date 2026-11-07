@@ -63,23 +63,23 @@ export const TestRunsTable: React.FC<TestRunsTableProps> = ({ study }) => {
       {stats && (
         <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 p-4 rounded-3xl bg-white border border-gray-100 shadow-xs">
           <div>
-            <div className="text-[10px] uppercase font-mono text-zinc-500 font-semibold">Total Runs</div>
+            <div className="text-[10px] uppercase text-zinc-500 font-semibold">Total Runs</div>
             <div className="text-lg font-black text-[#0B2374] mt-0.5">{stats.totalRuns} Verified</div>
           </div>
           <div>
-            <div className="text-[10px] uppercase font-mono text-zinc-500 font-semibold">Peak Spread Rate</div>
+            <div className="text-[10px] uppercase text-zinc-500 font-semibold">Peak Spread Rate</div>
             <div className="text-lg font-black text-amber-600 mt-0.5">
               {stats.maxSpread !== null ? `${stats.maxSpread.toFixed(2)} mm/s` : 'N/A'}
             </div>
           </div>
           <div>
-            <div className="text-[10px] uppercase font-mono text-zinc-500 font-semibold">Max Chamber Temp</div>
+            <div className="text-[10px] uppercase text-zinc-500 font-semibold">Max Chamber Temp</div>
             <div className="text-lg font-black text-rose-600 mt-0.5">
               {stats.maxTemp !== null ? `${stats.maxTemp} K` : 'N/A'}
             </div>
           </div>
           <div>
-            <div className="text-[10px] uppercase font-mono text-zinc-500 font-semibold">Avg Burn Duration</div>
+            <div className="text-[10px] uppercase text-zinc-500 font-semibold">Avg Burn Duration</div>
             <div className="text-lg font-black text-zinc-900 mt-0.5">
               {stats.avgDuration !== null ? `${stats.avgDuration} s` : 'N/A'}
             </div>
@@ -100,7 +100,7 @@ export const TestRunsTable: React.FC<TestRunsTableProps> = ({ study }) => {
             className="w-full pl-9 pr-3 py-2 rounded-xl bg-white border border-gray-200 focus:border-[#0B2374] focus:ring-1 focus:ring-[#0B2374] text-xs text-zinc-900 placeholder:text-zinc-400 outline-none shadow-xs"
           />
         </div>
-        <div className="text-xs font-mono text-zinc-500">
+        <div className="text-xs font-semibold text-zinc-500">
           Showing {filteredRuns.length} of {studyRuns.length} Runs
         </div>
       </div>
@@ -120,7 +120,7 @@ export const TestRunsTable: React.FC<TestRunsTableProps> = ({ study }) => {
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse min-w-[760px]" data-testid="runs-table">
               <thead>
-                <tr className="border-b border-gray-200/80 bg-gray-50 text-[10px] font-mono uppercase tracking-wider text-zinc-500">
+                <tr className="border-b border-gray-200/80 bg-gray-50 text-[10px] uppercase tracking-wider text-zinc-500 font-bold">
                   <th className="py-3 px-3.5 min-w-[130px]">Run ID &amp; Key</th>
                   <th className="py-3 px-3.5 min-w-[160px]">Sample Material</th>
                   <th className="py-3 px-3.5 min-w-[120px]">Chamber (O₂/P)</th>
@@ -130,7 +130,7 @@ export const TestRunsTable: React.FC<TestRunsTableProps> = ({ study }) => {
                   <th className="py-3 px-3.5 min-w-[80px] text-right">Status</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-gray-100 text-xs text-zinc-700 font-mono">
+              <tbody className="divide-y divide-gray-100 text-xs text-zinc-700 font-medium">
                 {filteredRuns.map((run) => (
                   <tr
                     key={run.id}
@@ -144,9 +144,9 @@ export const TestRunsTable: React.FC<TestRunsTableProps> = ({ study }) => {
                     </td>
 
                     {/* Sample Material & Geometry */}
-                    <td className="py-3 px-3.5 font-sans">
-                      <div className="font-medium text-zinc-900">{run.materialType}</div>
-                      <div className="text-[11px] text-zinc-500 font-mono">{run.sampleGeometry}</div>
+                    <td className="py-3 px-3.5">
+                      <div className="font-semibold text-zinc-900">{run.materialType}</div>
+                      <div className="text-[11px] text-zinc-500">{run.sampleGeometry}</div>
                     </td>
 
                     {/* Conditions */}

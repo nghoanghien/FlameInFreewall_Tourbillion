@@ -205,7 +205,7 @@ export const Header: React.FC = () => {
               <span className="relative inline-flex rounded-full h-2 w-2 bg-[#84CC16]" />
             </span>
             <Database className="w-3 h-3 text-[#0B2374]" />
-            <span className="font-mono text-[11px] font-semibold">PSI 20 Studies</span>
+            <span className="text-[11px] font-semibold">PSI 20 Studies</span>
           </div>
 
           {/* Quick Scenario Preset Dropdown Launcher with Outside-Click Dismiss */}
@@ -221,7 +221,7 @@ export const Header: React.FC = () => {
               <span className="max-w-[130px] sm:max-w-[180px] truncate">
                 {activeScenario.name}
               </span>
-              <span className="text-[10px] font-mono text-[#0B2374] font-bold">
+              <span className="text-[10px] text-[#0B2374] font-bold">
                 {activeScenario.gravity}g
               </span>
               <ChevronDown
@@ -237,7 +237,7 @@ export const Header: React.FC = () => {
                 data-testid="scenario-preset-menu"
               >
                 <div className="px-2.5 py-1.5 border-b border-slate-100 flex items-center justify-between">
-                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500 font-mono">
+                  <span className="text-[10px] font-bold uppercase tracking-wider text-zinc-500">
                     NASA Mission Presets
                   </span>
                   <Sparkles className="w-3 h-3 text-[#0B2374]" />
@@ -257,7 +257,7 @@ export const Header: React.FC = () => {
                     >
                       <div className="flex-1 min-w-0 pr-2">
                         <span className="text-xs font-bold block truncate">{preset.name}</span>
-                        <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-mono mt-0.5">
+                        <div className="flex items-center gap-1.5 text-[10px] text-zinc-500 font-medium mt-0.5">
                           <span>{preset.gravity}g</span>
                           <span>•</span>
                           <span>{preset.oxygenPct}% O₂</span>

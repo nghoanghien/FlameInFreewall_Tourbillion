@@ -85,7 +85,7 @@ export function StudyDetailClient({ params, investigation: propsInvestigation }:
         <div className="space-y-2">
           <h1 className="text-2xl font-black text-zinc-950">Investigation Not Found</h1>
           <p className="text-sm text-zinc-600 max-w-md mx-auto">
-            The requested NASA PSI study identifier &ldquo;<span className="text-[#0B2374] font-mono font-bold">{id}</span>&rdquo; could not be found in the current catalog.
+            The requested NASA PSI study identifier &ldquo;<span className="text-[#0B2374] font-bold">{id}</span>&rdquo; could not be found in the current catalog.
           </p>
         </div>
         <div>

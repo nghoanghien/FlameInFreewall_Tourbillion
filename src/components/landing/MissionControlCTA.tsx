@@ -111,7 +111,7 @@ export const MissionControlCTA: React.FC = () => {
                       <Icon className="w-6 h-6 text-[#D4FC02]" />
                     </div>
                     <span
-                      className={`text-[11px] font-mono font-bold px-2.5 py-1 rounded-full border ${card.badgeColor}`}
+                      className={`text-[11px] font-bold px-2.5 py-1 rounded-full border ${card.badgeColor}`}
                     >
                       {card.badge}
                     </span>
@@ -128,7 +128,7 @@ export const MissionControlCTA: React.FC = () => {
                   {/* Feature Checklist */}
                   <div className="space-y-2 mb-8 pt-4 border-t border-white/5">
                     {card.features.map((feat, idx) => (
-                      <div key={idx} className="flex items-center gap-2 text-xs text-slate-300 font-mono">
+                      <div key={idx} className="flex items-center gap-2 text-xs text-slate-300 font-medium">
                         <CheckCircle2 className="w-3.5 h-3.5 text-[#D4FC02] shrink-0" />
                         <span>{feat}</span>
                       </div>

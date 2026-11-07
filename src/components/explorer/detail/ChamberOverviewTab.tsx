@@ -31,7 +31,7 @@ export const ChamberOverviewTab: React.FC<ChamberOverviewTabProps> = ({ study })
         </p>
 
         <div className="space-y-2 pt-2">
-          <span className="text-xs font-mono uppercase text-zinc-500 font-bold">Key Objectives:</span>
+          <span className="text-xs uppercase text-zinc-500 font-bold">Key Objectives:</span>
           <ul className="space-y-2">
             {study.objectives.map((obj, i) => (
               <li key={i} className="flex items-start gap-2 text-xs text-zinc-700">
@@ -54,19 +54,19 @@ export const ChamberOverviewTab: React.FC<ChamberOverviewTabProps> = ({ study })
 
           <div className="grid grid-cols-3 gap-2 p-3 rounded-2xl bg-gray-50 border border-gray-100 text-center">
             <div>
-              <div className="text-[10px] text-zinc-500 font-mono">Oxygen Range</div>
+              <div className="text-[10px] text-zinc-500 font-medium">Oxygen Range</div>
               <div className="text-xs font-bold text-zinc-900 mt-0.5">
                 {study.oxygenRange[0]}–{study.oxygenRange[1]}%
               </div>
             </div>
             <div>
-              <div className="text-[10px] text-zinc-500 font-mono">Pressure</div>
+              <div className="text-[10px] text-zinc-500 font-medium">Pressure</div>
               <div className="text-xs font-bold text-zinc-900 mt-0.5">
                 {study.pressureRangePsi[0]}–{study.pressureRangePsi[1]} psi
               </div>
             </div>
             <div>
-              <div className="text-[10px] text-zinc-500 font-mono">Flow Velocity</div>
+              <div className="text-[10px] text-zinc-500 font-medium">Flow Velocity</div>
               <div className="text-xs font-bold text-zinc-900 mt-0.5">
                 {study.flowRangeCmPerSec[0]}–{study.flowRangeCmPerSec[1]} cm/s
               </div>
@@ -128,7 +128,7 @@ export const ChamberOverviewTab: React.FC<ChamberOverviewTabProps> = ({ study })
                 {study.sensors.map((sensor, i) => (
                   <span
                     key={i}
-                    className="px-2 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-[#0B2374] font-mono text-[10px]"
+                    className="px-2 py-0.5 rounded-md bg-blue-50 border border-blue-200 text-[#0B2374] font-medium text-[10px]"
                   >
                     {sensor}
                   </span>
@@ -195,7 +195,7 @@ export const ChamberOverviewTab: React.FC<ChamberOverviewTabProps> = ({ study })
                     href={`https://doi.org/${cit.doi}`}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1 text-[#0B2374] hover:underline font-mono text-[11px] shrink-0 font-medium"
+                    className="inline-flex items-center gap-1 text-[#0B2374] hover:underline text-[11px] shrink-0 font-bold"
                   >
                     <span>DOI</span>
                     <ExternalLink className="w-3 h-3" />

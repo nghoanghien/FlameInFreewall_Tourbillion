@@ -30,7 +30,7 @@ export const LandingFooter: React.FC = () => {
               NASA Space Apps Challenge 2026: Flame in Freefall. Microgravity combustion &amp; spacecraft
               fire safety intelligence platform.
             </p>
-            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B2374]/60 border border-[#D4FC02]/30 text-[10px] font-mono text-[#D4FC02]">
+            <div className="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full bg-[#0B2374]/60 border border-[#D4FC02]/30 text-[10px] font-semibold text-[#D4FC02]">
               <span className="w-1.5 h-1.5 rounded-full bg-[#D4FC02] animate-ping" />
               <span>Telemetry Active • PSI 20 Studies</span>
             </div>
@@ -39,7 +39,7 @@ export const LandingFooter: React.FC = () => {
           {/* Core Modules */}
           <div>
             <h4 className="font-heading font-bold text-sm text-[#F8F9FA] mb-3">Core Modules</h4>
-            <ul className="space-y-2 font-mono">
+            <ul className="space-y-2 font-medium">
               <li>
                 <Link href="/dashboard" className="hover:text-[#D4FC02] transition-colors">
                   Research Dashboard
@@ -61,7 +61,7 @@ export const LandingFooter: React.FC = () => {
           {/* NASA PSI Resources */}
           <div>
             <h4 className="font-heading font-bold text-sm text-[#F8F9FA] mb-3">NASA PSI Data</h4>
-            <ul className="space-y-2 font-mono">
+            <ul className="space-y-2 font-medium">
               <li>
                 <a
                   href="https://psi.nasa.gov"
@@ -96,7 +96,7 @@ export const LandingFooter: React.FC = () => {
           {/* Kurzgesagt Story Navigation */}
           <div>
             <h4 className="font-heading font-bold text-sm text-[#F8F9FA] mb-3">Visual Story</h4>
-            <ul className="space-y-2 font-mono">
+            <ul className="space-y-2 font-medium">
               <li>
                 <a href="#flame-physics" className="hover:text-[#D4FC02] transition-colors">
                   Earth 1g vs ISS 0g Flame
@@ -136,7 +136,7 @@ export const LandingFooter: React.FC = () => {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-mono text-slate-400">
+        <div className="pt-6 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] font-medium text-slate-400">
           <div>
             © 2026 FlameGuard AI Team • Built for NASA Space Apps Challenge 2026 (Flame in Freefall)
           </div>

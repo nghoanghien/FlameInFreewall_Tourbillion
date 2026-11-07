@@ -62,13 +62,13 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
           <div className="flex items-center gap-2 flex-wrap">
             <span
               data-testid={`comparison-code-${study.id}`}
-              className="px-2.5 py-0.5 rounded-full text-xs font-black tracking-wider uppercase bg-[#D4FC02] text-zinc-950 border border-lime-300 font-mono"
+              className="px-2.5 py-0.5 rounded-full text-xs font-black tracking-wider uppercase bg-[#D4FC02] text-zinc-950 border border-lime-300"
             >
               {study.code}
             </span>
             <span
               data-testid={`comparison-confidence-${study.id}`}
-              className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase border ${
+              className={`px-2 py-0.5 rounded-md text-[10px] font-bold uppercase border ${
                 study.confidence === 'A'
                   ? 'bg-lime-50 text-lime-900 border-lime-300'
                   : 'bg-amber-50 text-amber-700 border-amber-200'
@@ -112,12 +112,12 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
             className="p-2 rounded-xl bg-white border border-gray-200/80 space-y-1"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+              <span className="text-[10px] uppercase text-zinc-500 flex items-center gap-1 font-semibold">
                 <FuelIcon className="w-3 h-3 text-[#0B2374]" />
                 <span>Fuel Category</span>
               </span>
               {flags.isUniqueFuel && allStudies.length > 1 && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-purple-50 text-purple-700 border border-purple-200">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-purple-50 text-purple-700 border border-purple-200">
                   Distinct Phase
                 </span>
               )}
@@ -135,7 +135,7 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
             data-testid={`comparison-facility-${study.id}`}
             className="p-2 rounded-xl bg-white border border-gray-200/80 space-y-1"
           >
-            <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+            <span className="text-[10px] uppercase text-zinc-500 flex items-center gap-1 font-semibold">
               <Building2 className="w-3 h-3 text-zinc-400" />
               <span>Chamber & Platform</span>
             </span>
@@ -150,22 +150,22 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
             className="p-2 rounded-xl bg-white border border-gray-200/80 space-y-1"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+              <span className="text-[10px] uppercase text-zinc-500 flex items-center gap-1 font-semibold">
                 <Activity className="w-3 h-3 text-[#0B2374]" />
                 <span>Oxygen Limits</span>
               </span>
               {flags.isHighestO2 && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-blue-50 text-blue-700 border border-blue-200">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-blue-50 text-blue-700 border border-blue-200">
                   Highest O₂
                 </span>
               )}
               {flags.isLowestO2Moc && !flags.isHighestO2 && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-lime-50 text-lime-900 border border-lime-300">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-lime-50 text-lime-900 border border-lime-300">
                   Lowest MOC
                 </span>
               )}
             </div>
-            <div className="font-mono font-bold text-zinc-900">
+            <div className="font-bold text-zinc-900">
               {metrics.o2RangeDisplay}
             </div>
           </div>
@@ -176,17 +176,17 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
             className="p-2 rounded-xl bg-white border border-gray-200/80 space-y-1"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+              <span className="text-[10px] uppercase text-zinc-500 flex items-center gap-1 font-semibold">
                 <Gauge className="w-3 h-3 text-[#0B2374]" />
                 <span>Pressure Envelope</span>
               </span>
               {flags.isLowestPressure && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-amber-50 text-amber-700 border border-amber-200">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-amber-50 text-amber-700 border border-amber-200">
                   Exploration Hypobaric
                 </span>
               )}
             </div>
-            <div className="font-mono text-zinc-800">
+            <div className="font-semibold text-zinc-800">
               {metrics.pressureRangeDisplay}
             </div>
           </div>
@@ -197,17 +197,17 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
             className="p-2 rounded-xl bg-white border border-gray-200/80 space-y-1"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+              <span className="text-[10px] uppercase text-zinc-500 flex items-center gap-1 font-semibold">
                 <Zap className="w-3 h-3 text-rose-600" />
                 <span>Quench Diameter</span>
               </span>
               {flags.isNarrowestQuench && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-rose-50 text-rose-700 border border-rose-200">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-rose-50 text-rose-700 border border-rose-200">
                   Narrowest Gap
                 </span>
               )}
             </div>
-            <div className="font-mono text-zinc-800">
+            <div className="font-semibold text-zinc-800">
               {metrics.quenchDiameterDisplay}
             </div>
           </div>
@@ -218,17 +218,17 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
             className="p-2 rounded-xl bg-white border border-gray-200/80 space-y-1"
           >
             <div className="flex items-center justify-between">
-              <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+              <span className="text-[10px] uppercase text-zinc-500 flex items-center gap-1 font-semibold">
                 <Activity className="w-3 h-3 text-lime-700" />
                 <span>Flame Spread Velocity</span>
               </span>
               {flags.isFastestSpread && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-lime-50 text-lime-900 border border-lime-300">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-bold bg-lime-50 text-lime-900 border border-lime-300">
                   Fastest Velocity
                 </span>
               )}
             </div>
-            <div className="font-mono text-zinc-800">
+            <div className="font-semibold text-zinc-800">
               {metrics.flameSpreadVelocityDisplay}
             </div>
           </div>
@@ -238,11 +238,11 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
             data-testid={`comparison-runs-${study.id}`}
             className="p-2 rounded-xl bg-white border border-gray-200/80 flex items-center justify-between"
           >
-            <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+            <span className="text-[10px] uppercase text-zinc-500 flex items-center gap-1 font-semibold">
               <ShieldCheck className="w-3 h-3 text-teal-600" />
               <span>Verified Runs</span>
             </span>
-            <span className="font-mono font-bold text-zinc-950">
+            <span className="font-bold text-zinc-950">
               {metrics.verifiedRunCount}
             </span>
           </div>

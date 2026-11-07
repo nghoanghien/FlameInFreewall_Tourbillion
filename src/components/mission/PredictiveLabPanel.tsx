@@ -39,7 +39,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
             <h2 className="text-lg font-black text-zinc-950 tracking-tight">
               Predictive Lab · Guarded Simulation
             </h2>
-            <span className="text-[10px] font-mono px-2 py-0.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 font-bold">
+            <span className="text-[10px] px-2 py-0.5 rounded-full bg-purple-50 border border-purple-200 text-purple-700 font-bold">
               Could Have · Diagram D14
             </span>
           </div>
@@ -51,7 +51,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
         {/* Model Status Badge */}
         <div
           data-testid="model-status-badge"
-          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border text-xs font-mono font-bold ${
+          className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border text-xs font-bold ${
             audit.isLocked
               ? 'bg-rose-50 text-rose-700 border-rose-200'
               : 'bg-lime-50 text-lime-900 border-lime-300'
@@ -72,7 +72,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
       </div>
 
       {/* Model Scope & Version Meta */}
-      <div className="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-mono">
+      <div className="p-3.5 rounded-2xl bg-gray-50 border border-gray-200 flex flex-col sm:flex-row sm:items-center justify-between gap-2 text-xs font-medium">
         <span className="text-zinc-500">
           Model Version: <strong className="text-zinc-900">{audit.modelVersion}</strong>
         </span>
@@ -103,7 +103,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
               }`}
             >
               <div className="flex items-center justify-between mb-2">
-                <span className="text-[11px] font-mono font-bold text-zinc-500">
+                <span className="text-[11px] font-bold text-zinc-500">
                   {req.code}
                 </span>
                 {req.isMet ? (
@@ -122,7 +122,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
                 {req.description}
               </p>
               <div
-                className={`text-[10px] font-mono p-2 rounded-xl border leading-relaxed ${
+                className={`text-[10px] p-2 rounded-xl border leading-relaxed ${
                   req.isMet
                     ? 'bg-white border-lime-200 text-lime-900'
                     : 'bg-white border-rose-200 text-rose-800'
@@ -150,7 +150,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
               <h3 className="text-sm font-black text-rose-900 uppercase tracking-wide">
                 Guarded Execution Locked — Missing NASA Empirical Baseline
               </h3>
-              <p className="text-xs text-rose-800 leading-relaxed font-mono">
+              <p className="text-xs text-rose-800 leading-relaxed font-medium">
                 {audit.lockReason}
               </p>
             </div>
@@ -195,14 +195,14 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
                 <h3 className="text-sm font-black text-zinc-900">
                   Empirical Flame Propagation Prediction
                 </h3>
-                <span className="text-[10px] font-mono text-lime-800 font-bold">
+                <span className="text-[10px] text-lime-800 font-bold">
                   {audit.regime}
                 </span>
               </div>
             </div>
 
-            <div className="text-right font-mono">
-              <span className="text-xs text-zinc-500">Confidence:</span>{' '}
+            <div className="text-right">
+              <span className="text-xs text-zinc-500 font-medium">Confidence:</span>{' '}
               <strong className="text-lime-900">{audit.confidenceIntervalPct}% CI</strong>
             </div>
           </div>
@@ -220,7 +220,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
               <div className="text-[10px] uppercase font-bold text-zinc-500">
                 Predicted Spread Rate
               </div>
-              <div className="text-2xl font-black font-mono text-[#0B2374]">
+              <div className="text-2xl font-black text-[#0B2374]">
                 {audit.predictedSpreadRateMmS?.toFixed(2)}{' '}
                 <span className="text-xs text-zinc-500 font-sans">mm/s</span>
               </div>
@@ -240,7 +240,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
               <div className="text-[10px] uppercase font-bold text-zinc-500">
                 Quenching Extinction Limit
               </div>
-              <div className="text-2xl font-black font-mono text-[#0B2374]">
+              <div className="text-2xl font-black text-[#0B2374]">
                 {audit.quenchLimitO2Pct.toFixed(1)}{' '}
                 <span className="text-xs text-zinc-500 font-sans">% O₂ (LOI)</span>
               </div>
@@ -258,7 +258,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
               <div className="text-[10px] uppercase font-bold text-zinc-500">
                 Uncertainty Bounds (95% CI)
               </div>
-              <div className="text-xl font-black font-mono text-lime-800">
+              <div className="text-xl font-black text-lime-800">
                 [{audit.uncertaintyBoundMmS?.[0]} – {audit.uncertaintyBoundMmS?.[1]}]{' '}
                 <span className="text-xs text-zinc-500 font-sans">mm/s</span>
               </div>
@@ -276,7 +276,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
         className="p-4 rounded-2xl bg-amber-50 border border-amber-200 flex items-start gap-3"
       >
         <ShieldAlert className="w-5 h-5 text-amber-600 shrink-0 mt-0.5" />
-        <p className="text-xs text-amber-900 leading-relaxed font-mono">
+        <p className="text-xs text-amber-900 leading-relaxed font-medium">
           <strong className="text-amber-800">MANDATORY PROTOCOL:</strong> {audit.disclaimer}
         </p>
       </div>

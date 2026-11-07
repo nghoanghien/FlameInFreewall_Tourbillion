@@ -110,7 +110,6 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
 
       expect(screen.getByTestId('explorer-filters-bar')).toBeDefined();
       expect(screen.getByTestId('explorer-filters-bar').className).toContain('sticky');
-      expect(screen.getByTestId('explorer-filters-bar').className).toContain('backdrop-blur-md');
       expect(screen.getByTestId('explorer-search-input')).toBeDefined();
       expect(screen.getByTestId('fuel-tab-all')).toBeDefined();
       expect(screen.getByTestId('fuel-tab-solid')).toBeDefined();

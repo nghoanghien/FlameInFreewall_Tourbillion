@@ -126,10 +126,10 @@ export const AtmosphericPhysics: React.FC = () => {
           <div className="lg:col-span-5 rounded-2xl border border-white/10 bg-[#111827]/80 p-6 flex flex-col justify-between backdrop-blur-md">
             <div>
               <div className="flex items-center justify-between mb-4">
-                <span className="text-xs font-mono font-bold uppercase text-slate-400 flex items-center gap-1.5">
+                <span className="text-xs font-bold uppercase text-slate-400 flex items-center gap-1.5">
                   <Atom className="w-4 h-4 text-[#4CC9F0]" /> Gas Mixture Chamber
                 </span>
-                <span className="text-xs font-mono text-slate-300">
+                <span className="text-xs font-semibold text-slate-300">
                   {current.totalPsi} psia Total
                 </span>
               </div>
@@ -171,7 +171,7 @@ export const AtmosphericPhysics: React.FC = () => {
                 </svg>
 
                 {/* Legend */}
-                <div className="absolute bottom-2 flex items-center gap-4 bg-[#080C18]/90 px-3 py-1 rounded-full border border-white/10 text-[10px] font-mono">
+                <div className="absolute bottom-2 flex items-center gap-4 bg-[#080C18]/90 px-3 py-1 rounded-full border border-white/10 text-[10px] font-semibold">
                   <span className="flex items-center gap-1 text-[#4CC9F0]">
                     <span className="w-2.5 h-2.5 rounded-full bg-[#4CC9F0]" /> O₂ ({current.o2Pct}%)
                   </span>
@@ -183,7 +183,7 @@ export const AtmosphericPhysics: React.FC = () => {
             </div>
 
             {/* Chamber Summary */}
-            <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 gap-3 text-xs font-mono">
+            <div className="mt-4 pt-4 border-t border-white/10 grid grid-cols-2 gap-3 text-xs font-semibold">
               <div className="bg-[#080C18] p-2.5 rounded-lg border border-white/5">
                 <span className="text-slate-400 block text-[11px]">Breathing ppO₂</span>
                 <span className="text-base font-bold text-[#D4FC02]">{ppO2} psia</span>
@@ -206,7 +206,7 @@ export const AtmosphericPhysics: React.FC = () => {
                   Combustion Enthalpy vs Oxygen Mole Fraction
                 </h3>
                 <span
-                  className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${
+                  className={`text-xs font-bold px-3 py-1 rounded-full border ${
                     current.riskLevel === 'Nominal'
                       ? 'bg-lime-950/40 text-lime-400 border-lime-500/40'
                       : current.riskLevel === 'Elevated'
@@ -224,7 +224,7 @@ export const AtmosphericPhysics: React.FC = () => {
                 <div className="bg-[#080C18] p-4 rounded-xl border border-white/10">
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="font-semibold text-slate-200">Human Respiration Impact</span>
-                    <span className="text-xs font-mono text-lime-400 font-bold flex items-center gap-1">
+                    <span className="text-xs text-lime-400 font-bold flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" /> Nominal Oxygenation
                     </span>
                   </div>
@@ -237,7 +237,7 @@ export const AtmosphericPhysics: React.FC = () => {
                 <div className="bg-[#080C18] p-4 rounded-xl border border-red-500/30">
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="font-semibold text-red-300">Spacecraft Fire Spread Multiplier</span>
-                    <span className="text-xs font-mono text-red-400 font-bold flex items-center gap-1">
+                    <span className="text-xs text-red-400 font-bold flex items-center gap-1">
                       <Flame className="w-3.5 h-3.5" /> {current.flammabilityIndex.toFixed(1)}x Spread Rate
                     </span>
                   </div>
@@ -252,8 +252,8 @@ export const AtmosphericPhysics: React.FC = () => {
 
             {/* Visual Risk Gauge Meter */}
             <div className="mt-6 pt-4 border-t border-white/10">
-              <div className="flex items-center justify-between text-xs font-mono mb-2">
-                <span className="text-slate-400">Polymer Flame Spread Multiplier:</span>
+              <div className="flex items-center justify-between text-xs mb-2">
+                <span className="text-slate-400 font-medium">Polymer Flame Spread Multiplier:</span>
                 <span className="font-bold text-[#D4FC02]">{current.flammabilityIndex}x Earth Baseline</span>
               </div>
               <div className="w-full bg-[#080C18] h-3 rounded-full overflow-hidden p-0.5 border border-white/10">
@@ -268,7 +268,7 @@ export const AtmosphericPhysics: React.FC = () => {
                   style={{ width: `${Math.min((current.flammabilityIndex / 3.0) * 100, 100)}%` }}
                 />
               </div>
-              <p className="text-[11px] text-slate-400 mt-2 font-mono">
+              <p className="text-[11px] text-slate-400 mt-2 font-medium">
                 {current.notes}
               </p>
             </div>

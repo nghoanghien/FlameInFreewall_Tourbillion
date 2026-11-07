@@ -113,7 +113,7 @@ export default function MissionPage() {
   return (
     <Suspense
       fallback={
-        <div className="w-full max-w-7xl mx-auto py-12 text-center text-zinc-400 font-mono text-sm animate-pulse">
+        <div className="w-full max-w-7xl mx-auto py-12 text-center text-zinc-400 font-medium text-sm animate-pulse">
           Loading Mission Scenario Workbench...
         </div>
       }

@@ -101,14 +101,14 @@ export const PsiExportTab: React.FC<PsiExportTabProps> = ({ study }) => {
             </p>
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-lime-50 border border-lime-200 text-lime-900 text-xs font-mono font-medium">
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-lime-50 border border-lime-200 text-lime-900 text-xs font-semibold">
             <CheckCircle2 className="w-3.5 h-3.5 text-lime-700" />
             <span>Open Access NASA License</span>
           </div>
         </div>
 
         {/* Dataset Metadata Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs font-mono">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 p-4 rounded-2xl bg-gray-50 border border-gray-100 text-xs">
           <div>
             <span className="text-zinc-500 text-[10px] uppercase font-semibold">PSI Dataset ID</span>
             <div className="font-bold text-[#0B2374] mt-0.5">{study.dataAvailability.psiDatasetId}</div>

@@ -80,7 +80,7 @@ export const DomainBreakdown: React.FC = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs font-mono font-bold text-zinc-950">{fuel.count}</div>
+                    <div className="text-xs font-bold text-zinc-950">{fuel.count}</div>
                     <div className="text-[10px] text-[#64748B]">{Math.round((fuel.count / total) * 100)}%</div>
                   </div>
                 </Link>
@@ -123,7 +123,7 @@ export const DomainBreakdown: React.FC = () => {
                     </div>
                   </div>
                   <div className="text-right">
-                    <div className="text-xs font-mono font-bold text-zinc-950">{fac.count}</div>
+                    <div className="text-xs font-bold text-zinc-950">{fac.count}</div>
                     <div className="text-[10px] text-[#64748B]">{Math.round((fac.count / total) * 100)}%</div>
                   </div>
                 </div>

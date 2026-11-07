@@ -31,7 +31,7 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[850px]">
           <thead>
-            <tr className="border-b border-gray-100 bg-gray-50/90 text-[11px] font-mono uppercase tracking-wider text-zinc-600 font-bold">
+            <tr className="border-b border-gray-100 bg-gray-50/90 text-[11px] uppercase tracking-wider text-zinc-600 font-bold">
               <th className="py-3.5 px-4 w-14 text-center">Compare</th>
               <th className="py-3.5 px-4 min-w-[220px]">Code &amp; Study Title</th>
               <th className="py-3.5 px-4 min-w-[120px]">Fuel Phase</th>
@@ -82,10 +82,10 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                       className="group/link block space-y-0.5"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-xs text-[#0B2374] group-hover/link:underline">
+                        <span className="font-bold text-xs text-[#0B2374] group-hover/link:underline">
                           {study.code}
                         </span>
-                        <span className="text-[11px] text-zinc-500 font-mono">({study.yearRange})</span>
+                        <span className="text-[11px] text-zinc-500 font-medium">({study.yearRange})</span>
                       </div>
                       <div className="font-semibold text-zinc-900 group-hover/link:text-[#0B2374] transition-colors line-clamp-1">
                         {study.title}
@@ -108,25 +108,25 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
 
                   {/* Facility & Hardware */}
                   <td className="py-3.5 px-4">
-                    <div className="font-mono text-xs font-semibold text-zinc-900">{study.hardware}</div>
+                    <div className="text-xs font-semibold text-zinc-900">{study.hardware}</div>
                     <div className="text-[11px] text-zinc-500 line-clamp-1 truncate max-w-[180px]">
                       {study.platform}
                     </div>
                   </td>
 
                   {/* Chamber Conditions */}
-                  <td className="py-3.5 px-4 font-mono text-[11px] text-zinc-700">
+                  <td className="py-3.5 px-4 font-semibold text-[11px] text-zinc-700">
                     <div>
                       {study.oxygenRange[0]}–{study.oxygenRange[1]}% O₂
                     </div>
-                    <div className="text-zinc-500 text-[10px]">
+                    <div className="text-zinc-500 text-[10px] font-normal">
                       {study.pressureRangePsi[0]}–{study.pressureRangePsi[1]} psia · {study.flowRangeCmPerSec[1]} cm/s
                     </div>
                   </td>
 
                   {/* Runs Count */}
                   <td className="py-3.5 px-4 text-center">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-gray-100 border border-gray-200 text-xs font-mono font-bold text-[#0B2374]">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-gray-100 border border-gray-200 text-xs font-bold text-[#0B2374]">
                       <Activity className="w-3 h-3" />
                       <span>{runsCount}</span>
                     </span>
@@ -136,7 +136,7 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                   <td className="py-3.5 px-4">
                     <div className="flex items-center gap-1.5">
                       <span
-                        className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${
+                        className={`px-2 py-0.5 rounded text-[10px] font-bold uppercase border ${
                           study.confidence === 'A'
                             ? 'bg-lime-50 text-lime-900 border-lime-300'
                             : 'bg-amber-50 text-amber-800 border-amber-200'
@@ -144,7 +144,7 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                       >
                         Tier {study.confidence}
                       </span>
-                      <span className="text-[10px] font-mono text-zinc-500">
+                      <span className="text-[10px] font-medium text-zinc-500">
                         {study.badge}
                       </span>
                     </div>

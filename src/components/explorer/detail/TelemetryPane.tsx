@@ -131,7 +131,7 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
               type="button"
               data-testid={`telemetry-run-btn-${run.id}`}
               onClick={() => setSelectedRunId(run.id)}
-              className={`px-3 py-1 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
+              className={`px-3 py-1 rounded-xl text-xs font-semibold transition-colors cursor-pointer ${
                 activeRun.id === run.id
                   ? 'bg-[#4CC9F0] text-slate-950 font-bold shadow-xs'
                   : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60'
@@ -147,16 +147,16 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
       <div className="p-5 rounded-3xl bg-white border border-gray-100 shadow-xs space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-xs text-[#F97316] font-mono font-semibold">
+            <span className="flex items-center gap-1.5 text-xs text-[#F97316] font-semibold">
               <span className="w-3 h-0.5 bg-[#F97316] inline-block rounded-full" />
               <span>Chamber Flame Temp (K)</span>
             </span>
-            <span className="flex items-center gap-1.5 text-xs text-[#0B2374] font-mono font-semibold">
+            <span className="flex items-center gap-1.5 text-xs text-[#0B2374] font-semibold">
               <span className="w-3 h-0.5 bg-[#0B2374] inline-block rounded-full" />
               <span>Flame Radius (mm)</span>
             </span>
           </div>
-          <span className="text-[11px] font-mono text-zinc-500">
+          <span className="text-[11px] font-medium text-zinc-500">
             Sample: {activeRun.materialType} · {activeRun.conditions.oxygenPct}% O₂
           </span>
         </div>
@@ -185,7 +185,7 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
                     x={padding.left - 8}
                     y={y + 3}
                     textAnchor="end"
-                    className="text-[10px] font-mono fill-[#475569]"
+                    className="text-[10px] font-semibold fill-[#475569]"
                   >
                     {Math.round(frac * maxTemp)}
                   </text>
@@ -209,7 +209,7 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
                     x={x}
                     y={svgHeight - padding.bottom + 15}
                     textAnchor="middle"
-                    className="text-[10px] font-mono fill-[#475569]"
+                    className="text-[10px] font-semibold fill-[#475569]"
                   >
                     {Math.round(frac * maxTime)}s
                   </text>

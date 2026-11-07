@@ -36,11 +36,11 @@ export const StudyHeader: React.FC<StudyHeaderProps> = ({
     >
       {/* Top Breadcrumb & External PSI Link */}
       <div className="flex flex-wrap items-center justify-between gap-3 text-xs">
-        <div className="flex items-center gap-2 text-zinc-500 font-mono">
+        <div className="flex items-center gap-2 text-zinc-500 font-medium">
           <Link
             href="/explorer"
             data-testid="back-to-explorer-link"
-            className="inline-flex items-center gap-1 text-[#0B2374] hover:text-[#081b59] font-medium transition-colors"
+            className="inline-flex items-center gap-1 text-[#0B2374] hover:text-[#081b59] font-semibold transition-colors"
           >
             <ArrowLeft className="w-3.5 h-3.5" />
             <span>Explorer</span>
@@ -55,7 +55,7 @@ export const StudyHeader: React.FC<StudyHeaderProps> = ({
           target="_blank"
           rel="noopener noreferrer"
           data-testid="study-nasa-psi-link"
-          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-200 text-zinc-700 hover:text-zinc-950 text-xs font-medium transition-colors"
+          className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-50 hover:bg-gray-100 border border-gray-200 text-zinc-700 hover:text-zinc-950 text-xs font-semibold transition-colors"
         >
           <span>NASA PSI Repository</span>
           <ExternalLink className="w-3.5 h-3.5 text-[#0B2374]" />
@@ -66,17 +66,17 @@ export const StudyHeader: React.FC<StudyHeaderProps> = ({
       <div className="space-y-3">
         <div className="flex flex-wrap items-center gap-2.5">
           {/* Space Apps Electric Lime Badge */}
-          <span className="px-3 py-1 rounded-xl text-xs font-black tracking-wider uppercase bg-[#D4FC02] text-zinc-950 font-mono shadow-2xs">
+          <span className="px-3 py-1 rounded-xl text-xs font-black tracking-wider uppercase bg-[#D4FC02] text-zinc-950 shadow-2xs">
             {study.code}
           </span>
           <span
-            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-medium border ${fuelBadge.bg} ${fuelBadge.text} ${fuelBadge.border}`}
+            className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-xl text-xs font-semibold border ${fuelBadge.bg} ${fuelBadge.text} ${fuelBadge.border}`}
           >
             <FuelIcon className="w-3.5 h-3.5" />
             <span>{fuelBadge.label}</span>
           </span>
           <span
-            className={`px-2.5 py-1 rounded-xl text-xs font-mono font-bold uppercase border ${
+            className={`px-2.5 py-1 rounded-xl text-xs font-bold uppercase border ${
               study.confidence === 'A'
                 ? 'bg-lime-50 text-lime-900 border-lime-300'
                 : 'bg-amber-50 text-amber-800 border-amber-200'
@@ -84,7 +84,7 @@ export const StudyHeader: React.FC<StudyHeaderProps> = ({
           >
             Tier {study.confidence} Confidence
           </span>
-          <span className="px-2.5 py-1 rounded-xl text-xs font-mono font-bold bg-blue-50 text-[#0B2374] border border-blue-200">
+          <span className="px-2.5 py-1 rounded-xl text-xs font-bold bg-blue-50 text-[#0B2374] border border-blue-200">
             {study.badge || study.hardware}
           </span>
         </div>
@@ -92,7 +92,7 @@ export const StudyHeader: React.FC<StudyHeaderProps> = ({
         <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-950 tracking-tight">
           {study.title}
         </h1>
-        <p className="text-sm sm:text-base text-zinc-600 leading-relaxed max-w-4xl">
+        <p className="text-sm sm:text-base text-zinc-600 leading-relaxed max-w-4xl font-normal">
           {study.subtitle}
         </p>
       </div>
@@ -113,7 +113,7 @@ export const StudyHeader: React.FC<StudyHeaderProps> = ({
           </div>
           <div className="flex items-center gap-2">
             <Calendar className="w-4 h-4 text-zinc-400" />
-            <span className="font-mono text-zinc-500">{study.yearRange}</span>
+            <span className="text-zinc-500 font-medium">{study.yearRange}</span>
           </div>
         </div>
 

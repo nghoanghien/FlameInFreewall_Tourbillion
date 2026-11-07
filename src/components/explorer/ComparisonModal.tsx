@@ -93,7 +93,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
       {isOpen && (
         <div
           data-testid="comparison-modal"
-          className="fixed inset-0 z-50 flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
+          className="fixed inset-0 z-[100] flex items-center justify-center p-3 sm:p-6 overflow-y-auto"
         >
           {/* Backdrop Blur */}
           <motion.div
@@ -103,7 +103,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-zinc-950/40 backdrop-blur-md cursor-pointer"
+            className="fixed inset-0 bg-zinc-950/40 backdrop-blur-md cursor-pointer z-[100]"
             aria-hidden="true"
           />
 
@@ -117,7 +117,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative z-10 w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl bg-white border border-gray-100 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] text-[#1A1A1A] overflow-hidden"
+            className="relative z-[110] w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl bg-white border border-gray-100 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] text-[#1A1A1A] overflow-hidden"
           >
             {/* Header */}
             <header className="px-6 py-5 border-b border-gray-100 flex items-center justify-between gap-4 shrink-0 bg-white">
@@ -131,7 +131,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                     className="text-lg sm:text-xl font-black text-zinc-950 tracking-tight flex items-center gap-2"
                   >
                     Multi-Study Comparison
-                    <span className="text-xs font-mono font-bold text-zinc-950 px-2.5 py-0.5 rounded-full bg-[#D4FC02] border border-lime-300">
+                    <span className="text-xs font-bold text-zinc-950 px-2.5 py-0.5 rounded-full bg-[#D4FC02] border border-lime-300">
                       {comparedStudies.length}/3 Studies
                     </span>
                   </h2>

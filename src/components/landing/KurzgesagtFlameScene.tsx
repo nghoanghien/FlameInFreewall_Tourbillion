@@ -70,7 +70,7 @@ export const KurzgesagtFlameScene: React.FC = () => {
         <div className="flex flex-wrap items-center justify-between gap-4 mb-8 bg-[#111827]/80 border border-white/10 rounded-2xl p-4 backdrop-blur-md">
           {/* Quick Presets */}
           <div className="flex flex-wrap items-center gap-2">
-            <span className="text-xs font-mono text-slate-400 mr-1 flex items-center gap-1">
+            <span className="text-xs text-slate-400 mr-1 flex items-center gap-1 font-semibold">
               <Sliders className="w-3.5 h-3.5 text-[#D4FC02]" /> Gravity Preset:
             </span>
             {PRESETS.map((preset) => {
@@ -133,14 +133,14 @@ export const KurzgesagtFlameScene: React.FC = () => {
                     Earth 1.00g Terrestrial Flame
                   </span>
                 </div>
-                <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-[#F97316]/20 text-[#F97316] border border-[#F97316]/30">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#F97316]/20 text-[#F97316] border border-[#F97316]/30">
                   Buoyant Plume
                 </span>
               </div>
               <div className="relative w-full h-72 flex items-center justify-center bg-[#080C18]/80 rounded-xl border border-white/5 overflow-hidden">
                 <EarthFlameSvg />
               </div>
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-mono">
+              <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-semibold">
                 <div className="bg-[#080C18] p-2 rounded-lg border border-white/5">
                   <div className="text-slate-400">Sphericity</div>
                   <div className="text-base font-bold text-[#F97316]">0.25 (Teardrop)</div>
@@ -165,14 +165,14 @@ export const KurzgesagtFlameScene: React.FC = () => {
                     ISS 0.00g Microgravity Flame
                   </span>
                 </div>
-                <span className="text-xs font-mono font-semibold px-2.5 py-1 rounded-full bg-[#06B6D4]/20 text-[#06B6D4] border border-[#06B6D4]/30">
+                <span className="text-xs font-semibold px-2.5 py-1 rounded-full bg-[#06B6D4]/20 text-[#06B6D4] border border-[#06B6D4]/30">
                   Spherical Diffusion
                 </span>
               </div>
               <div className="relative w-full h-72 flex items-center justify-center bg-[#080C18]/80 rounded-xl border border-white/5 overflow-hidden">
                 <IssFlameSvg />
               </div>
-              <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-mono">
+              <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-semibold">
                 <div className="bg-[#080C18] p-2 rounded-lg border border-white/5">
                   <div className="text-slate-400">Sphericity</div>
                   <div className="text-base font-bold text-[#06B6D4]">0.98 (Spherical)</div>
@@ -204,7 +204,7 @@ export const KurzgesagtFlameScene: React.FC = () => {
 
               {/* Slider */}
               <div className="flex items-center gap-3 w-full md:w-72 bg-[#080C18] p-3 rounded-xl border border-white/10">
-                <span className="text-xs font-mono font-bold text-slate-300">0.0g</span>
+                <span className="text-xs font-bold text-slate-300">0.0g</span>
                 <input
                   type="range"
                   min="0"
@@ -216,7 +216,7 @@ export const KurzgesagtFlameScene: React.FC = () => {
                   data-testid="gravity-slider"
                   aria-label="Gravity Slider"
                 />
-                <span className="text-xs font-mono font-bold text-[#D4FC02] min-w-[42px] text-right">
+                <span className="text-xs font-bold text-[#D4FC02] min-w-[42px] text-right">
                   {gravity.toFixed(2)}g
                 </span>
               </div>
@@ -229,7 +229,7 @@ export const KurzgesagtFlameScene: React.FC = () => {
         )}
 
         {/* Live Combustion Physics Telemetry Dashboard */}
-        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 text-xs font-mono mb-8" data-testid="live-telemetry-hud">
+        <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-6 gap-3 text-xs font-medium mb-8" data-testid="live-telemetry-hud">
           <div className="bg-[#111827]/80 border border-white/10 rounded-xl p-3">
             <span className="text-slate-400 block text-[11px]">Sphericity</span>
             <span className="text-base font-bold text-[#D4FC02]">

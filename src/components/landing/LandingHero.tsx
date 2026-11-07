@@ -65,7 +65,7 @@ export const LandingHero: React.FC = () => {
               <span className="font-heading font-extrabold text-base tracking-tight text-[#F8F9FA] flex items-center gap-1.5">
                 FlameGuard <span className="text-[#D4FC02]">AI</span>
               </span>
-              <span className="text-[10px] font-mono uppercase tracking-wider text-slate-300">
+              <span className="text-[10px] font-semibold uppercase tracking-wider text-slate-300">
                 NASA Space Apps 2026
               </span>
             </div>
@@ -160,7 +160,7 @@ export const LandingHero: React.FC = () => {
           {/* Telemetry Highlight Badges */}
           <div className="mt-14 w-full grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 text-left">
             <div className="rounded-xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm p-4 hover:border-[#D4FC02]/30 transition-colors">
-              <div className="flex items-center gap-2 text-[#D4FC02] text-xs font-mono uppercase mb-1">
+              <div className="flex items-center gap-2 text-[#D4FC02] text-xs font-semibold uppercase mb-1">
                 <Activity className="w-3.5 h-3.5" />
                 <span>PSI Archive</span>
               </div>
@@ -171,7 +171,7 @@ export const LandingHero: React.FC = () => {
             </div>
 
             <div className="rounded-xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm p-4 hover:border-[#4CC9F0]/30 transition-colors">
-              <div className="flex items-center gap-2 text-[#4CC9F0] text-xs font-mono uppercase mb-1">
+              <div className="flex items-center gap-2 text-[#4CC9F0] text-xs font-semibold uppercase mb-1">
                 <Flame className="w-3.5 h-3.5" />
                 <span>Test Runs</span>
               </div>
@@ -182,7 +182,7 @@ export const LandingHero: React.FC = () => {
             </div>
 
             <div className="rounded-xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm p-4 hover:border-[#8B5CF6]/30 transition-colors">
-              <div className="flex items-center gap-2 text-[#8B5CF6] text-xs font-mono uppercase mb-1">
+              <div className="flex items-center gap-2 text-[#8B5CF6] text-xs font-semibold uppercase mb-1">
                 <Compass className="w-3.5 h-3.5" />
                 <span>Physics Model</span>
               </div>
@@ -193,7 +193,7 @@ export const LandingHero: React.FC = () => {
             </div>
 
             <div className="rounded-xl border border-white/10 bg-[#111827]/60 backdrop-blur-sm p-4 hover:border-red-400/30 transition-colors">
-              <div className="flex items-center gap-2 text-red-400 text-xs font-mono uppercase mb-1">
+              <div className="flex items-center gap-2 text-red-400 text-xs font-semibold uppercase mb-1">
                 <ShieldAlert className="w-3.5 h-3.5" />
                 <span>Exploration Gap</span>
               </div>

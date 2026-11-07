@@ -98,14 +98,14 @@ export const ClaimsList: React.FC<ClaimsListProps> = ({ study }) => {
                 {/* Badges Bar: ID, Category, Provenance, Review Status */}
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-full bg-lime-50 border border-lime-200 text-lime-900 font-mono text-[11px] font-extrabold shadow-2xs">
+                    <span className="px-2.5 py-0.5 rounded-full bg-lime-50 border border-lime-200 text-lime-900 text-[11px] font-extrabold shadow-2xs">
                       {claim.id}
                     </span>
-                    <span className="px-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-zinc-700 font-mono text-[11px] font-extrabold shadow-2xs capitalize">
+                    <span className="px-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-zinc-700 text-[11px] font-extrabold shadow-2xs capitalize">
                       {claim.category.replace('_', ' ')}
                     </span>
                     <span
-                      className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] font-extrabold shadow-2xs border ${badgeConfig.bg} ${badgeConfig.text} ${badgeConfig.border}`}
+                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs border ${badgeConfig.bg} ${badgeConfig.text} ${badgeConfig.border}`}
                     >
                       {badgeConfig.label}
                     </span>
@@ -155,7 +155,7 @@ export const ClaimsList: React.FC<ClaimsListProps> = ({ study }) => {
                       target="_blank"
                       rel="noopener noreferrer"
                       data-testid={`doi-link-${claim.id}`}
-                      className="inline-flex items-center gap-1 text-[#0B2374] hover:underline transition-colors font-mono text-[11px] font-medium"
+                      className="inline-flex items-center gap-1 text-[#0B2374] hover:underline transition-colors text-[11px] font-semibold"
                     >
                       <span>doi:{claim.doi}</span>
                       <ExternalLink className="w-3 h-3" />

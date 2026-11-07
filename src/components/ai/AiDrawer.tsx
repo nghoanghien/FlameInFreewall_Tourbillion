@@ -106,11 +106,11 @@ export const AiDrawer: React.FC = () => {
                   <h2 className="text-sm font-bold text-[#D4FC02] tracking-wide truncate">
                     FlameGuard Grounded AI
                   </h2>
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-extrabold bg-[#D4FC02] text-[#0B2374]">
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-extrabold bg-[#D4FC02] text-[#0B2374]">
                     RAG
                   </span>
                 </div>
-                <p className="text-[11px] text-gray-200/90 font-mono truncate">
+                <p className="text-[11px] text-gray-200/90 truncate font-medium">
                   NASA Physical Sciences Informatics • Zero Hallucination
                 </p>
               </div>
@@ -141,7 +141,7 @@ export const AiDrawer: React.FC = () => {
 
           {/* Active Context Study Banner */}
           {activeContextStudyId && (
-            <div className="px-4 py-2 bg-blue-50 border-b border-blue-200 flex items-center justify-between text-xs font-mono text-[#0B2374] shrink-0">
+            <div className="px-4 py-2 bg-blue-50 border-b border-blue-200 flex items-center justify-between text-xs text-[#0B2374] shrink-0 font-medium">
               <div className="flex items-center gap-1.5 truncate">
                 <Compass className="w-3.5 h-3.5 shrink-0 text-[#0B2374]" />
                 <span className="truncate font-semibold">Active Study Context: {activeContextStudyId.toUpperCase()}</span>
@@ -163,7 +163,7 @@ export const AiDrawer: React.FC = () => {
                 <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-xs space-y-2.5">
                   <div className="flex items-center gap-2 text-[#0B2374]">
                     <ShieldCheck className="w-4 h-4 text-lime-600" />
-                    <span className="font-bold text-xs tracking-wider uppercase font-mono text-[#0B2374]">
+                    <span className="font-bold text-xs tracking-wider uppercase text-[#0B2374]">
                       Offline-First Grounded Architecture
                     </span>
                   </div>
@@ -173,7 +173,7 @@ export const AiDrawer: React.FC = () => {
                 </div>
 
                 <div>
-                  <h3 className="text-xs font-mono font-bold text-zinc-500 mb-2 flex items-center gap-1.5">
+                  <h3 className="text-xs font-bold text-zinc-500 mb-2 flex items-center gap-1.5">
                     <Sparkles className="w-3.5 h-3.5 text-[#0B2374]" />
                     <span>Quick Scientific Prompts</span>
                   </h3>
@@ -201,7 +201,7 @@ export const AiDrawer: React.FC = () => {
 
             {/* Streaming Typing Indicator */}
             {isStreaming && (
-              <div className="flex items-center gap-2.5 text-xs text-zinc-600 font-mono py-1">
+              <div className="flex items-center gap-2.5 text-xs text-zinc-600 py-1 font-medium">
                 <div className="w-7 h-7 rounded-lg bg-[#0B2374]/10 border border-[#0B2374]/20 flex items-center justify-center">
                   <Bot className="w-4 h-4 text-[#0B2374] animate-pulse" />
                 </div>
@@ -245,7 +245,7 @@ export const AiDrawer: React.FC = () => {
               </button>
             </form>
 
-            <p className="text-[10px] text-zinc-500 text-center font-mono tracking-tight">
+            <p className="text-[10px] text-zinc-500 text-center font-medium tracking-tight">
               Offline Grounded RAG • Zero API Keys • Traceable NASA PSI Citations
             </p>
           </div>

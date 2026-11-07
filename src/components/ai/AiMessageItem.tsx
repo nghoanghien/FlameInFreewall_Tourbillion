@@ -41,7 +41,7 @@ export const AiMessageItem: React.FC<AiMessageItemProps> = ({ message }) => {
         {/* Grounding Citations List */}
         {message.citations && message.citations.length > 0 && (
           <div className="pt-2 border-t border-gray-200 space-y-1.5">
-            <span className="text-[10px] font-mono font-bold text-zinc-500 block tracking-wider uppercase">
+            <span className="text-[10px] font-bold text-zinc-500 block tracking-wider uppercase">
               Grounding Citations ({message.citations.length}):
             </span>
             <div className="flex flex-wrap gap-1.5">

@@ -260,9 +260,9 @@ export const Sidebar: React.FC = () => {
             {/* Scenario Status and Footer */}
             <div className="p-4 border-t border-slate-100 bg-slate-50 space-y-2">
               <div className="p-2.5 rounded-xl bg-white border border-slate-200 shadow-xs">
-                <span className="text-[10px] font-mono text-zinc-500 uppercase tracking-wider block">Active Scenario</span>
+                <span className="text-[10px] text-zinc-500 uppercase tracking-wider block font-semibold">Active Scenario</span>
                 <span className="text-xs font-semibold text-zinc-800 block truncate">{activeScenario.name}</span>
-                <span className="text-[10px] font-mono text-[#0B2374] font-bold">
+                <span className="text-[10px] text-[#0B2374] font-bold">
                   {activeScenario.oxygenPct}% O₂ · {activeScenario.gravity}g
                 </span>
               </div>

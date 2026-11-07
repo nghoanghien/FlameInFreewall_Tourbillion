@@ -56,7 +56,7 @@ export const KpiStatCards: React.FC = () => {
                 <Database className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight font-mono">
+            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight">
               {totalStudies}
             </div>
             <div className="text-xs sm:text-sm font-semibold text-[#1A1A1A] mt-1">
@@ -85,7 +85,7 @@ export const KpiStatCards: React.FC = () => {
                 <Flame className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight font-mono">
+            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight">
               {totalTestRuns}
             </div>
             <div className="text-xs sm:text-sm font-semibold text-[#1A1A1A] mt-1">
@@ -114,7 +114,7 @@ export const KpiStatCards: React.FC = () => {
                 <Activity className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight font-mono">
+            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight">
               10,000+
             </div>
             <div className="text-xs sm:text-sm font-semibold text-[#1A1A1A] mt-1">
@@ -143,7 +143,7 @@ export const KpiStatCards: React.FC = () => {
                 <Award className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight font-mono">
+            <div className="text-3xl sm:text-4xl font-extrabold text-zinc-950 tracking-tight">
               {totalClaims}
             </div>
             <div className="text-xs sm:text-sm font-semibold text-[#1A1A1A] mt-1">
@@ -173,7 +173,7 @@ export const KpiStatCards: React.FC = () => {
                 <ShieldAlert className="w-4 h-4" />
               </div>
             </div>
-            <div className="text-3xl sm:text-4xl font-black text-amber-700 tracking-tight font-mono">
+            <div className="text-3xl sm:text-4xl font-black text-amber-700 tracking-tight">
               0 &lt; g &lt; 1
             </div>
             <div className="text-xs sm:text-sm font-bold text-amber-900 mt-1">
