@@ -34,50 +34,53 @@ function MissionContent() {
       data-testid="mission-workbench"
       className="w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 py-2 pt-0"
     >
-      {/* Top Header - StructPaper Minimalist Templates Style */}
-      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2 pb-1">
-        <div className="flex items-center gap-2 flex-wrap">
-          <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
-            <Rocket className="w-6 h-6 text-[#0B2374]" strokeWidth={2.5} />
-            <span>Mission Scenario Workbench</span>
-          </h1>
-          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#D4FC02]/25 text-zinc-950">
-            ISS · Moon · Mars
-          </span>
-        </div>
+      {/* Top Header Sticky with Backdrop Blur matching Explorer / StructPaper */}
+      <div className="sticky top-0 z-30 -mx-3 px-3 sm:-mx-6 sm:px-6 py-3 pb-4 transition-all duration-300">
+        <div className="absolute inset-0 bg-[#F8F9FA]/50 backdrop-blur-sm pointer-events-none -z-10 [mask-image:linear-gradient(to_bottom,black_85%,transparent)]" />
+        <div className="flex flex-col md:flex-row md:items-center justify-between gap-4">
+          <div className="flex items-center gap-2 flex-wrap">
+            <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+              <Rocket className="w-6 h-6 text-[#0B2374]" strokeWidth={2.5} />
+              <span>Mission Scenario Workbench</span>
+            </h1>
+            <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#D4FC02]/25 text-zinc-950">
+              ISS · Moon · Mars
+            </span>
+          </div>
 
-        {/* View Mode Switcher */}
-        <div
-          data-testid="mission-view-switcher"
-          className="flex items-center p-1 rounded-3xl bg-gray-200/70 shrink-0 self-start md:self-auto shadow-2xs"
-        >
-          <button
-            type="button"
-            data-testid="view-tab-evidence"
-            onClick={() => handleViewChange('evidence')}
-            className={`flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
-              currentView === 'evidence'
-                ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
-                : 'text-zinc-600 hover:text-zinc-900 hover:bg-gray-100/60'
-            }`}
+          {/* View Mode Switcher */}
+          <div
+            data-testid="mission-view-switcher"
+            className="flex items-center p-1 rounded-3xl bg-gray-200/70 shrink-0 self-start md:self-auto shadow-2xs"
           >
-            <Layers className="w-3.5 h-3.5 text-[#0B2374]" />
-            <span>NASA Evidence Analysis</span>
-          </button>
+            <button
+              type="button"
+              data-testid="view-tab-evidence"
+              onClick={() => handleViewChange('evidence')}
+              className={`flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
+                currentView === 'evidence'
+                  ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
+                  : 'text-zinc-600 hover:text-zinc-900 hover:bg-gray-100/60'
+              }`}
+            >
+              <Layers className="w-3.5 h-3.5 text-[#0B2374]" />
+              <span>NASA Evidence Analysis</span>
+            </button>
 
-          <button
-            type="button"
-            data-testid="view-tab-prediction"
-            onClick={() => handleViewChange('prediction')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
-              currentView === 'prediction'
-                ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
-                : 'text-zinc-600 hover:text-zinc-900 hover:bg-gray-100/60'
-            }`}
-          >
-            <Sparkles className="w-3.5 h-3.5 text-purple-600" />
-            <span>Predictive Lab (Could Have)</span>
-          </button>
+            <button
+              type="button"
+              data-testid="view-tab-prediction"
+              onClick={() => handleViewChange('prediction')}
+              className={`flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
+                currentView === 'prediction'
+                  ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
+                  : 'text-zinc-600 hover:text-zinc-900 hover:bg-gray-100/60'
+              }`}
+            >
+              <Sparkles className="w-3.5 h-3.5 text-purple-600" />
+              <span>Predictive Lab (Could Have)</span>
+            </button>
+          </div>
         </div>
       </div>
 

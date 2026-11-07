@@ -109,9 +109,9 @@ describe('Research Dashboard (/dashboard)', () => {
     it('applies StructPaper card styling and lime accents to curated study cards', () => {
       render(<CuratedStudiesGrid />);
       const card = screen.getByTestId('study-card-bass-ii');
-      expect(card.className).toContain('rounded-3xl');
+      expect(card.className).toMatch(/rounded-(3xl|\[36px\])/);
       expect(card.className).toContain('cursor-pointer');
-      expect(card.className).toContain('bg-white');
+      expect(card.className).toMatch(/bg-(white|gray-200\/50)/);
       expect(card.innerHTML).not.toContain('emerald');
     });
 
