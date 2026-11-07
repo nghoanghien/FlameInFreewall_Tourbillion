@@ -2,7 +2,6 @@
 
 import React from 'react';
 import { Sidebar } from './Sidebar';
-import { Header } from './Header';
 import { BottomNav } from './BottomNav';
 import { Toaster } from '@/components/DynamicIslandToast';
 import { FloatingAiDock } from '@/components/ai/FloatingAiDock';
@@ -29,9 +28,6 @@ export const AppShell: React.FC<AppShellProps> = ({ children }) => {
 
       {/* Main Application Flow Area */}
       <div className="w-full flex-1 flex flex-col min-w-0 min-h-screen relative z-10">
-        {/* Top Space Apps Header */}
-        <Header />
-
         {/* Dashboard Content Container */}
         <main
           className="w-full flex-1 px-3 sm:px-6 lg:px-8 py-5 pb-24 sm:pb-8 flex flex-col min-w-0 min-h-0"

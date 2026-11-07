@@ -4,6 +4,8 @@ import React, { useState, useRef, useEffect } from 'react';
 import Link from 'next/link';
 import { motion, AnimatePresence } from 'framer-motion';
 
+const MotionLink = motion.create(Link);
+
 export interface DockPillButtonProps {
   id?: string;
   icon: React.ReactNode;
@@ -57,14 +59,14 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
     };
   }, []);
 
-  const controlClasses = `flex items-center transition-[width,height,background-color,box-shadow,border-color,transform] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] select-none cursor-pointer relative overflow-hidden group outline-none ${
+  const controlClasses = `flex items-center transition-[width,height,background-color,box-shadow,border-color] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] select-none cursor-pointer relative overflow-hidden group outline-none ${
     isExpanded
       ? 'pl-2.5 rounded-[30px] w-[280px] h-[70px] justify-start'
       : 'rounded-full w-[58px] h-[58px] justify-center p-0'
   } ${
     active
-      ? 'bg-[#D4FC02] border-4 border-lime-200 shadow-[0_0_18px_rgba(212,252,2,0.40)] text-zinc-950 scale-[1.01]'
-      : 'bg-white/80 hover:bg-white backdrop-blur-md shadow-[0_0_14px_rgba(0,0,0,0.08),0_0_3px_rgba(0,0,0,0.04)] text-zinc-700 hover:text-zinc-950 border border-white/80 hover:scale-[1.02]'
+      ? 'bg-[#D4FC02] border-4 border-lime-200 shadow-[0_0_18px_rgba(212,252,2,0.40)] text-zinc-950'
+      : 'bg-white/80 hover:bg-white backdrop-blur-md shadow-[0_0_14px_rgba(0,0,0,0.08),0_0_3px_rgba(0,0,0,0.04)] text-zinc-700 hover:text-zinc-950 border border-white/80'
   } ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`;
 
   const innerContent = (
@@ -116,27 +118,33 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
     >
       {/* Conditionally render single interactive control: Link if href exists, button otherwise */}
       {href ? (
-        <Link
+        <MotionLink
           id={id}
           href={href}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           className={controlClasses}
           aria-label={label}
           data-testid={testId}
         >
           {innerContent}
-        </Link>
+        </MotionLink>
       ) : (
-        <button
+        <motion.button
           id={id}
           type="button"
           onClick={onClick}
           disabled={disabled}
+          whileHover={{ scale: 1.04 }}
+          whileTap={{ scale: 0.96 }}
+          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
           className={controlClasses}
           aria-label={label}
           data-testid={testId}
         >
           {innerContent}
-        </button>
+        </motion.button>
       )}
 
       {/* Liquid Glass Tooltip on Hover in Collapsed State */}

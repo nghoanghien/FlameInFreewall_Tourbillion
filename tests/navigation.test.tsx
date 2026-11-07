@@ -23,9 +23,9 @@ describe('Sidebar Navigation Dock & Layout System', () => {
     const aside = container.querySelector('aside');
     expect(aside).toBeTruthy();
     expect(aside?.className).toContain('sticky');
+    expect(aside?.className).toContain('self-start');
     expect(aside?.className).toContain('top-3');
     expect(aside?.className).toContain('ml-3.5');
-    expect(aside?.className).toContain('ease-[cubic-bezier(0.4,0,0.2,1)]');
 
     // Exactly 3 modules in NAV_ITEMS
     expect(NAV_ITEMS).toHaveLength(3);

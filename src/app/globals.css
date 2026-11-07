@@ -97,7 +97,6 @@ body {
   background-color: var(--bg-primary);
   color: var(--text-main);
   font-family: var(--font-body), system-ui, -apple-system, sans-serif;
-  overflow-x: hidden;
   scroll-behavior: smooth;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;

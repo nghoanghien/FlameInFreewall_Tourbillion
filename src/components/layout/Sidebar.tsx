@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { motion } from 'framer-motion';
 import {
   LayoutDashboard,
   Layers,
@@ -66,10 +67,11 @@ export const Sidebar: React.FC = () => {
   return (
     <>
       {/* DESKTOP & TABLET DOCK - NO WRAPPER BOX, EXPANDING DOCK PILLS WITH CHEVRON TOGGLE */}
-      <aside
-        className={`hidden sm:flex flex-col items-start justify-between h-[calc(100vh-1.5rem)] sticky top-3 my-3 ml-3.5 flex-shrink-0 z-30 select-none transition-[width] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
-          isExpanded ? 'w-[280px]' : 'w-[58px]'
-        }`}
+      <motion.aside
+        initial={false}
+        animate={{ width: isExpanded ? 280 : 58 }}
+        transition={{ type: 'spring', stiffness: 350, damping: 26 }}
+        className="hidden sm:flex flex-col items-start justify-between h-[calc(100vh-1.5rem)] sticky top-3 my-3 ml-3.5 flex-shrink-0 z-30 select-none self-start"
         aria-label="FlameGuard AI primary navigation dock"
       >
         {/* TOP SECTION: TOGGLE EXPAND / COLLAPSE BUTTON WITH CHEVRON */}
@@ -147,7 +149,7 @@ export const Sidebar: React.FC = () => {
             tooltipText={isExpanded ? undefined : 'Reset scenario to default baseline'}
           />
         </div>
-      </aside>
+      </motion.aside>
 
       {/* MOBILE TOP NAVIGATION BAR */}
       <div className="sm:hidden sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-gray-100 px-4 py-3 flex items-center justify-between">

@@ -244,14 +244,18 @@ describe('Layout System & StructPaper DockPill Navigation', () => {
   });
 
   describe('AppShell Layout Integration', () => {
-    it('renders children with sidebar, header, and toaster seamlessly', () => {
+    it('renders AppShell without top header and Sidebar with sticky self-start', () => {
       render(
         <AppShell>
           <div data-testid="dashboard-content">Telemetry Payload Content</div>
         </AppShell>
       );
 
-      expect(screen.getByTestId('app-header')).toBeDefined();
+      expect(screen.queryByTestId('app-header')).toBeNull();
+      expect(screen.queryByLabelText(/Flame in Freefall Mission Control Header/i)).toBeNull();
+      const aside = screen.getByLabelText(/FlameGuard AI primary navigation dock/i);
+      expect(aside.className).toContain('sticky');
+      expect(aside.className).toContain('self-start');
       expect(screen.getByTestId('dashboard-content')).toBeDefined();
       expect(screen.getByText('Telemetry Payload Content')).toBeDefined();
     });
