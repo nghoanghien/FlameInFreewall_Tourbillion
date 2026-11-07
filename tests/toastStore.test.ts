@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest';
-import { toast, toastStore } from '../src/components/toast/toast-store';
+import { toast, toastStore, sileo } from '../src/components/toast/toast-store';
 
 describe('Liquid Glass Dynamic Island Toast Store', () => {
   beforeEach(() => {
@@ -22,13 +22,19 @@ describe('Liquid Glass Dynamic Island Toast Store', () => {
     toast.error('Combustion Alert', 'Extinction threshold reached');
     toast.warning('Oxygen Warning', 'O2 concentration elevated');
     toast.info('Model Note', 'Diffusion-dominated regime');
-    toast.loading('Simulating', 'Running microgravity Navier-Stokes solver');
+    toast.loading('Simulating', 'Running microgravity solver');
     toast.default('Status Update', 'ISS MSG facility ready');
 
     const toasts = toastStore.getToasts();
-    // Cap in toastStore keeps last 3 active toasts
     expect(toasts.length).toBeLessThanOrEqual(3);
     expect(toasts.some((t) => t.type === 'default')).toBe(true);
+  });
+
+  it('splits title with colon into title and description when no description is given', () => {
+    toast.success('Simulation: Navier-Stokes solved in 12ms');
+    const toasts = toastStore.getToasts();
+    expect(toasts[0].title).toBe('Simulation');
+    expect(toasts[0].description).toBe('Navier-Stokes solved in 12ms');
   });
 
   it('allows dismissing a specific toast by id', () => {
@@ -56,7 +62,6 @@ describe('Liquid Glass Dynamic Island Toast Store', () => {
     const listener = vi.fn();
     const unsubscribe = toastStore.subscribe(listener);
 
-    // Initial subscribe call
     expect(listener).toHaveBeenCalledTimes(1);
 
     toast.success('Test notification');
@@ -78,7 +83,6 @@ describe('Liquid Glass Dynamic Island Toast Store', () => {
       error: 'Calculation failed',
     });
 
-    // Check loading toast was added
     expect(toastStore.getToasts().some((t) => t.type === 'loading')).toBe(true);
 
     const result = await promiseCall;
@@ -86,7 +90,8 @@ describe('Liquid Glass Dynamic Island Toast Store', () => {
 
     const updated = toastStore.getToasts();
     expect(updated[0].type).toBe('success');
-    expect(updated[0].title).toBe('Completed: Simulated Result');
+    expect(updated[0].title).toBe('Completed');
+    expect(updated[0].description).toBe('Simulated Result');
   });
 
   it('handles promise rejection correctly', async () => {
@@ -104,6 +109,14 @@ describe('Liquid Glass Dynamic Island Toast Store', () => {
 
     const updated = toastStore.getToasts();
     expect(updated[0].type).toBe('error');
-    expect(updated[0].title).toBe('Error: Sensor Timeout');
+    expect(updated[0].title).toBe('Error');
+    expect(updated[0].description).toBe('Sensor Timeout');
+  });
+
+  it('provides backward-compatible sileo methods', () => {
+    sileo.success({ title: 'Sileo Success', description: 'Compatible call' });
+    const toasts = toastStore.getToasts();
+    expect(toasts[0].title).toBe('Sileo Success');
+    expect(toasts[0].description).toBe('Compatible call');
   });
 });

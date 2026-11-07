@@ -16,7 +16,7 @@ export interface ToastItem {
   action?: ToastAction;
   dismissible?: boolean;
   inline?: boolean;
-  createdAt?: number;
+  createdAt: number;
 }
 
 export interface ToastOptions {
@@ -28,7 +28,7 @@ export interface ToastOptions {
   dismissible?: boolean;
   inline?: boolean;
   mode?: 'auto' | 'single-line' | 'two-line' | 'inline';
-  theme?: 'success' | 'error' | 'warning' | 'white' | 'default' | 'sky' | 'lime' | 'navy';
+  theme?: 'success' | 'error' | 'warning' | 'white' | 'default' | 'sky';
 }
 
 type ToastListener = (toasts: ToastItem[]) => void;
@@ -67,7 +67,6 @@ class ToastStore {
     if (existingIndex >= 0) {
       this.toasts[existingIndex] = newToast;
     } else {
-      // Keep last 3 toasts max in Dynamic Island stack
       this.toasts = [newToast, ...this.toasts.slice(0, 2)];
     }
 
@@ -100,7 +99,6 @@ class ToastStore {
 
 export const toastStore = new ToastStore();
 
-// Smart payload parser for backward compatibility
 function parseArgs(
   titleOrMsg: string | ToastOptions,
   descriptionOrOpts?: string | ToastOptions,
@@ -125,98 +123,43 @@ function parseArgs(
   let title = titleOrMsg;
   let description = descriptionOrOpts;
 
-  return {
-    title,
-    description,
-    options: {},
+  if (!description && title.includes(':')) {
+    const idx = title.indexOf(':');
+    const head = title.slice(0, idx).trim();
+    const tail = title.slice(idx + 1).trim();
+    if (head.length > 0 && head.length <= 30 && tail.length > 0) {
+      title = head;
+      description = tail;
+    }
+  }
+
+  return { title, description, options: {} };
+}
+
+function createToastMethod(type: ToastType, defaultDuration: number) {
+  return (title: string | ToastOptions, description?: string | ToastOptions, opts?: ToastOptions) => {
+    const parsed = parseArgs(title, description, type);
+    const options = { ...parsed.options, ...(opts || {}) };
+    return toastStore.addToast({
+      id: options.id,
+      type,
+      title: parsed.title,
+      description: parsed.description,
+      duration: options.duration ?? defaultDuration,
+      action: options.action,
+      dismissible: options.dismissible,
+      inline: options.inline ?? (options.mode === 'inline'),
+    });
   };
 }
 
 export const toast = {
-  success: (title: string | ToastOptions, description?: string | ToastOptions, opts?: ToastOptions) => {
-    const parsed = parseArgs(title, description, 'success');
-    const options = { ...parsed.options, ...(opts || {}) };
-    return toastStore.addToast({
-      id: options.id,
-      type: 'success',
-      title: parsed.title,
-      description: parsed.description,
-      duration: options.duration ?? 3500,
-      action: options.action,
-      dismissible: options.dismissible,
-      inline: options.inline ?? (options.mode === 'inline'),
-    });
-  },
-  error: (title: string | ToastOptions, description?: string | ToastOptions, opts?: ToastOptions) => {
-    const parsed = parseArgs(title, description, 'error');
-    const options = { ...parsed.options, ...(opts || {}) };
-    return toastStore.addToast({
-      id: options.id,
-      type: 'error',
-      title: parsed.title,
-      description: parsed.description,
-      duration: options.duration ?? 4500,
-      action: options.action,
-      dismissible: options.dismissible,
-      inline: options.inline ?? (options.mode === 'inline'),
-    });
-  },
-  warning: (title: string | ToastOptions, description?: string | ToastOptions, opts?: ToastOptions) => {
-    const parsed = parseArgs(title, description, 'warning');
-    const options = { ...parsed.options, ...(opts || {}) };
-    return toastStore.addToast({
-      id: options.id,
-      type: 'warning',
-      title: parsed.title,
-      description: parsed.description,
-      duration: options.duration ?? 4000,
-      action: options.action,
-      dismissible: options.dismissible,
-      inline: options.inline ?? (options.mode === 'inline'),
-    });
-  },
-  info: (title: string | ToastOptions, description?: string | ToastOptions, opts?: ToastOptions) => {
-    const parsed = parseArgs(title, description, 'info');
-    const options = { ...parsed.options, ...(opts || {}) };
-    return toastStore.addToast({
-      id: options.id,
-      type: 'info',
-      title: parsed.title,
-      description: parsed.description,
-      duration: options.duration ?? 3500,
-      action: options.action,
-      dismissible: options.dismissible,
-      inline: options.inline ?? (options.mode === 'inline'),
-    });
-  },
-  default: (title: string | ToastOptions, description?: string | ToastOptions, opts?: ToastOptions) => {
-    const parsed = parseArgs(title, description, 'default');
-    const options = { ...parsed.options, ...(opts || {}) };
-    return toastStore.addToast({
-      id: options.id,
-      type: 'default',
-      title: parsed.title,
-      description: parsed.description,
-      duration: options.duration ?? 3500,
-      action: options.action,
-      dismissible: options.dismissible,
-      inline: options.inline ?? (options.mode === 'inline'),
-    });
-  },
-  loading: (title: string | ToastOptions, description?: string | ToastOptions, opts?: ToastOptions) => {
-    const parsed = parseArgs(title, description, 'loading');
-    const options = { ...parsed.options, ...(opts || {}) };
-    return toastStore.addToast({
-      id: options.id,
-      type: 'loading',
-      title: parsed.title,
-      description: parsed.description,
-      duration: options.duration ?? Infinity,
-      action: options.action,
-      dismissible: options.dismissible,
-      inline: options.inline ?? (options.mode === 'inline'),
-    });
-  },
+  success: createToastMethod('success', 3500),
+  error: createToastMethod('error', 4500),
+  warning: createToastMethod('warning', 4000),
+  info: createToastMethod('info', 3500),
+  default: createToastMethod('default', 3500),
+  loading: createToastMethod('loading', Infinity),
   promise: <T>(
     promise: Promise<T> | (() => Promise<T>),
     messages: {
@@ -240,9 +183,7 @@ export const toast = {
     return targetPromise
       .then((data) => {
         const successTitle =
-          typeof messages.success === 'function'
-            ? messages.success(data)
-            : messages.success;
+          typeof messages.success === 'function' ? messages.success(data) : messages.success;
         const parsed = parseArgs(successTitle, opts?.description, 'success');
         toastStore.updateToast(id, {
           type: 'success',
@@ -255,9 +196,7 @@ export const toast = {
       })
       .catch((err) => {
         const errorTitle =
-          typeof messages.error === 'function'
-            ? messages.error(err)
-            : messages.error;
+          typeof messages.error === 'function' ? messages.error(err) : messages.error;
         const parsed = parseArgs(errorTitle, opts?.description, 'error');
         toastStore.updateToast(id, {
           type: 'error',
@@ -274,22 +213,14 @@ export const toast = {
 };
 
 export const sileo = {
-  success: (opts: string | ToastOptions) => {
-    if (typeof opts === 'string') return toast.success(opts);
-    return toast.success(opts.title || '', opts.description, opts);
-  },
-  error: (opts: string | ToastOptions) => {
-    if (typeof opts === 'string') return toast.error(opts);
-    return toast.error(opts.title || '', opts.description, opts);
-  },
-  warning: (opts: string | ToastOptions) => {
-    if (typeof opts === 'string') return toast.warning(opts);
-    return toast.warning(opts.title || '', opts.description, opts);
-  },
-  info: (opts: string | ToastOptions) => {
-    if (typeof opts === 'string') return toast.info(opts);
-    return toast.info(opts.title || '', opts.description, opts);
-  },
+  success: (opts: string | ToastOptions) =>
+    typeof opts === 'string' ? toast.success(opts) : toast.success(opts.title || '', opts.description, opts),
+  error: (opts: string | ToastOptions) =>
+    typeof opts === 'string' ? toast.error(opts) : toast.error(opts.title || '', opts.description, opts),
+  warning: (opts: string | ToastOptions) =>
+    typeof opts === 'string' ? toast.warning(opts) : toast.warning(opts.title || '', opts.description, opts),
+  info: (opts: string | ToastOptions) =>
+    typeof opts === 'string' ? toast.info(opts) : toast.info(opts.title || '', opts.description, opts),
   promise: <T>(
     promise: Promise<T> | (() => Promise<T>),
     messages: {
@@ -298,9 +229,7 @@ export const sileo = {
       error: string | ((err: unknown) => string);
     },
     opts?: ToastOptions
-  ) => {
-    return toast.promise(promise, messages, opts);
-  },
+  ) => toast.promise(promise, messages, opts),
   dismiss: (id?: string) => toast.dismiss(id),
   clear: () => toast.clear(),
 };
