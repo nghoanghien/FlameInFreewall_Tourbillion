@@ -30,21 +30,18 @@ export const AiDrawer: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
-  // Auto-scroll when new messages arrive
   useEffect(() => {
     if (isOpen) {
       messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
     }
   }, [messages, isOpen, isStreaming]);
 
-  // Focus input when opened
   useEffect(() => {
     if (isOpen) {
       setTimeout(() => inputRef.current?.focus(), 150);
     }
   }, [isOpen]);
 
-  // Keyboard shortcut: Escape to close
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape' && isOpen) {
@@ -59,7 +56,6 @@ export const AiDrawer: React.FC = () => {
     const query = (textToSend ?? input).trim();
     if (!query) return;
 
-    // 1. Add User message
     addMessage({
       role: 'user',
       content: query,
@@ -68,7 +64,6 @@ export const AiDrawer: React.FC = () => {
     setInput('');
     setIsStreaming(true);
 
-    // 2. Deterministic RAG retrieval with brief simulated thinking cadence
     setTimeout(() => {
       const result = queryRagKnowledgeEngine(query, activeContextStudyId);
       addMessage({
@@ -92,30 +87,30 @@ export const AiDrawer: React.FC = () => {
     >
       {/* Backdrop overlay with blur */}
       <div
-        className="absolute inset-0 bg-black/60 backdrop-blur-sm transition-opacity"
+        className="absolute inset-0 bg-black/40 backdrop-blur-xs transition-opacity"
         onClick={() => setOpen(false)}
         aria-hidden="true"
       />
 
       {/* Slide-over Drawer Panel */}
       <div className="absolute inset-y-0 right-0 max-w-full flex pl-6 sm:pl-10">
-        <div className="w-screen max-w-lg bg-[#080C18] border-l border-[#1E293B] shadow-2xl flex flex-col justify-between text-[#F8F9FA] relative">
-          {/* Header */}
-          <div className="p-4 border-b border-[#1E293B] bg-[#0B1528]/80 backdrop-blur-md flex items-center justify-between gap-3">
+        <div className="w-[420px] max-w-full bg-white/95 backdrop-blur-xl border-l border-gray-200 shadow-2xl flex flex-col justify-between text-[#1A1A1A] relative h-full">
+          {/* Header - Space Apps Navy #0B2374 with Electric Lime #D4FC02 */}
+          <div className="p-4 bg-[#0B2374] flex items-center justify-between gap-3 shrink-0 shadow-sm text-white">
             <div className="flex items-center gap-2.5 min-w-0">
-              <div className="w-9 h-9 rounded-lg bg-[#D4FC02]/10 border border-[#D4FC02]/30 flex items-center justify-center shrink-0">
+              <div className="w-9 h-9 rounded-xl bg-white/10 border border-[#D4FC02]/40 flex items-center justify-center shrink-0">
                 <Bot className="w-5 h-5 text-[#D4FC02]" />
               </div>
               <div className="min-w-0">
                 <div className="flex items-center gap-1.5">
-                  <h2 className="text-sm font-semibold text-white tracking-wide truncate">
+                  <h2 className="text-sm font-bold text-[#D4FC02] tracking-wide truncate">
                     FlameGuard Grounded AI
                   </h2>
-                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-bold bg-[#D4FC02]/20 text-[#D4FC02] border border-[#D4FC02]/40">
+                  <span className="px-1.5 py-0.5 rounded text-[10px] font-mono font-extrabold bg-[#D4FC02] text-[#0B2374]">
                     RAG
                   </span>
                 </div>
-                <p className="text-[11px] text-gray-400 font-mono truncate">
+                <p className="text-[11px] text-gray-200/90 font-mono truncate">
                   NASA Physical Sciences Informatics • Zero Hallucination
                 </p>
               </div>
@@ -126,7 +121,7 @@ export const AiDrawer: React.FC = () => {
                 <button
                   type="button"
                   onClick={clearMessages}
-                  className="p-1.5 rounded-md text-gray-400 hover:text-red-400 hover:bg-white/5 transition-colors"
+                  className="p-1.5 rounded-lg text-gray-300 hover:text-red-300 hover:bg-white/10 transition-colors"
                   title="Clear conversation history"
                   aria-label="Clear chat messages"
                 >
@@ -136,7 +131,7 @@ export const AiDrawer: React.FC = () => {
               <button
                 type="button"
                 onClick={() => setOpen(false)}
-                className="p-1.5 rounded-md text-gray-400 hover:text-white hover:bg-white/5 transition-colors"
+                className="p-1.5 rounded-lg text-[#D4FC02] hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
                 aria-label="Close assistant drawer"
               >
                 <X className="w-5 h-5" />
@@ -146,15 +141,15 @@ export const AiDrawer: React.FC = () => {
 
           {/* Active Context Study Banner */}
           {activeContextStudyId && (
-            <div className="px-4 py-2 bg-[#00F0FF]/10 border-b border-[#00F0FF]/20 flex items-center justify-between text-xs font-mono text-[#00F0FF]">
+            <div className="px-4 py-2 bg-blue-50 border-b border-blue-200 flex items-center justify-between text-xs font-mono text-[#0B2374] shrink-0">
               <div className="flex items-center gap-1.5 truncate">
-                <Compass className="w-3.5 h-3.5 shrink-0" />
-                <span className="truncate">Active Study Context: {activeContextStudyId.toUpperCase()}</span>
+                <Compass className="w-3.5 h-3.5 shrink-0 text-[#0B2374]" />
+                <span className="truncate font-semibold">Active Study Context: {activeContextStudyId.toUpperCase()}</span>
               </div>
               <button
                 type="button"
                 onClick={() => setActiveContextStudyId(null)}
-                className="hover:underline text-[11px] text-gray-300 ml-2 shrink-0"
+                className="hover:underline text-[11px] text-blue-700 ml-2 shrink-0 font-medium cursor-pointer"
               >
                 Clear Context
               </button>
@@ -162,24 +157,24 @@ export const AiDrawer: React.FC = () => {
           )}
 
           {/* Chat Messages Body */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0">
+          <div className="flex-1 overflow-y-auto p-4 space-y-4 min-h-0 bg-[#FBFBFC]">
             {messages.length === 0 ? (
-              <div className="space-y-4 py-3">
-                <div className="p-4 rounded-xl bg-[#0B1528] border border-[#1E293B] space-y-2.5">
-                  <div className="flex items-center gap-2 text-[#D4FC02]">
-                    <ShieldCheck className="w-4 h-4" />
-                    <span className="font-semibold text-xs tracking-wider uppercase font-mono">
+              <div className="space-y-4 py-2">
+                <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-xs space-y-2.5">
+                  <div className="flex items-center gap-2 text-[#0B2374]">
+                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <span className="font-bold text-xs tracking-wider uppercase font-mono text-[#0B2374]">
                       Offline-First Grounded Architecture
                     </span>
                   </div>
-                  <p className="text-xs text-gray-300 leading-relaxed">
+                  <p className="text-xs text-zinc-600 leading-relaxed">
                     Query verified microgravity combustion findings directly derived from 20 NASA PSI flight investigations and 45+ peer-reviewed claims. Every claim carries an exact study provenance badge and DOI citation.
                   </p>
                 </div>
 
                 <div>
-                  <h3 className="text-xs font-mono font-medium text-gray-400 mb-2 flex items-center gap-1.5">
-                    <Sparkles className="w-3.5 h-3.5 text-[#D4FC02]" />
+                  <h3 className="text-xs font-mono font-bold text-zinc-500 mb-2 flex items-center gap-1.5">
+                    <Sparkles className="w-3.5 h-3.5 text-[#0B2374]" />
                     <span>Quick Scientific Prompts</span>
                   </h3>
                   <div className="flex flex-col gap-1.5">
@@ -189,10 +184,10 @@ export const AiDrawer: React.FC = () => {
                         type="button"
                         disabled={isStreaming}
                         onClick={() => handleSend(prompt.query)}
-                        className="w-full text-left p-2.5 rounded-lg bg-[#0F172A] hover:bg-[#1E293B] border border-[#1E293B] hover:border-[#D4FC02]/40 disabled:opacity-40 disabled:pointer-events-none text-xs text-gray-200 transition-all flex items-center justify-between group cursor-pointer"
+                        className="w-full text-left p-3 rounded-xl bg-white hover:bg-gray-50 border border-gray-200 hover:border-gray-300 disabled:opacity-40 disabled:pointer-events-none text-xs text-zinc-800 transition-all flex items-center justify-between group cursor-pointer shadow-xs"
                       >
-                        <span className="line-clamp-1">{prompt.label}</span>
-                        <ArrowRight className="w-3.5 h-3.5 text-gray-500 group-hover:text-[#D4FC02] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
+                        <span className="line-clamp-1 font-medium">{prompt.label}</span>
+                        <ArrowRight className="w-3.5 h-3.5 text-zinc-400 group-hover:text-[#0B2374] group-hover:translate-x-0.5 transition-all shrink-0 ml-2" />
                       </button>
                     ))}
                   </div>
@@ -206,16 +201,16 @@ export const AiDrawer: React.FC = () => {
 
             {/* Streaming Typing Indicator */}
             {isStreaming && (
-              <div className="flex items-center gap-2.5 text-xs text-gray-400 font-mono py-1">
-                <div className="w-7 h-7 rounded-md bg-[#D4FC02]/10 border border-[#D4FC02]/30 flex items-center justify-center">
-                  <Bot className="w-4 h-4 text-[#D4FC02] animate-pulse" />
+              <div className="flex items-center gap-2.5 text-xs text-zinc-600 font-mono py-1">
+                <div className="w-7 h-7 rounded-lg bg-[#0B2374]/10 border border-[#0B2374]/20 flex items-center justify-center">
+                  <Bot className="w-4 h-4 text-[#0B2374] animate-pulse" />
                 </div>
-                <div className="flex items-center gap-1 px-3 py-1.5 rounded-lg bg-[#0B1528] border border-[#1E293B]">
+                <div className="flex items-center gap-1 px-3 py-1.5 rounded-xl bg-white border border-gray-200 shadow-xs">
                   <span>Grounding against NASA PSI claims</span>
                   <span className="inline-flex gap-1 ml-1">
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4FC02] animate-bounce" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4FC02] animate-bounce [animation-delay:0.2s]" />
-                    <span className="w-1.5 h-1.5 rounded-full bg-[#D4FC02] animate-bounce [animation-delay:0.4s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0B2374] animate-bounce" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0B2374] animate-bounce [animation-delay:0.2s]" />
+                    <span className="w-1.5 h-1.5 rounded-full bg-[#0B2374] animate-bounce [animation-delay:0.4s]" />
                   </span>
                 </div>
               </div>
@@ -224,7 +219,7 @@ export const AiDrawer: React.FC = () => {
           </div>
 
           {/* Footer Input Area */}
-          <div className="p-3 border-t border-[#1E293B] bg-[#0B1528]/90 backdrop-blur-md space-y-2">
+          <div className="p-3 border-t border-gray-200 bg-white/90 backdrop-blur-md space-y-2 shrink-0">
             <form
               onSubmit={(e) => {
                 e.preventDefault();
@@ -238,19 +233,19 @@ export const AiDrawer: React.FC = () => {
                 value={input}
                 onChange={(e) => setInput(e.target.value)}
                 placeholder="Ask about microgravity combustion, Lunar 0.16g, cool flames..."
-                className="flex-1 bg-[#080C18] border border-[#1E293B] focus:border-[#D4FC02] focus:ring-1 focus:ring-[#D4FC02] rounded-lg px-3.5 py-2 text-xs text-white placeholder-gray-500 outline-none transition-all"
+                className="flex-1 bg-gray-50 border border-gray-200 rounded-2xl text-zinc-900 placeholder:text-zinc-400 focus:border-[#0B2374] focus:ring-1 focus:ring-[#0B2374] px-3.5 py-2.5 text-xs outline-none transition-all"
               />
               <button
                 type="submit"
                 disabled={!input.trim() || isStreaming}
                 aria-label="Send message"
-                className="w-9 h-9 rounded-lg bg-[#D4FC02] hover:bg-[#bce002] active:scale-95 disabled:opacity-40 disabled:pointer-events-none text-[#080C18] flex items-center justify-center font-bold transition-all cursor-pointer shrink-0 shadow-[0_0_15px_rgba(212,252,2,0.2)]"
+                className="w-9 h-9 rounded-2xl bg-[#0B2374] hover:bg-[#152E85] active:scale-95 disabled:opacity-40 disabled:pointer-events-none text-[#D4FC02] flex items-center justify-center font-bold transition-all cursor-pointer shrink-0 shadow-sm"
               >
                 <Send className="w-4 h-4" />
               </button>
             </form>
 
-            <p className="text-[10px] text-gray-500 text-center font-mono tracking-tight">
+            <p className="text-[10px] text-zinc-500 text-center font-mono tracking-tight">
               Offline Grounded RAG • Zero API Keys • Traceable NASA PSI Citations
             </p>
           </div>

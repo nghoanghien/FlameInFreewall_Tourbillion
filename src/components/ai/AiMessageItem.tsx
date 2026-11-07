@@ -15,16 +15,16 @@ export const AiMessageItem: React.FC<AiMessageItemProps> = ({ message }) => {
   return (
     <div className={`flex gap-2.5 ${isAssistant ? 'justify-start' : 'justify-end'}`}>
       {isAssistant && (
-        <div className="w-7 h-7 rounded-md bg-[#D4FC02]/10 border border-[#D4FC02]/30 flex items-center justify-center shrink-0 mt-0.5">
-          <Bot className="w-4 h-4 text-[#D4FC02]" />
+        <div className="w-7 h-7 rounded-lg bg-[#0B2374]/10 border border-[#0B2374]/20 flex items-center justify-center shrink-0 mt-0.5 text-[#0B2374]">
+          <Bot className="w-4 h-4" />
         </div>
       )}
 
       <div
-        className={`max-w-[85%] rounded-xl p-3.5 text-xs leading-relaxed space-y-2.5 ${
+        className={`max-w-[85%] text-xs leading-relaxed space-y-2.5 ${
           isAssistant
-            ? 'bg-[#0B1528] text-gray-200 border border-[#1E293B]'
-            : 'bg-[#1E293B] text-white border border-[#334155]'
+            ? 'bg-white border border-gray-200 text-zinc-900 shadow-xs rounded-2xl rounded-tl-xs p-3.5'
+            : 'bg-gray-100 text-zinc-900 rounded-2xl rounded-tr-xs p-3.5'
         }`}
       >
         {/* Message Text */}
@@ -32,16 +32,16 @@ export const AiMessageItem: React.FC<AiMessageItemProps> = ({ message }) => {
 
         {/* Evidence Gap Warning Banner */}
         {message.evidenceGapWarning && (
-          <div className="p-2.5 rounded-lg bg-amber-500/10 border border-amber-500/30 text-amber-300 text-[11px] flex items-start gap-2">
-            <AlertTriangle className="w-4 h-4 shrink-0 text-amber-400 mt-0.5" />
+          <div className="p-2.5 rounded-xl bg-amber-50 border border-amber-300 text-amber-900 text-[11px] flex items-start gap-2">
+            <AlertTriangle className="w-4 h-4 shrink-0 text-amber-600 mt-0.5" />
             <span>{message.evidenceGapWarning}</span>
           </div>
         )}
 
         {/* Grounding Citations List */}
         {message.citations && message.citations.length > 0 && (
-          <div className="pt-2 border-t border-[#1E293B] space-y-1.5">
-            <span className="text-[10px] font-mono font-medium text-gray-400 block tracking-wider uppercase">
+          <div className="pt-2 border-t border-gray-200 space-y-1.5">
+            <span className="text-[10px] font-mono font-bold text-zinc-500 block tracking-wider uppercase">
               Grounding Citations ({message.citations.length}):
             </span>
             <div className="flex flex-wrap gap-1.5">
@@ -57,8 +57,8 @@ export const AiMessageItem: React.FC<AiMessageItemProps> = ({ message }) => {
       </div>
 
       {!isAssistant && (
-        <div className="w-7 h-7 rounded-md bg-[#00F0FF]/10 border border-[#00F0FF]/30 flex items-center justify-center shrink-0 mt-0.5">
-          <User className="w-4 h-4 text-[#00F0FF]" />
+        <div className="w-7 h-7 rounded-lg bg-gray-200 border border-gray-300 flex items-center justify-center shrink-0 mt-0.5 text-zinc-700">
+          <User className="w-4 h-4" />
         </div>
       )}
     </div>

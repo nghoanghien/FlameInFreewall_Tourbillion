@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Sparkles, Bot, X, MessageSquare } from 'lucide-react';
+import { Sparkles, Bot, X } from 'lucide-react';
 import { useAiAssistantStore } from '@/store/useAiAssistantStore';
 
 export interface FloatingAiDockProps {
@@ -24,38 +24,41 @@ export const FloatingAiDock: React.FC<FloatingAiDockProps> = ({ className = '' }
       <button
         type="button"
         onClick={toggleOpen}
-        aria-label={isOpen ? 'Close AI Assistant' : 'Open Grounded AI Assistant'}
+        aria-label={isOpen ? 'Close AI Assistant' : 'Open FlameGuard AI Assistant (Open Grounded AI Assistant)'}
         aria-expanded={isOpen}
-        className={`group relative flex items-center justify-center w-14 h-14 rounded-full bg-[#0B1528] border border-[#D4FC02]/50 text-[#F8F9FA] shadow-[0_0_25px_rgba(212,252,2,0.25)] hover:shadow-[0_0_35px_rgba(212,252,2,0.45)] hover:border-[#D4FC02] active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4FC02] cursor-pointer`}
+        className="group relative bg-[#0B2374] text-[#D4FC02] hover:bg-[#152E85] shadow-[0_10px_30px_rgba(11,35,116,0.30)] rounded-full p-4 flex items-center gap-2 border-2 border-lime-300 font-extrabold cursor-pointer active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#D4FC02]"
       >
         {/* Pulsing Space Apps Lime Ambient Glow Aura */}
         <span
-          className="absolute inset-0 rounded-full bg-[#D4FC02]/20 animate-ping opacity-30 pointer-events-none"
+          className="absolute inset-0 rounded-full bg-lime-400/20 animate-ping opacity-30 pointer-events-none"
           aria-hidden="true"
         />
 
         {/* Outer Ring Glow */}
         <span
-          className="absolute -inset-1 rounded-full bg-gradient-to-tr from-[#D4FC02]/30 via-transparent to-[#00F0FF]/30 blur-sm opacity-70 group-hover:opacity-100 transition-opacity pointer-events-none"
+          className="absolute -inset-1 rounded-full bg-gradient-to-tr from-lime-300/30 via-transparent to-sky-300/30 blur-sm opacity-70 group-hover:opacity-100 transition-opacity pointer-events-none"
           aria-hidden="true"
         />
 
-        {/* Icon */}
-        <div className="relative z-10 flex items-center justify-center">
+        {/* Icon & Label */}
+        <div className="relative z-10 flex items-center gap-2">
           {isOpen ? (
-            <X className="w-6 h-6 text-[#D4FC02] transition-transform duration-200 group-hover:rotate-90" />
+            <X className="w-5 h-5 text-[#D4FC02] transition-transform duration-200 group-hover:rotate-90" />
           ) : (
-            <div className="relative">
-              <Bot className="w-6 h-6 text-[#D4FC02] group-hover:scale-110 transition-transform duration-200" />
-              <Sparkles className="w-3.5 h-3.5 text-[#00F0FF] absolute -top-1.5 -right-2 animate-pulse" />
+            <div className="relative flex items-center">
+              <Bot className="w-5 h-5 text-[#D4FC02] group-hover:scale-110 transition-transform duration-200" />
+              <Sparkles className="w-3.5 h-3.5 text-[#D4FC02] absolute -top-1.5 -right-2 animate-pulse" />
             </div>
           )}
+          <span className="text-xs font-extrabold tracking-wide text-[#D4FC02]">
+            {isOpen ? 'Close' : 'FlameGuard AI'}
+          </span>
         </div>
 
         {/* Unread / Active Assistant Message Count Badge */}
         {!isOpen && assistantMessageCount > 0 && (
           <span
-            className="absolute -top-1 -right-1 z-20 flex items-center justify-center min-w-5 h-5 px-1 rounded-full bg-[#D4FC02] text-[#080C18] text-[10px] font-mono font-bold shadow-md animate-in zoom-in-75"
+            className="absolute -top-1 -right-1 z-20 flex items-center justify-center min-w-5 h-5 px-1 rounded-full bg-[#D4FC02] text-[#0B2374] text-[10px] font-mono font-bold shadow-md animate-in zoom-in-75 border border-[#0B2374]"
             aria-label={`${assistantMessageCount} assistant messages`}
           >
             {assistantMessageCount}
@@ -65,7 +68,7 @@ export const FloatingAiDock: React.FC<FloatingAiDockProps> = ({ className = '' }
         {/* Pinned Context Dot Indicator */}
         {activeContextStudyId && (
           <span
-            className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 z-20 w-2 h-2 rounded-full bg-[#00F0FF] ring-2 ring-[#0B1528]"
+            className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 z-20 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#0B2374]"
             title={`Active Context: ${activeContextStudyId.toUpperCase()}`}
           />
         )}
