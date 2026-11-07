@@ -60,6 +60,7 @@ export interface InvestigationCitation {
 export interface Investigation {
   id: string; // e.g. 'bass', 'bass-ii', 'acme-c-flame', 'sofie-gel', 'flex'
   code: string; // e.g. 'BASS', 'ACME', 'SoFIE-GEL'
+  name?: string; // alias for title
   title: string;
   subtitle: string;
   researchPurpose: string;

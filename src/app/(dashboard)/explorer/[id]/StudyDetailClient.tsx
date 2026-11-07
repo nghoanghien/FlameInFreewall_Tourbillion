@@ -12,6 +12,7 @@ import {
   Download,
   Gauge,
 } from 'lucide-react';
+import type { Investigation } from '@/types';
 import { INVESTIGATIONS } from '@/data/investigations';
 import { TEST_RUNS } from '@/data/testRuns';
 import { EVIDENCE_CLAIMS } from '@/data/evidenceClaims';
@@ -29,14 +30,15 @@ export type StudyDetailTab = 'overview' | 'runs' | 'telemetry' | 'claims' | 'psi
 
 export interface StudyDetailClientProps {
   params?: Promise<{ id: string }>;
+  investigation?: Investigation;
 }
 
-export function StudyDetailClient({ params }: StudyDetailClientProps) {
+export function StudyDetailClient({ params, investigation: propsInvestigation }: StudyDetailClientProps) {
   const routerParams = useParams();
   const unwrappedParams = params ? React.use(params) : undefined;
 
-  // Handle both hook params and potential props
   const id = useMemo(() => {
+    if (propsInvestigation?.id) return propsInvestigation.id;
     if (routerParams?.id) {
       return Array.isArray(routerParams.id) ? routerParams.id[0] : routerParams.id;
     }
@@ -44,7 +46,7 @@ export function StudyDetailClient({ params }: StudyDetailClientProps) {
       return unwrappedParams.id;
     }
     return '';
-  }, [routerParams, unwrappedParams]);
+  }, [propsInvestigation, routerParams, unwrappedParams]);
 
   const [activeTab, setActiveTab] = useState<StudyDetailTab>('overview');
 
@@ -56,8 +58,9 @@ export function StudyDetailClient({ params }: StudyDetailClientProps) {
   const setComparisonModalOpen = useWorkspaceStore((state) => state.setComparisonModalOpen);
 
   const study = useMemo(() => {
+    if (propsInvestigation) return propsInvestigation;
     return INVESTIGATIONS.find((inv) => inv.id === id);
-  }, [id]);
+  }, [propsInvestigation, id]);
 
   const studyRuns = useMemo(() => {
     if (!study) return [];
@@ -76,20 +79,20 @@ export function StudyDetailClient({ params }: StudyDetailClientProps) {
         data-testid="study-not-found"
         className="w-full max-w-4xl mx-auto py-16 px-4 text-center space-y-6"
       >
-        <div className="w-16 h-16 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 mx-auto flex items-center justify-center">
+        <div className="w-16 h-16 rounded-full bg-rose-50 border border-rose-200 text-rose-600 mx-auto flex items-center justify-center">
           <AlertCircle className="w-8 h-8" />
         </div>
         <div className="space-y-2">
-          <h1 className="text-2xl font-black text-[#F8F9FA]">Investigation Not Found</h1>
-          <p className="text-sm text-slate-400 max-w-md mx-auto">
-            The requested NASA PSI study identifier &ldquo;<span className="text-[#D4FC02] font-mono">{id}</span>&rdquo; could not be found in the current catalog.
+          <h1 className="text-2xl font-black text-zinc-950">Investigation Not Found</h1>
+          <p className="text-sm text-zinc-600 max-w-md mx-auto">
+            The requested NASA PSI study identifier &ldquo;<span className="text-[#0B2374] font-mono font-bold">{id}</span>&rdquo; could not be found in the current catalog.
           </p>
         </div>
         <div>
           <Link
             href="/explorer"
             data-testid="not-found-return-link"
-            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#4CC9F0] hover:bg-[#38b6dd] text-slate-950 font-bold text-xs shadow-lg transition-colors"
+            className="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[#0B2374] hover:bg-[#081b59] text-white font-bold text-xs shadow-xs transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
             <span>Return to Experiment Explorer</span>
@@ -104,7 +107,7 @@ export function StudyDetailClient({ params }: StudyDetailClientProps) {
   const TABS = [
     {
       id: 'overview' as const,
-      label: 'Overview & Chamber',
+      label: 'Chamber Overview',
       icon: Gauge,
     },
     {
@@ -132,7 +135,7 @@ export function StudyDetailClient({ params }: StudyDetailClientProps) {
   return (
     <div
       data-testid="study-detail-page"
-      className="w-full max-w-7xl mx-auto space-y-8 py-2 pb-24"
+      className="w-full max-w-7xl mx-auto space-y-6 py-2 pb-24"
     >
       {/* Study Header Banner */}
       <StudyHeader
@@ -141,10 +144,10 @@ export function StudyDetailClient({ params }: StudyDetailClientProps) {
         onToggleCompare={toggleCompare}
       />
 
-      {/* Tabs Navigation Bar */}
+      {/* StructPaper Pill Tabs Navigation Bar */}
       <div
         data-testid="study-tabs-nav"
-        className="flex items-center gap-2 overflow-x-auto p-1.5 rounded-2xl bg-[#111827]/80 backdrop-blur-xl border border-white/10"
+        className="flex items-center gap-1.5 overflow-x-auto p-1.5 rounded-2xl bg-gray-100/80 border border-gray-200/60"
       >
         {TABS.map((tab) => {
           const Icon = tab.icon;
@@ -157,8 +160,8 @@ export function StudyDetailClient({ params }: StudyDetailClientProps) {
               onClick={() => setActiveTab(tab.id)}
               className={`inline-flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-semibold whitespace-nowrap transition-all duration-150 cursor-pointer ${
                 isActive
-                  ? 'bg-[#4CC9F0] text-slate-950 shadow-md font-bold'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'bg-white text-zinc-950 font-bold shadow-xs'
+                  : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60'
               }`}
             >
               <Icon className="w-4 h-4" />

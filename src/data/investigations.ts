@@ -1888,6 +1888,12 @@ export const INVESTIGATIONS: Investigation[] = [
   }
 ];
 
+INVESTIGATIONS.forEach((inv) => {
+  if (!inv.name) {
+    inv.name = inv.title;
+  }
+});
+
 export const NASA_INVESTIGATIONS = INVESTIGATIONS;
 
 export const INVESTIGATIONS_BY_ID: Record<string, Investigation> = INVESTIGATIONS.reduce(

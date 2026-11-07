@@ -3,14 +3,9 @@
 import React, { useState, useMemo } from 'react';
 import {
   Activity,
-  Flame,
-  Thermometer,
-  Eye,
   Info,
-  Calendar,
-  Layers,
 } from 'lucide-react';
-import type { Investigation, TestRun, TelemetryDataPoint } from '@/types';
+import type { Investigation, TelemetryDataPoint } from '@/types';
 import { TEST_RUNS } from '@/data/testRuns';
 
 export interface TelemetryPaneProps {
@@ -38,7 +33,6 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
     }
     if (!activeRun) return [];
 
-    // Synthesize realistic combustion trajectory based on conditions & measurements
     const duration = activeRun.measurements.burnDurationSec || 60;
     const peakT = activeRun.measurements.peakTempK || 1550;
     const maxR = (activeRun.measurements.flameLengthMm || 20) / 2;
@@ -49,11 +43,8 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
     for (let i = 0; i <= steps; i++) {
       const frac = i / steps;
       const t = Math.round(frac * duration);
-      // Flame radius grows then stabilizes
       const r = parseFloat((maxR * Math.sin((frac * Math.PI) / 2)).toFixed(2));
-      // Temperature rises quickly then plateaus
       const temp = Math.round(300 + (peakT - 300) * Math.sin(Math.pow(frac, 0.6) * (Math.PI / 2)));
-      // Soot density peaks midway
       const soot = parseFloat((baseSoot * Math.sin(frac * Math.PI)).toFixed(3));
       points.push({
         timeSec: t,
@@ -111,7 +102,7 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
     return (
       <div
         data-testid="telemetry-empty"
-        className="p-8 text-center rounded-2xl bg-[#111827]/70 border border-white/10 text-xs text-slate-400"
+        className="p-8 text-center rounded-3xl bg-white border border-gray-100 text-xs text-zinc-500 shadow-xs"
       >
         No test run telemetry available for this investigation.
       </div>
@@ -123,27 +114,27 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
       {/* Header & Run Selector */}
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         <div>
-          <h3 className="text-base font-bold text-[#F8F9FA] flex items-center gap-2">
-            <Activity className="w-4 h-4 text-[#4CC9F0]" />
+          <h3 className="text-base font-bold text-zinc-950 flex items-center gap-2">
+            <Activity className="w-4 h-4 text-[#0B2374]" />
             <span>Time-Series Sensor Telemetry</span>
           </h3>
-          <p className="text-xs text-slate-400">
+          <p className="text-xs text-zinc-500">
             Microgravity pyrometry and optical schlieren radiometry curves from ISS flight runs.
           </p>
         </div>
 
         {/* Run Selector Pills */}
-        <div className="flex items-center gap-1.5 overflow-x-auto p-1 rounded-xl bg-black/40 border border-white/10 shrink-0">
+        <div className="flex items-center gap-1.5 overflow-x-auto p-1 rounded-2xl bg-gray-100 border border-gray-200/60 shrink-0">
           {studyRuns.map((run) => (
             <button
               key={run.id}
               type="button"
               data-testid={`telemetry-run-btn-${run.id}`}
               onClick={() => setSelectedRunId(run.id)}
-              className={`px-3 py-1 rounded-lg text-xs font-mono font-medium transition-colors cursor-pointer ${
+              className={`px-3 py-1 rounded-xl text-xs font-mono font-medium transition-colors cursor-pointer ${
                 activeRun.id === run.id
-                  ? 'bg-[#4CC9F0] text-slate-950 font-bold shadow'
-                  : 'text-slate-300 hover:text-white hover:bg-white/5'
+                  ? 'bg-[#4CC9F0] text-slate-950 font-bold shadow-xs'
+                  : 'text-zinc-600 hover:text-zinc-950 hover:bg-white/60'
               }`}
             >
               {run.id}
@@ -153,19 +144,19 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
       </div>
 
       {/* Chart 1: Temperature & Flame Radius Overlay */}
-      <div className="p-5 rounded-3xl bg-[#111827]/85 border border-white/10 shadow-xl space-y-4">
+      <div className="p-5 rounded-3xl bg-white border border-gray-100 shadow-xs space-y-4">
         <div className="flex flex-wrap items-center justify-between gap-2 text-xs">
           <div className="flex items-center gap-4">
-            <span className="flex items-center gap-1.5 text-xs text-[#F72585] font-mono">
-              <span className="w-3 h-0.5 bg-[#F72585] inline-block" />
+            <span className="flex items-center gap-1.5 text-xs text-[#F97316] font-mono font-semibold">
+              <span className="w-3 h-0.5 bg-[#F97316] inline-block rounded-full" />
               <span>Chamber Flame Temp (K)</span>
             </span>
-            <span className="flex items-center gap-1.5 text-xs text-[#4CC9F0] font-mono">
-              <span className="w-3 h-0.5 bg-[#4CC9F0] inline-block" />
+            <span className="flex items-center gap-1.5 text-xs text-[#0B2374] font-mono font-semibold">
+              <span className="w-3 h-0.5 bg-[#0B2374] inline-block rounded-full" />
               <span>Flame Radius (mm)</span>
             </span>
           </div>
-          <span className="text-[11px] font-mono text-slate-400">
+          <span className="text-[11px] font-mono text-zinc-500">
             Sample: {activeRun.materialType} · {activeRun.conditions.oxygenPct}% O₂
           </span>
         </div>
@@ -187,14 +178,14 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
                     y1={y}
                     x2={svgWidth - padding.right}
                     y2={y}
-                    stroke="rgba(255,255,255,0.07)"
+                    stroke="#CBD5E1"
                     strokeDasharray="4 4"
                   />
                   <text
                     x={padding.left - 8}
                     y={y + 3}
                     textAnchor="end"
-                    className="text-[10px] font-mono fill-slate-400"
+                    className="text-[10px] font-mono fill-[#475569]"
                   >
                     {Math.round(frac * maxTemp)}
                   </text>
@@ -212,13 +203,13 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
                     y1={padding.top}
                     x2={x}
                     y2={svgHeight - padding.bottom}
-                    stroke="rgba(255,255,255,0.05)"
+                    stroke="#E2E8F0"
                   />
                   <text
                     x={x}
                     y={svgHeight - padding.bottom + 15}
                     textAnchor="middle"
-                    className="text-[10px] font-mono fill-slate-400"
+                    className="text-[10px] font-mono fill-[#475569]"
                   >
                     {Math.round(frac * maxTime)}s
                   </text>
@@ -231,10 +222,9 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
               <path
                 d={tempPath}
                 fill="none"
-                stroke="#F72585"
+                stroke="#F97316"
                 strokeWidth="2.5"
                 strokeLinecap="round"
-                className="filter drop-shadow-[0_0_8px_rgba(247,37,133,0.5)]"
               />
             )}
 
@@ -243,11 +233,10 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
               <path
                 d={radiusPath}
                 fill="none"
-                stroke="#4CC9F0"
+                stroke="#0B2374"
                 strokeWidth="2"
                 strokeDasharray="4 2"
                 strokeLinecap="round"
-                className="filter drop-shadow-[0_0_8px_rgba(76,201,240,0.5)]"
               />
             )}
 
@@ -261,8 +250,8 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
                   cx={cx}
                   cy={cyTemp}
                   r="3.5"
-                  fill="#F72585"
-                  stroke="#111827"
+                  fill="#F97316"
+                  stroke="#FFFFFF"
                   strokeWidth="1.5"
                 />
               );
@@ -272,11 +261,11 @@ export const TelemetryPane: React.FC<TelemetryPaneProps> = ({ study }) => {
       </div>
 
       {/* Sensor Calibration & Provenance Notes */}
-      <div className="p-4 rounded-2xl bg-black/30 border border-white/5 flex items-start gap-3 text-xs text-slate-300">
-        <Info className="w-4 h-4 text-[#4CC9F0] shrink-0 mt-0.5" />
+      <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100 flex items-start gap-3 text-xs text-zinc-600">
+        <Info className="w-4 h-4 text-[#0B2374] shrink-0 mt-0.5" />
         <div className="space-y-1">
-          <span className="font-semibold text-[#F8F9FA]">Instrument Provenance &amp; Sensor Calibration</span>
-          <p className="text-slate-400 leading-relaxed text-[11px]">
+          <span className="font-semibold text-zinc-900">Instrument Provenance &amp; Sensor Calibration</span>
+          <p className="text-zinc-500 leading-relaxed text-[11px]">
             Acquired using high-speed dual-wavelength color pyrometry and optical radiometer photodiode arrays aboard the {study.platform}. Time synchronization precision ±2 ms relative to chamber spark ignition.
           </p>
         </div>
