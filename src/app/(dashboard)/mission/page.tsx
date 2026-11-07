@@ -34,28 +34,22 @@ function MissionContent() {
       data-testid="mission-workbench"
       className="w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 py-2"
     >
-      {/* Page Title & Context Header - Compact Plain Background */}
-      <header
-        aria-label="Mission Simulator Header"
-        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-1"
-      >
-        <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#D4FC02]/20 border border-[#D4FC02]/60 text-zinc-950 text-[10px] font-mono font-bold">
-            <Rocket className="w-3 h-3 text-[#0B2374]" />
-            <span>Mission Scenario &amp; Evidence Gap Matrix</span>
-          </div>
-          <h1 className="text-xl sm:text-2xl font-black text-[#1A1A1A] tracking-tight">
-            Mission Environment Scenario Workbench
+      {/* Top Header - StructPaper Minimalist Templates Style */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2 pb-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+            <Rocket className="w-6 h-6 text-[#0B2374]" strokeWidth={2.5} />
+            <span>Mission Scenario Workbench</span>
           </h1>
-          <p className="text-xs text-[#64748B]">
-            Synthesize planetary mission parameters (ISS, Moon, Mars) against 160 NASA PSI test runs and audit condition gaps.
-          </p>
+          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#D4FC02]/25 text-zinc-950">
+            ISS · Moon · Mars
+          </span>
         </div>
 
         {/* View Mode Switcher */}
         <div
           data-testid="mission-view-switcher"
-          className="flex items-center p-1 rounded-xl bg-gray-200/60 border border-gray-200/80 shrink-0 self-start md:self-auto"
+          className="flex items-center p-1 rounded-2xl bg-white border border-gray-200/80 shrink-0 self-start md:self-auto shadow-2xs"
         >
           <button
             type="button"
@@ -85,7 +79,7 @@ function MissionContent() {
             <span>Predictive Lab (Could Have)</span>
           </button>
         </div>
-      </header>
+      </div>
 
       {/* Shared Scenario Configuration Form */}
       <ScenarioConfigForm />

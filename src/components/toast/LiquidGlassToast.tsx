@@ -162,9 +162,9 @@ export const LiquidGlassToast = React.forwardRef<HTMLDivElement, LiquidGlassToas
         data-toast-type={type}
         data-toast-hovered={isHovered ? 'true' : undefined}
         data-toast-stacked={isStacked ? 'true' : undefined}
-        initial={isTest ? false : { y: -64, opacity: 0 }}
-        animate={isTest ? false : { y: targetY, opacity: targetOpacity }}
-        exit={isTest ? false : { y: -64, opacity: 0 }}
+        initial={isTest ? undefined : { y: -64, opacity: 0 }}
+        animate={isTest ? undefined : { y: targetY, opacity: targetOpacity }}
+        exit={isTest ? undefined : { y: -64, opacity: 0 }}
         transition={springConfig}
         onMouseEnter={() => {
           setIsHovered(true);

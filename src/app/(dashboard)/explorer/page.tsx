@@ -18,6 +18,10 @@ import { InvestigationTable } from '@/components/explorer/InvestigationTable';
 import { ComparisonBar } from '@/components/explorer/ComparisonBar';
 import { ComparisonModal } from '@/components/explorer/ComparisonModal';
 import { EndOfListIndicator } from '@/components/ui/EndOfListIndicator';
+import { InvestigationCardShimmer } from '@/components/explorer/InvestigationCardShimmer';
+import { filterAndSortInvestigations } from '@/lib/explorerFilters';
+
+const isTest = typeof process !== 'undefined' && process.env.NODE_ENV === 'test';
 
 export default function ExplorerPage() {
   const compareList = useWorkspaceStore((state) => state.compareList);
@@ -34,6 +38,39 @@ export default function ExplorerPage() {
   const [gravityFilter, setGravityFilter] = useState<GravityFilterValue>('all');
   const [sortBy, setSortBy] = useState<ExplorerSortOption>('newest');
   const [viewMode, setViewMode] = useState<ViewMode>('grid');
+  const [isLoading, setIsLoading] = useState(false);
+
+  const triggerFilterTransition = () => {
+    if (!isTest) {
+      setIsLoading(true);
+      setTimeout(() => setIsLoading(false), 160);
+    }
+  };
+
+  const handleSearchChange = (q: string) => {
+    setSearchQuery(q);
+    triggerFilterTransition();
+  };
+
+  const handleFuelFilterChange = (f: FuelFilterValue) => {
+    setFuelFilter(f);
+    triggerFilterTransition();
+  };
+
+  const handleFacilityFilterChange = (fac: FacilityFilterValue) => {
+    setFacilityFilter(fac);
+    triggerFilterTransition();
+  };
+
+  const handleGravityFilterChange = (g: GravityFilterValue) => {
+    setGravityFilter(g);
+    triggerFilterTransition();
+  };
+
+  const handleSortChange = (s: ExplorerSortOption) => {
+    setSortBy(s);
+    triggerFilterTransition();
+  };
 
   // Compute test runs per study
   const runsByInvestigationId = useMemo(() => {
@@ -46,100 +83,14 @@ export default function ExplorerPage() {
 
   // Filter and sort investigations
   const filteredInvestigations = useMemo(() => {
-    const q = searchQuery.toLowerCase().trim();
-
-    return INVESTIGATIONS.filter((inv) => {
-      // 1. Keyword search
-      if (q) {
-        const matchesCode = inv.code.toLowerCase().includes(q);
-        const matchesTitle = inv.title.toLowerCase().includes(q);
-        const matchesSubtitle = inv.subtitle.toLowerCase().includes(q);
-        const matchesPI = inv.primaryInvestigator.toLowerCase().includes(q);
-        const matchesInstitution = inv.institution?.toLowerCase().includes(q) ?? false;
-        const matchesMaterials = inv.fuelDetails.materials.some((m) =>
-          m.toLowerCase().includes(q)
-        );
-        const matchesTags = inv.tags.some((t) => t.toLowerCase().includes(q));
-
-        if (
-          !matchesCode &&
-          !matchesTitle &&
-          !matchesSubtitle &&
-          !matchesPI &&
-          !matchesInstitution &&
-          !matchesMaterials &&
-          !matchesTags
-        ) {
-          return false;
-        }
-      }
-
-      // 2. Fuel filter
-      if (fuelFilter !== 'all') {
-        if (fuelFilter === 'solid' && inv.fuelType !== 'solid' && inv.fuelType !== 'fabric') {
-          return false;
-        }
-        if (fuelFilter === 'droplet' && inv.fuelType !== 'droplet' && inv.fuelType !== 'liquid') {
-          return false;
-        }
-        if (fuelFilter === 'gas' && inv.fuelType !== 'gas') {
-          return false;
-        }
-      }
-
-      // 3. Facility filter
-      if (facilityFilter !== 'all') {
-        if (facilityFilter === 'CIR' && !inv.hardware.includes('CIR')) {
-          return false;
-        }
-        if (facilityFilter === 'MSG' && !inv.hardware.includes('MSG')) {
-          return false;
-        }
-        if (
-          facilityFilter === 'Cygnus' &&
-          !inv.hardware.toLowerCase().includes('cygnus') &&
-          !inv.platform.toLowerCase().includes('cygnus') &&
-          !inv.code.toLowerCase().includes('saffire')
-        ) {
-          return false;
-        }
-      }
-
-      // 4. Gravity filter
-      if (gravityFilter !== 'all') {
-        if (gravityFilter === '0g' && inv.gravityLevelG !== 0) {
-          return false;
-        }
-        if (gravityFilter === '1g' && inv.gravityLevelG !== 1) {
-          return false;
-        }
-        if (gravityFilter === 'partial' && (inv.gravityLevelG <= 0 || inv.gravityLevelG >= 1)) {
-          return false;
-        }
-      }
-
-      return true;
-    }).sort((a, b) => {
-      if (sortBy === 'code-asc') {
-        return a.code.localeCompare(b.code);
-      }
-      if (sortBy === 'runs-desc') {
-        const countA = runsByInvestigationId[a.id] ?? a.dataAvailability.runCount ?? 0;
-        const countB = runsByInvestigationId[b.id] ?? b.dataAvailability.runCount ?? 0;
-        return countB - countA;
-      }
-      if (sortBy === 'confidence') {
-        if (a.confidence !== b.confidence) {
-          return a.confidence === 'A' ? -1 : 1;
-        }
-        return a.code.localeCompare(b.code);
-      }
-      // 'newest' sort
-      const extractYear = (yr: string) => {
-        const matches = yr.match(/\d{4}/g);
-        return matches ? Math.max(...matches.map(Number)) : 0;
-      };
-      return extractYear(b.yearRange) - extractYear(a.yearRange);
+    return filterAndSortInvestigations({
+      investigations: INVESTIGATIONS,
+      searchQuery,
+      fuelFilter,
+      facilityFilter,
+      gravityFilter,
+      sortBy,
+      runsByInvestigationId,
     });
   }, [searchQuery, fuelFilter, facilityFilter, gravityFilter, sortBy, runsByInvestigationId]);
 
@@ -156,47 +107,43 @@ export default function ExplorerPage() {
       data-testid="explorer-catalog-page"
       className="w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 py-2 pb-24"
     >
-      {/* Top Header - Compact Plain Background */}
-      <header
-        aria-label="Explorer Header"
-        className="flex flex-col md:flex-row md:items-center md:justify-between gap-4 pb-1"
-      >
-        <div className="space-y-1">
-          <div className="inline-flex items-center gap-1.5 px-2 py-0.5 rounded-full bg-[#D4FC02]/20 border border-[#D4FC02]/60 text-zinc-950 text-[10px] font-mono font-bold">
-            <Compass className="w-3 h-3 text-[#0B2374]" />
-            <span>NASA Physical Science Informatics (PSI) Database</span>
-          </div>
-          <h1 className="text-xl sm:text-2xl font-black text-[#1A1A1A] tracking-tight">
-            Experiment Explorer
+      {/* Top Header - StructPaper Minimalist Templates Style */}
+      <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2 pb-1">
+        <div className="flex items-center gap-2 flex-wrap">
+          <h1 className="text-xl sm:text-2xl font-black text-slate-900 tracking-tight flex items-center gap-2">
+            <Compass className="w-6 h-6 text-[#0B2374]" strokeWidth={2.5} />
+            <span>Experiment Explorer</span>
           </h1>
-          <p className="text-xs text-[#64748B]">
-            Search, filter, and inspect all 20 spaceflight combustion investigations conducted aboard ISS and Cygnus spacecraft.
-          </p>
+          <span className="px-2.5 py-0.5 rounded-full text-xs font-bold bg-[#D4FC02]/25 text-zinc-950">
+            20 NASA PSI Studies
+          </span>
         </div>
-      </header>
+      </div>
 
-      {/* Sticky Filter Toolbar with Eatzy Backdrop Blur */}
-      <ExplorerFiltersBar
-        className="sticky top-3 z-20 bg-[#F8F9FA]/90 backdrop-blur-md pt-2 pb-3 space-y-3"
-        searchQuery={searchQuery}
-        onSearchChange={setSearchQuery}
-        fuelFilter={fuelFilter}
-        onFuelFilterChange={setFuelFilter}
-        facilityFilter={facilityFilter}
-        onFacilityFilterChange={setFacilityFilter}
-        gravityFilter={gravityFilter}
-        onGravityFilterChange={setGravityFilter}
-        sortBy={sortBy}
-        onSortChange={setSortBy}
-        viewMode={viewMode}
-        onViewModeChange={setViewMode}
-        totalCount={INVESTIGATIONS.length}
-        filteredCount={filteredInvestigations.length}
-        onResetFilters={handleResetFilters}
-      />
+      {/* Top Sticky Filter Toolbar matching Eatzy/StructPaper */}
+      <div className="sticky top-0 z-30 -mx-3 px-3 sm:-mx-6 sm:px-6 py-3 pb-5 transition-all duration-300">
+        <div className="absolute inset-0 bg-[#F8F9FA]/80 backdrop-blur-md pointer-events-none -z-10 [mask-image:linear-gradient(to_bottom,black_85%,transparent)]" />
+        <ExplorerFiltersBar
+          searchQuery={searchQuery}
+          onSearchChange={handleSearchChange}
+          fuelFilter={fuelFilter}
+          onFuelFilterChange={handleFuelFilterChange}
+          facilityFilter={facilityFilter}
+          onFacilityFilterChange={handleFacilityFilterChange}
+          gravityFilter={gravityFilter}
+          onGravityFilterChange={handleGravityFilterChange}
+          sortBy={sortBy}
+          onSortChange={handleSortChange}
+          viewMode={viewMode}
+          onViewModeChange={setViewMode}
+          totalCount={INVESTIGATIONS.length}
+          filteredCount={filteredInvestigations.length}
+          onResetFilters={handleResetFilters}
+        />
+      </div>
 
       {/* Results Header Count */}
-      <div className="flex items-center justify-between text-xs sm:text-sm text-zinc-500 font-mono px-1">
+      <div className="flex items-center justify-between text-xs sm:text-sm text-zinc-500 px-1">
         <span data-testid="explorer-summary-count">
           Showing <span className="font-bold text-zinc-950">{filteredInvestigations.length}</span> of {INVESTIGATIONS.length} NASA PSI Studies
         </span>
@@ -229,6 +176,14 @@ export default function ExplorerPage() {
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset All Filters</span>
           </button>
+        </div>
+      ) : isLoading ? (
+        /* Shimmer Skeleton Grid matching StructPaper */
+        <div
+          data-testid="explorer-shimmer-grid"
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5"
+        >
+          <InvestigationCardShimmer cardCount={6} />
         </div>
       ) : viewMode === 'grid' ? (
         /* Grid View */

@@ -61,7 +61,7 @@ export const ClaimsList: React.FC<ClaimsListProps> = ({ study }) => {
             Validated combustion propositions with explicit academic citations, empirical provenance, and limitations.
           </p>
         </div>
-        <div className="text-xs font-mono text-zinc-500">
+        <div className="text-xs font-bold text-zinc-500">
           {directClaims.length} Peer-Reviewed {directClaims.length === 1 ? 'Claim' : 'Claims'}
         </div>
       </div>
@@ -93,7 +93,7 @@ export const ClaimsList: React.FC<ClaimsListProps> = ({ study }) => {
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 transition={{ duration: 0.2, ease: 'easeOut' }}
-                className="p-5 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-200 space-y-3.5 cursor-pointer"
+                className="p-5 rounded-3xl bg-gray-200/50 hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all duration-200 space-y-3.5 cursor-pointer"
               >
                 {/* Badges Bar: ID, Category, Provenance, Review Status */}
                 <div className="flex flex-wrap items-center justify-between gap-2">

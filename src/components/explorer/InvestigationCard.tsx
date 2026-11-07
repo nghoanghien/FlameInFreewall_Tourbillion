@@ -79,10 +79,10 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
       whileHover={{ scale: 1.02 }}
       whileTap={{ scale: 0.98 }}
       transition={{ duration: 0.2, ease: 'easeOut' }}
-      className={`group relative rounded-3xl p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer bg-white ${
+      className={`group relative rounded-3xl p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer bg-gray-200/50 hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] select-none ${
         isComparing
-          ? 'border-2 border-[#D4FC02] shadow-[0_4px_24px_rgba(212,252,2,0.25)]'
-          : 'border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:border-gray-200'
+          ? 'ring-2 ring-[#D4FC02] shadow-[0_8px_30px_rgba(212,252,2,0.3)] bg-white'
+          : ''
       }`}
     >
       {/* Top Header: Code, Badges, Compare Button */}
@@ -90,7 +90,7 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
         <div className="flex items-center justify-between gap-2 mb-3">
           {/* Domain badge, Apparatus badge & Fuel Phase badge */}
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="bg-blue-50 text-[#0B2374] border border-blue-100 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs font-mono">
+            <span className="bg-blue-50 text-[#0B2374] border border-blue-100 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs">
               {investigation.code}
             </span>
             <span className="bg-lime-50 text-lime-900 border border-lime-200 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs">
@@ -113,10 +113,10 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
               e.stopPropagation();
               onToggleCompare(investigation.id);
             }}
-            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium transition-all duration-200 cursor-pointer shrink-0 ${
+            className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-bold transition-all duration-200 cursor-pointer shrink-0 ${
               isComparing
-                ? 'bg-[#D4FC02] text-zinc-950 font-bold shadow-xs'
-                : 'bg-gray-100 hover:bg-gray-200 text-zinc-700 border border-gray-200'
+                ? 'bg-[#D4FC02] text-zinc-950 shadow-xs'
+                : 'bg-white hover:bg-gray-100 text-zinc-700 shadow-2xs'
             }`}
             title={isComparing ? 'Remove from comparison' : 'Add to comparison'}
           >
@@ -163,26 +163,26 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
         <div className="flex items-center gap-1.5 mt-1.5 text-xs text-zinc-500">
           <Building2 className="w-3.5 h-3.5 text-zinc-400 shrink-0" />
           <span className="truncate text-zinc-600">{investigation.platform}</span>
-          <span className="text-zinc-400 font-mono">({investigation.yearRange})</span>
+          <span className="text-zinc-400">({investigation.yearRange})</span>
         </div>
 
         {/* Chamber Conditions Spec Bar */}
-        <div className="mt-4 p-2.5 rounded-2xl bg-gray-50 border border-gray-100 grid grid-cols-3 gap-2 text-center">
+        <div className="mt-4 p-2.5 rounded-2xl bg-white/70 grid grid-cols-3 gap-2 text-center">
           <div>
-            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-mono">O2 Range</div>
-            <div className="text-xs font-bold text-zinc-900 mt-0.5 font-mono">
+            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold">O2 Range</div>
+            <div className="text-xs font-bold text-zinc-900 mt-0.5">
               {investigation.oxygenRange[0]}–{investigation.oxygenRange[1]}%
             </div>
           </div>
-          <div className="border-x border-gray-200/80 px-1">
-            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-mono">Pressure</div>
-            <div className="text-xs font-bold text-zinc-900 mt-0.5 font-mono">
+          <div className="border-x border-gray-200/50 px-1">
+            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold">Pressure</div>
+            <div className="text-xs font-bold text-zinc-900 mt-0.5">
               {investigation.pressureRangePsi[0]}–{investigation.pressureRangePsi[1]} psi
             </div>
           </div>
           <div>
-            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-mono">Flow</div>
-            <div className="text-xs font-bold text-zinc-900 mt-0.5 font-mono">
+            <div className="text-[10px] text-zinc-500 uppercase tracking-wider font-bold">Flow</div>
+            <div className="text-xs font-bold text-zinc-900 mt-0.5">
               {investigation.flowRangeCmPerSec[0]}–{investigation.flowRangeCmPerSec[1]} cm/s
             </div>
           </div>
@@ -190,18 +190,18 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
       </div>
 
       {/* Bottom Footer: Stats, Badges & Inspect Study Link */}
-      <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
+      <div className="mt-5 pt-3 border-t border-black/5 flex items-center justify-between gap-2">
         {/* Runs Count & Confidence */}
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-[11px] font-mono font-extrabold shadow-2xs text-zinc-700">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-white text-[11px] font-bold shadow-2xs text-zinc-700">
             <Activity className="w-3 h-3 text-[#0B2374]" />
             <span>{runsCount} Runs</span>
           </span>
           <span
-            className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono font-extrabold shadow-2xs uppercase border ${
+            className={`px-2.5 py-0.5 rounded-full text-[11px] font-bold shadow-2xs uppercase ${
               investigation.confidence === 'A'
-                ? 'bg-lime-50 text-lime-900 border-lime-300'
-                : 'bg-amber-50 text-amber-800 border-amber-200'
+                ? 'bg-[#D4FC02]/25 text-zinc-950'
+                : 'bg-amber-50 text-amber-800'
             }`}
           >
             Tier {investigation.confidence}

@@ -70,7 +70,7 @@ const SORT_OPTIONS: CustomSelectOption<ExplorerSortOption>[] = [
 ];
 
 export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
-  className = 'sticky top-3 z-20 bg-[#F8F9FA]/90 backdrop-blur-md pt-2 pb-3 space-y-3',
+  className = 'sticky top-0 z-30 space-y-3 backdrop-blur-md',
   searchQuery,
   onSearchChange,
   fuelFilter,
@@ -133,9 +133,9 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
       <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
         {/* Eatzy Search Input Box with Inner Shadow & Vertical Divider */}
         <div className="flex-1 max-w-xl relative group">
-          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2.5 z-10 pointer-events-none">
-            <Search className="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 group-focus-within:text-[#0B2374] transition-colors" />
-            <div className="w-px h-4 bg-gray-200 group-hover:bg-zinc-300 transition-colors" />
+          <div className="absolute left-5 top-1/2 -translate-y-1/2 flex items-center gap-3 z-10 pointer-events-none">
+            <Search className="w-5 h-5 text-gray-400 group-hover:text-zinc-600 group-focus-within:text-[#0B2374] transition-colors" />
+            <div className="w-px h-5 bg-gray-200 group-hover:bg-zinc-300 transition-colors" />
           </div>
 
           <input
@@ -145,8 +145,8 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search investigations by code, title, material, PI, or tags..."
-            style={{ boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.05)' }}
-            className="w-full bg-slate-50/50 backdrop-blur-sm border-2 border-white focus:border-[#0B2374]/30 rounded-3xl py-2.5 pl-12 pr-10 text-xs sm:text-sm font-semibold text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-4 focus:ring-[#0B2374]/5 transition-all"
+            style={{ boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.09)' }}
+            className="w-full bg-slate-50/60 backdrop-blur-sm border-2 border-white focus:border-[#D4FC02]/40 rounded-3xl py-3.5 sm:py-4 pl-14 pr-12 text-sm sm:text-base font-bold text-gray-900 placeholder:text-gray-400 focus:outline-none focus:ring-4 focus:ring-[#D4FC02]/10 transition-all shadow-eatzy-inner hover:shadow-eatzy-inner-hover"
           />
 
           {searchQuery && (
@@ -154,10 +154,10 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
               type="button"
               data-testid="clear-search-btn"
               onClick={() => onSearchChange('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-zinc-200 hover:bg-zinc-300 flex items-center justify-center transition-all group/close cursor-pointer"
+              className="absolute right-3.5 top-1/2 -translate-y-1/2 w-8 h-8 rounded-xl bg-zinc-200 hover:bg-zinc-300 flex items-center justify-center transition-all group/close cursor-pointer"
               title="Clear search"
             >
-              <X className="w-3.5 h-3.5 text-zinc-600 group-hover/close:rotate-90 transition-transform duration-200" />
+              <X className="w-4 h-4 text-zinc-600 group-hover/close:rotate-90 transition-transform duration-200" />
             </button>
           )}
         </div>
@@ -165,8 +165,8 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
         {/* View Mode & Reset Controls */}
         <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
           {/* Summary Count Pill */}
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-white/80 border border-gray-200/60 text-xs font-mono text-zinc-700 shadow-2xs">
-            <span className="text-[#0B2374] font-bold">{filteredCount}</span>
+          <div className="hidden sm:inline-flex items-center gap-1.5 px-3.5 py-2 rounded-2xl bg-white/80 border border-gray-200/60 text-xs font-bold text-zinc-700 shadow-2xs">
+            <span className="text-[#0B2374] font-extrabold">{filteredCount}</span>
             <span className="text-zinc-400">/</span>
             <span>{totalCount} Studies</span>
           </div>

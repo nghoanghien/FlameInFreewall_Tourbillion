@@ -139,10 +139,10 @@ export const CuratedStudiesGrid: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className={`rounded-3xl p-5 bg-white border transition-all duration-300 flex flex-col justify-between relative group select-none shadow-[0_2px_8px_rgba(0,0,0,0.04)] cursor-pointer ${
+              className={`rounded-3xl p-5 bg-gray-200/50 transition-all duration-300 flex flex-col justify-between relative group select-none cursor-pointer hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] ${
                 isComparing
-                  ? 'border-2 border-[#D4FC02] shadow-[0_4px_24px_rgba(212,252,2,0.25)]'
-                  : 'border-gray-100 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:border-gray-200'
+                  ? 'ring-2 ring-[#D4FC02] shadow-[0_8px_30px_rgba(212,252,2,0.3)] bg-white'
+                  : ''
               }`}
             >
               <div>
@@ -160,12 +160,12 @@ export const CuratedStudiesGrid: React.FC = () => {
                       {inv.hardware}
                     </span>
                     <span
-                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs border ${
+                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs ${
                         inv.badge === 'Measured'
-                          ? 'bg-lime-50 text-lime-900 border-lime-300'
+                          ? 'bg-[#D4FC02]/25 text-zinc-950'
                           : inv.badge === 'Modeled'
-                          ? 'bg-purple-50 text-purple-700 border-purple-200'
-                          : 'bg-slate-100 text-slate-700 border-slate-200'
+                          ? 'bg-purple-50 text-purple-700'
+                          : 'bg-slate-100 text-slate-700'
                       }`}
                     >
                       {inv.badge}
@@ -179,7 +179,7 @@ export const CuratedStudiesGrid: React.FC = () => {
                     <span className="text-base sm:text-lg font-black text-[#1A1A1A] tracking-tight group-hover:text-[#0B2374] transition-colors">
                       {inv.code}
                     </span>
-                    <span className="text-[11px] font-mono text-[#64748B]">
+                    <span className="text-[11px] text-[#64748B]">
                       ({inv.yearRange})
                     </span>
                   </div>
@@ -200,12 +200,12 @@ export const CuratedStudiesGrid: React.FC = () => {
                 </div>
 
                 {/* Chamber Environment Telemetry Grid */}
-                <div className="grid grid-cols-3 gap-2 p-2.5 rounded-2xl bg-gray-50 border border-gray-100 mb-4 text-center">
+                <div className="grid grid-cols-3 gap-2 p-2.5 rounded-2xl bg-white/70 mb-4 text-center">
                   <div>
                     <div className="text-[10px] uppercase font-bold tracking-wider text-[#64748B]">
                       Oxygen O₂
                     </div>
-                    <div className="text-xs font-mono font-bold text-[#1A1A1A] mt-0.5">
+                    <div className="text-xs font-bold text-[#1A1A1A] mt-0.5">
                       {inv.oxygenRange[0]}–{inv.oxygenRange[1]}%
                     </div>
                   </div>
@@ -213,7 +213,7 @@ export const CuratedStudiesGrid: React.FC = () => {
                     <div className="text-[10px] uppercase font-bold tracking-wider text-[#64748B]">
                       Pressure
                     </div>
-                    <div className="text-xs font-mono font-bold text-[#1A1A1A] mt-0.5">
+                    <div className="text-xs font-bold text-[#1A1A1A] mt-0.5">
                       {inv.pressureRangePsi[0]}–{inv.pressureRangePsi[1]} psi
                     </div>
                   </div>
@@ -221,7 +221,7 @@ export const CuratedStudiesGrid: React.FC = () => {
                     <div className="text-[10px] uppercase font-bold tracking-wider text-[#64748B]">
                       Test Runs
                     </div>
-                    <div className="text-xs font-mono font-bold text-[#0B2374] mt-0.5">
+                    <div className="text-xs font-bold text-[#0B2374] mt-0.5">
                       {inv.dataAvailability.runCount} PSI
                     </div>
                   </div>
@@ -234,7 +234,7 @@ export const CuratedStudiesGrid: React.FC = () => {
               </div>
 
               {/* Action Buttons Row */}
-              <div className="pt-3 border-t border-gray-100 flex items-center gap-2">
+              <div className="pt-3 border-t border-black/5 flex items-center gap-2">
                 <Link
                   href={`/explorer/${inv.id}`}
                   onClick={() => setSelectedInvestigationId(inv.id)}

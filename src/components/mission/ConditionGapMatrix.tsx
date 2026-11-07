@@ -132,7 +132,7 @@ export const ConditionGapMatrix: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="p-5 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all space-y-3 flex flex-col justify-between cursor-pointer"
+              className="p-5 rounded-3xl bg-gray-200/50 hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all space-y-3 flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
@@ -148,7 +148,7 @@ export const ConditionGapMatrix: React.FC = () => {
                   </span>
                 </div>
 
-                <div className="space-y-1.5 font-mono text-xs">
+                <div className="space-y-1.5 text-xs">
                   <div className="flex items-center justify-between text-zinc-500">
                     <span className="text-[10px] uppercase">Scenario:</span>
                     <span className="text-zinc-900 font-bold">{dim.scenarioValue}</span>
@@ -162,7 +162,7 @@ export const ConditionGapMatrix: React.FC = () => {
                 </div>
               </div>
 
-              <p className="text-[11px] text-zinc-500 leading-relaxed border-t border-gray-200/60 pt-2">
+              <p className="text-[11px] text-zinc-500 leading-relaxed border-t border-black/5 pt-2">
                 {dim.explanation}
               </p>
             </motion.div>

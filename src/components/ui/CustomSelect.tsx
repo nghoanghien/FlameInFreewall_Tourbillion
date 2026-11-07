@@ -124,8 +124,8 @@ export function CustomSelect<T extends string = string>({
         aria-haspopup="listbox"
         aria-expanded={isOpen}
         aria-label={ariaLabel || placeholder}
-        style={{ boxShadow: 'inset 0 0 16px rgba(0, 0, 0, 0.05)' }}
-        className={`group relative flex items-center justify-between gap-2 w-full px-3 py-2 rounded-2xl bg-white border border-gray-200 hover:border-gray-300 text-xs font-semibold text-zinc-800 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#0B2374]/20 ${
+        style={{ boxShadow: 'inset 0 0 16px rgba(0, 0, 0, 0.08)' }}
+        className={`group relative flex items-center justify-between gap-2 w-full px-3.5 py-2.5 rounded-2xl bg-slate-50/50 backdrop-blur-sm border-2 border-white hover:border-zinc-200/80 text-xs font-semibold text-zinc-900 transition-all cursor-pointer focus:outline-none focus:ring-2 focus:ring-[#D4FC02]/40 shadow-eatzy-inner hover:shadow-eatzy-inner-hover ${
           disabled ? 'opacity-50 cursor-not-allowed bg-gray-100' : ''
         } ${className}`}
       >
@@ -138,7 +138,7 @@ export function CustomSelect<T extends string = string>({
             {selectedOption ? selectedOption.label : placeholder}
           </span>
           {selectedOption?.badge && (
-            <span className="shrink-0 text-[10px] font-bold px-1.5 py-0.5 rounded-md bg-zinc-100 text-zinc-700">
+            <span className="shrink-0 text-[10px] font-bold px-2 py-0.5 rounded-full bg-[#D4FC02]/20 text-zinc-950">
               {selectedOption.badge}
             </span>
           )}
@@ -161,7 +161,7 @@ export function CustomSelect<T extends string = string>({
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.96, y: -6 }}
             transition={{ duration: 0.16, ease: 'easeOut' }}
-            className={`absolute left-0 mt-1.5 w-full min-w-[200px] bg-white border border-gray-100 shadow-[0_10px_30px_rgba(0,0,0,0.12)] rounded-2xl p-1.5 z-50 origin-top overflow-hidden ${dropdownClassName}`}
+            className={`absolute left-0 mt-1.5 w-full min-w-[200px] bg-white/95 backdrop-blur-md border border-white/80 shadow-[0_12px_36px_rgba(0,0,0,0.12)] rounded-2xl p-1.5 z-50 origin-top overflow-hidden ${dropdownClassName}`}
           >
             <ul
               role="listbox"
@@ -182,13 +182,13 @@ export function CustomSelect<T extends string = string>({
                       opt.disabled
                         ? 'opacity-40 cursor-not-allowed bg-gray-50'
                         : isSelected
-                        ? 'bg-[#1A1A1A] text-white shadow-xs'
+                        ? 'bg-zinc-950 text-white shadow-xs'
                         : 'text-zinc-700 hover:bg-zinc-100/80 hover:text-zinc-950'
                     }`}
                   >
                     <div className="flex items-center gap-2 min-w-0 flex-1 truncate">
                       {opt.icon && (
-                        <span className={`shrink-0 ${isSelected ? 'text-white' : 'text-zinc-400'}`}>
+                        <span className={`shrink-0 ${isSelected ? 'text-[#D4FC02]' : 'text-zinc-400'}`}>
                           {opt.icon}
                         </span>
                       )}
@@ -196,7 +196,7 @@ export function CustomSelect<T extends string = string>({
                     </div>
 
                     {isSelected && (
-                      <Check className="w-3.5 h-3.5 shrink-0 stroke-[2.5]" aria-hidden="true" />
+                      <Check className="w-3.5 h-3.5 shrink-0 stroke-[2.5] text-[#D4FC02]" aria-hidden="true" />
                     )}
                   </li>
                 );
