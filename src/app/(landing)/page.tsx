@@ -1,3 +1,8 @@
+/**
+ * Landing Page - FlameGuard AI
+ * Kurzgesagt cosmic vector art style landing page directing to StructPaper light dashboard.
+ */
+
 import React from 'react';
 import { LandingHero } from '@/components/landing/LandingHero';
 import { KurzgesagtFlameScene } from '@/components/landing/KurzgesagtFlameScene';

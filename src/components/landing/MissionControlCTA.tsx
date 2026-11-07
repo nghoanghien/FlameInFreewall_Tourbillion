@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * MissionControlCTA Component
+ * Highlights the three workspace pillars with Electric Lime (#D4FC02) CTA
+ * directing users to the StructPaper light research dashboard.
+ */
+
 import React from 'react';
 import Link from 'next/link';
 import {

@@ -16,7 +16,7 @@ export interface ToastItem {
   action?: ToastAction;
   dismissible?: boolean;
   inline?: boolean;
-  createdAt: number;
+  createdAt?: number;
 }
 
 export interface ToastOptions {

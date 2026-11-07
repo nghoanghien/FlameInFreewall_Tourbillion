@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * LandingHero Component
+ * Kurzgesagt flat vector art style with cosmic dark backdrop (#080C18)
+ * and Space Apps Electric Lime (#D4FC02) CTAs directing into the StructPaper light dashboard.
+ */
+
 import React from 'react';
 import Link from 'next/link';
 import {

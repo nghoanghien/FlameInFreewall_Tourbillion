@@ -22,6 +22,7 @@ describe('Liquid Glass Toast Light Theme', () => {
       description: 'Microgravity sensor calibrated',
       duration: 3500,
       dismissible: true,
+      createdAt: Date.now(),
     };
 
     render(
@@ -48,6 +49,7 @@ describe('Liquid Glass Toast Light Theme', () => {
       description: 'FLEX added to workspace',
       duration: 3500,
       dismissible: true,
+      createdAt: Date.now(),
     };
 
     render(
@@ -71,6 +73,7 @@ describe('Liquid Glass Toast Light Theme', () => {
       title: 'Oxygen Limit',
       description: '34% O2 enriched atmosphere',
       duration: 3500,
+      createdAt: Date.now(),
       action: {
         label: 'Acknowledge',
         onClick: onAction,

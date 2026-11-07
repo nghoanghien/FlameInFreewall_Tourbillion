@@ -1,5 +1,11 @@
 'use client';
 
+/**
+ * LandingFooter Component
+ * References only valid workspace routes (/dashboard, /explorer, /mission)
+ * with mandatory NASA Physical Sciences Fire Safety Protocol & Disclaimer.
+ */
+
 import React from 'react';
 import Link from 'next/link';
 import { Flame, ShieldAlert, ExternalLink, Globe } from 'lucide-react';
