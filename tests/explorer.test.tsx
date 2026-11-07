@@ -445,12 +445,22 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
 
       expect(screen.getByTestId('explorer-empty-state')).toBeDefined();
       expect(screen.getByText('No investigations match your filters')).toBeDefined();
+      expect(screen.queryByTestId('end-of-list-indicator')).toBeNull();
 
       const resetBtn = screen.getByTestId('empty-reset-btn');
       fireEvent.click(resetBtn);
 
       expect(screen.getByTestId('explorer-grid-view')).toBeDefined();
       expect(screen.getByTestId('explorer-summary-count').textContent).toContain('Showing 20 of 20 NASA PSI Studies');
+      expect(screen.getByTestId('end-of-list-indicator')).toBeInTheDocument();
+    });
+
+    it('renders StructPaper end-of-list indicator when investigations are present', () => {
+      render(<ExplorerPage />);
+
+      const indicator = screen.getByTestId('end-of-list-indicator');
+      expect(indicator).toBeInTheDocument();
+      expect(indicator.textContent).toContain('Bạn đã xem hết danh sách nghiên cứu PSI');
     });
 
     it('adds and removes studies to compare list in store', () => {
@@ -502,6 +512,11 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
       expect(screen.getByTestId('runs-table')).toBeDefined();
       expect(screen.getByTestId('run-row-BASS-RUN-01')).toBeDefined();
       expect(screen.getAllByText('PMMA Flat Sheet').length).toBeGreaterThanOrEqual(1);
+
+      // Verify EndOfListIndicator
+      const indicator = screen.getByTestId('end-of-list-indicator');
+      expect(indicator).toBeInTheDocument();
+      expect(indicator.textContent).toContain('Bạn đã xem hết danh sách lượt thử nghiệm');
 
       // Search runs
       const search = screen.getByTestId('runs-search-input');

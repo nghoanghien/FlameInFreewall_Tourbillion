@@ -11,6 +11,7 @@ import { ScenarioConfigForm } from '@/components/mission/ScenarioConfigForm';
 import { ConditionGapMatrix } from '@/components/mission/ConditionGapMatrix';
 import { RankedEvidenceList } from '@/components/mission/RankedEvidenceList';
 import { PredictiveLabPanel } from '@/components/mission/PredictiveLabPanel';
+import { EndOfListIndicator } from '@/components/ui/EndOfListIndicator';
 
 type MissionView = 'evidence' | 'prediction';
 
@@ -104,6 +105,9 @@ function MissionContent() {
           <PredictiveLabPanel onSwitchToEvidence={() => handleViewChange('evidence')} />
         </div>
       )}
+
+      {/* End of List Indicator */}
+      <EndOfListIndicator text="Bạn đã xem hết danh sách dữ liệu kịch bản" />
     </div>
   );
 }

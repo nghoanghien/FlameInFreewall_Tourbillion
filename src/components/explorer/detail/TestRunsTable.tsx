@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import type { Investigation } from '@/types';
 import { TEST_RUNS } from '@/data/testRuns';
+import { EndOfListIndicator } from '@/components/ui/EndOfListIndicator';
 
 export interface TestRunsTableProps {
   study: Investigation;
@@ -199,6 +200,11 @@ export const TestRunsTable: React.FC<TestRunsTableProps> = ({ study }) => {
             </table>
           </div>
         </div>
+      )}
+
+      {/* End of List Indicator */}
+      {filteredRuns.length > 0 && (
+        <EndOfListIndicator text="Bạn đã xem hết danh sách lượt thử nghiệm" />
       )}
     </div>
   );

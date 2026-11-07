@@ -396,6 +396,10 @@ describe('Mission Scenario, Evidence Gap Matrix & Predictive Lab (/mission)', ()
       expect(screen.getByTestId('scenario-config-form')).toBeInTheDocument();
       expect(screen.getByTestId('condition-gap-matrix')).toBeInTheDocument();
       expect(screen.getByTestId('ranked-evidence-list')).toBeInTheDocument();
+
+      const indicator = screen.getByTestId('end-of-list-indicator');
+      expect(indicator).toBeInTheDocument();
+      expect(indicator.textContent).toContain('Bạn đã xem hết danh sách dữ liệu kịch bản');
     });
   });
 });

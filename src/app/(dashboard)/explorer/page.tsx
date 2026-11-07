@@ -17,6 +17,7 @@ import { InvestigationCard } from '@/components/explorer/InvestigationCard';
 import { InvestigationTable } from '@/components/explorer/InvestigationTable';
 import { ComparisonBar } from '@/components/explorer/ComparisonBar';
 import { ComparisonModal } from '@/components/explorer/ComparisonModal';
+import { EndOfListIndicator } from '@/components/ui/EndOfListIndicator';
 
 export default function ExplorerPage() {
   const compareList = useWorkspaceStore((state) => state.compareList);
@@ -254,6 +255,9 @@ export default function ExplorerPage() {
           runsByInvestigationId={runsByInvestigationId}
         />
       )}
+
+      {/* End of List Indicator */}
+      {filteredInvestigations.length > 0 && <EndOfListIndicator />}
 
       {/* Floating Comparison Dock */}
       <ComparisonBar
