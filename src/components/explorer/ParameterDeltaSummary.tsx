@@ -17,14 +17,14 @@ export const ParameterDeltaSummary: React.FC<ParameterDeltaSummaryProps> = ({
   return (
     <div
       data-testid="parameter-delta-summary"
-      className="p-4 sm:p-5 rounded-2xl bg-gradient-to-r from-blue-950/40 via-[#0B2374]/30 to-purple-950/30 border border-cyan-500/30 space-y-3 shadow-inner"
+      className="p-4 sm:p-5 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-3"
     >
-      <div className="flex items-center justify-between text-xs font-mono text-cyan-300 font-bold uppercase tracking-wider">
+      <div className="flex items-center justify-between text-xs font-mono text-[#0B2374] font-bold uppercase tracking-wider">
         <span className="flex items-center gap-1.5">
-          <Sparkles className="w-4 h-4 text-[#D4FC02]" />
+          <Sparkles className="w-4 h-4 text-[#0B2374]" />
           Parameter Delta Analysis
         </span>
-        <span className="text-slate-400 text-[11px] normal-case font-normal">
+        <span className="text-zinc-500 text-[11px] normal-case font-normal">
           Calculated across {comparedStudies.length} flight investigations
         </span>
       </div>
@@ -33,16 +33,16 @@ export const ParameterDeltaSummary: React.FC<ParameterDeltaSummaryProps> = ({
         {/* Oxygen Delta */}
         <div
           data-testid="delta-summary-o2"
-          className="p-3 rounded-xl bg-white/[0.04] border border-white/5 space-y-1"
+          className="p-3 rounded-2xl bg-gray-100 border border-gray-200 text-zinc-800 space-y-1"
         >
-          <div className="text-[10px] uppercase font-mono text-slate-400 flex items-center gap-1">
-            <Activity className="w-3 h-3 text-cyan-400" />
+          <div className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+            <Activity className="w-3 h-3 text-[#0B2374]" />
             <span>O₂ Range Span</span>
           </div>
-          <div className="font-mono font-bold text-white">
+          <div className="font-mono font-bold text-zinc-950">
             {deltas.o2OverallMin}% – {deltas.o2OverallMax}% O₂
           </div>
-          <div className="text-[10px] text-cyan-300 font-mono">
+          <div className="text-[10px] text-blue-700 font-mono font-medium">
             Δ {deltas.o2SpanDelta}% range span
           </div>
         </div>
@@ -50,16 +50,16 @@ export const ParameterDeltaSummary: React.FC<ParameterDeltaSummaryProps> = ({
         {/* Fuel Phase Diversity */}
         <div
           data-testid="delta-summary-fuel"
-          className="p-3 rounded-xl bg-white/[0.04] border border-white/5 space-y-1"
+          className="p-3 rounded-2xl bg-gray-100 border border-gray-200 text-zinc-800 space-y-1"
         >
-          <div className="text-[10px] uppercase font-mono text-slate-400 flex items-center gap-1">
-            <Flame className="w-3 h-3 text-amber-400" />
+          <div className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+            <Flame className="w-3 h-3 text-amber-600" />
             <span>Fuel Diversity</span>
           </div>
-          <div className="font-semibold text-white capitalize truncate">
+          <div className="font-semibold text-zinc-950 capitalize truncate">
             {deltas.isMixedFuel ? 'Multi-Phase' : deltas.uniqueFuelTypes[0] || 'Single'}
           </div>
-          <div className="text-[10px] text-slate-400 truncate">
+          <div className="text-[10px] text-zinc-500 truncate">
             {deltas.uniqueFuelTypes.join(' vs ')}
           </div>
         </div>
@@ -67,16 +67,16 @@ export const ParameterDeltaSummary: React.FC<ParameterDeltaSummaryProps> = ({
         {/* Quenching Threshold */}
         <div
           data-testid="delta-summary-quench"
-          className="p-3 rounded-xl bg-white/[0.04] border border-white/5 space-y-1"
+          className="p-3 rounded-2xl bg-gray-100 border border-gray-200 text-zinc-800 space-y-1"
         >
-          <div className="text-[10px] uppercase font-mono text-slate-400 flex items-center gap-1">
-            <Zap className="w-3 h-3 text-rose-400" />
+          <div className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+            <Zap className="w-3 h-3 text-rose-600" />
             <span>Quench Threshold</span>
           </div>
-          <div className="font-mono font-bold text-white">
+          <div className="font-mono font-bold text-zinc-950">
             {deltas.quenchMin !== null ? `${deltas.quenchMin} mm` : 'N/A'}
           </div>
-          <div className="text-[10px] text-rose-300 font-mono">
+          <div className="text-[10px] text-rose-700 font-mono font-medium">
             {deltas.quenchDelta !== null
               ? `Δ ${deltas.quenchDelta} mm variance`
               : 'Consistent'}
@@ -86,16 +86,16 @@ export const ParameterDeltaSummary: React.FC<ParameterDeltaSummaryProps> = ({
         {/* Flame Spread Differential */}
         <div
           data-testid="delta-summary-spread"
-          className="p-3 rounded-xl bg-white/[0.04] border border-white/5 space-y-1"
+          className="p-3 rounded-2xl bg-gray-100 border border-gray-200 text-zinc-800 space-y-1"
         >
-          <div className="text-[10px] uppercase font-mono text-slate-400 flex items-center gap-1">
-            <Gauge className="w-3 h-3 text-emerald-400" />
+          <div className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
+            <Gauge className="w-3 h-3 text-emerald-600" />
             <span>Spread Velocity</span>
           </div>
-          <div className="font-mono font-bold text-white">
+          <div className="font-mono font-bold text-zinc-950">
             {deltas.spreadMax !== null ? `${deltas.spreadMax.toFixed(2)} mm/s` : 'N/A'}
           </div>
-          <div className="text-[10px] text-emerald-300 font-mono">
+          <div className="text-[10px] text-emerald-700 font-mono font-medium">
             {deltas.spreadRatio !== null ? `${deltas.spreadRatio}x max ratio` : 'Nominal'}
           </div>
         </div>

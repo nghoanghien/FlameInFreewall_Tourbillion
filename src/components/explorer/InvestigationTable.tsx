@@ -5,13 +5,7 @@ import Link from 'next/link';
 import {
   ArrowRight,
   Check,
-  Plus,
-  Flame,
-  Droplet,
-  Wind,
-  Layers,
   Activity,
-  ExternalLink,
 } from 'lucide-react';
 import type { Investigation } from '@/types';
 import { getFuelBadge } from './InvestigationCard';
@@ -32,12 +26,12 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
   return (
     <div
       data-testid="investigations-table"
-      className="w-full bg-[#111827]/80 backdrop-blur-xl border border-white/10 rounded-2xl sm:rounded-3xl shadow-xl overflow-hidden"
+      className="w-full bg-white rounded-3xl border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] overflow-hidden"
     >
       <div className="overflow-x-auto">
         <table className="w-full text-left border-collapse min-w-[850px]">
           <thead>
-            <tr className="border-b border-white/10 bg-black/40 text-[11px] font-mono uppercase tracking-wider text-slate-400">
+            <tr className="border-b border-gray-100 bg-gray-50/90 text-[11px] font-mono uppercase tracking-wider text-zinc-600 font-bold">
               <th className="py-3.5 px-4 w-14 text-center">Compare</th>
               <th className="py-3.5 px-4 min-w-[220px]">Code &amp; Study Title</th>
               <th className="py-3.5 px-4 min-w-[120px]">Fuel Phase</th>
@@ -48,7 +42,7 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
               <th className="py-3.5 px-4 w-28 text-right">Action</th>
             </tr>
           </thead>
-          <tbody className="divide-y divide-white/5 text-xs text-slate-300">
+          <tbody className="divide-y divide-gray-100 text-xs text-zinc-800">
             {investigations.map((study) => {
               const isComparing = compareList.includes(study.id);
               const fuelBadge = getFuelBadge(study.fuelType);
@@ -60,8 +54,8 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                 <tr
                   key={study.id}
                   data-testid={`investigation-row-${study.id}`}
-                  className={`transition-colors hover:bg-white/[0.03] group ${
-                    isComparing ? 'bg-[#4CC9F0]/[0.06]' : ''
+                  className={`border-b border-gray-100 hover:bg-gray-50/70 text-zinc-800 transition-colors group ${
+                    isComparing ? 'bg-lime-50/40' : ''
                   }`}
                 >
                   {/* Compare Checkbox */}
@@ -72,8 +66,8 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                       onClick={() => onToggleCompare(study.id)}
                       className={`w-5 h-5 rounded-md border flex items-center justify-center transition-all duration-150 cursor-pointer ${
                         isComparing
-                          ? 'bg-[#4CC9F0] border-[#4CC9F0] text-slate-950 font-bold shadow-sm shadow-[#4CC9F0]/40'
-                          : 'border-white/20 hover:border-white/40 bg-white/5 text-transparent'
+                          ? 'bg-[#D4FC02] border-[#D4FC02] text-zinc-950 font-bold shadow-2xs'
+                          : 'border-gray-300 hover:border-gray-400 bg-white text-transparent'
                       }`}
                       title={isComparing ? 'Remove from comparison' : 'Add to comparison'}
                     >
@@ -88,15 +82,15 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                       className="group/link block space-y-0.5"
                     >
                       <div className="flex items-center gap-2">
-                        <span className="font-mono font-bold text-xs text-[#D4FC02] group-hover/link:underline">
+                        <span className="font-mono font-bold text-xs text-[#0B2374] group-hover/link:underline">
                           {study.code}
                         </span>
-                        <span className="text-[11px] text-slate-400 font-mono">({study.yearRange})</span>
+                        <span className="text-[11px] text-zinc-500 font-mono">({study.yearRange})</span>
                       </div>
-                      <div className="font-medium text-[#F8F9FA] group-hover/link:text-[#4CC9F0] transition-colors line-clamp-1">
+                      <div className="font-semibold text-zinc-900 group-hover/link:text-[#0B2374] transition-colors line-clamp-1">
                         {study.title}
                       </div>
-                      <div className="text-[11px] text-slate-400 line-clamp-1">
+                      <div className="text-[11px] text-zinc-500 line-clamp-1">
                         PI: {study.primaryInvestigator}
                       </div>
                     </Link>
@@ -105,7 +99,7 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                   {/* Fuel Phase */}
                   <td className="py-3.5 px-4">
                     <span
-                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-medium border ${fuelBadge.bg} ${fuelBadge.text} ${fuelBadge.border}`}
+                      className={`inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full text-[11px] font-semibold border ${fuelBadge.bg} ${fuelBadge.text} ${fuelBadge.border}`}
                     >
                       <FuelIcon className="w-3 h-3" />
                       <span>{fuelBadge.label}</span>
@@ -114,25 +108,25 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
 
                   {/* Facility & Hardware */}
                   <td className="py-3.5 px-4">
-                    <div className="font-mono text-xs text-slate-200">{study.hardware}</div>
-                    <div className="text-[11px] text-slate-400 line-clamp-1 truncate max-w-[180px]">
+                    <div className="font-mono text-xs font-semibold text-zinc-900">{study.hardware}</div>
+                    <div className="text-[11px] text-zinc-500 line-clamp-1 truncate max-w-[180px]">
                       {study.platform}
                     </div>
                   </td>
 
                   {/* Chamber Conditions */}
-                  <td className="py-3.5 px-4 font-mono text-[11px] text-slate-300">
+                  <td className="py-3.5 px-4 font-mono text-[11px] text-zinc-700">
                     <div>
                       {study.oxygenRange[0]}–{study.oxygenRange[1]}% O₂
                     </div>
-                    <div className="text-slate-400 text-[10px]">
+                    <div className="text-zinc-500 text-[10px]">
                       {study.pressureRangePsi[0]}–{study.pressureRangePsi[1]} psia · {study.flowRangeCmPerSec[1]} cm/s
                     </div>
                   </td>
 
                   {/* Runs Count */}
                   <td className="py-3.5 px-4 text-center">
-                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-white/5 border border-white/10 text-xs font-mono font-bold text-[#4CC9F0]">
+                    <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-md bg-gray-100 border border-gray-200 text-xs font-mono font-bold text-[#0B2374]">
                       <Activity className="w-3 h-3" />
                       <span>{runsCount}</span>
                     </span>
@@ -144,13 +138,13 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                       <span
                         className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${
                           study.confidence === 'A'
-                            ? 'bg-emerald-500/10 text-emerald-300 border-emerald-500/30'
-                            : 'bg-amber-500/10 text-amber-300 border-amber-500/30'
+                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                            : 'bg-amber-50 text-amber-800 border-amber-200'
                         }`}
                       >
                         Tier {study.confidence}
                       </span>
-                      <span className="text-[10px] font-mono text-slate-400">
+                      <span className="text-[10px] font-mono text-zinc-500">
                         {study.badge}
                       </span>
                     </div>
@@ -161,7 +155,7 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                     <Link
                       href={`/explorer/${study.id}`}
                       data-testid={`table-inspect-${study.id}`}
-                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-semibold text-[#4CC9F0] hover:text-white hover:bg-white/5 transition-colors"
+                      className="inline-flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold text-[#0B2374] hover:bg-blue-50 transition-colors"
                     >
                       <span>Inspect</span>
                       <ArrowRight className="w-3.5 h-3.5" />

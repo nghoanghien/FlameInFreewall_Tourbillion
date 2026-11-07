@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Compass, Flame, AlertCircle, RotateCcw } from 'lucide-react';
+import { Compass, AlertCircle, RotateCcw } from 'lucide-react';
 import { INVESTIGATIONS } from '@/data/investigations';
 import { TEST_RUNS } from '@/data/testRuns';
 import { useWorkspaceStore } from '@/store/useWorkspaceStore';
@@ -155,21 +155,22 @@ export default function ExplorerPage() {
       data-testid="explorer-catalog-page"
       className="w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 py-2 pb-24"
     >
-      {/* Top Header Banner */}
+      {/* Top Header Banner - StructPaper Light */}
       <section
         aria-label="Explorer Header"
-        className="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#0B2374]/80 via-[#0B1528]/95 to-[#080C18] border border-white/10 shadow-2xl backdrop-blur-xl"
+        className="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all"
       >
-        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-[#4CC9F0]/10 blur-3xl pointer-events-none" />
+        <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-[#D4FC02]/15 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 -mb-20 w-80 h-80 rounded-full bg-[#0B2374]/5 blur-3xl pointer-events-none" />
         <div className="relative z-10 space-y-2 max-w-3xl">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#4CC9F0]/15 border border-[#4CC9F0]/30 text-[#4CC9F0] text-xs font-mono font-bold">
-            <Compass className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-[#0B2374] text-xs font-mono font-bold">
+            <Compass className="w-3.5 h-3.5 text-[#0B2374]" />
             <span>NASA Physical Science Informatics (PSI) Database</span>
           </div>
-          <h1 className="text-2xl sm:text-3xl font-black text-[#F8F9FA] tracking-tight">
+          <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#1A1A1A] tracking-tight">
             Experiment Explorer
           </h1>
-          <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+          <p className="text-xs sm:text-sm text-[#64748B] leading-relaxed">
             Search, filter, and inspect all 20 spaceflight combustion investigations conducted aboard the International Space Station and automated Cygnus spacecraft.
           </p>
         </div>
@@ -195,11 +196,11 @@ export default function ExplorerPage() {
       />
 
       {/* Results Header Count */}
-      <div className="flex items-center justify-between text-xs sm:text-sm text-slate-400 font-mono px-1">
+      <div className="flex items-center justify-between text-xs sm:text-sm text-zinc-500 font-mono px-1">
         <span data-testid="explorer-summary-count">
-          Showing <span className="font-bold text-[#F8F9FA]">{filteredInvestigations.length}</span> of {INVESTIGATIONS.length} NASA PSI Studies
+          Showing <span className="font-bold text-zinc-950">{filteredInvestigations.length}</span> of {INVESTIGATIONS.length} NASA PSI Studies
         </span>
-        <span className="text-slate-500 hidden sm:inline">
+        <span className="text-zinc-400 hidden sm:inline">
           Click any study to view chamber specs, test runs &amp; sensor telemetry
         </span>
       </div>
@@ -208,14 +209,14 @@ export default function ExplorerPage() {
       {filteredInvestigations.length === 0 ? (
         <div
           data-testid="explorer-empty-state"
-          className="w-full p-12 text-center rounded-3xl bg-[#111827]/60 border border-dashed border-white/15 space-y-4"
+          className="w-full p-12 text-center rounded-3xl bg-white border border-dashed border-gray-200 space-y-4 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
         >
-          <div className="w-12 h-12 rounded-full bg-rose-500/10 border border-rose-500/20 text-rose-400 mx-auto flex items-center justify-center">
+          <div className="w-12 h-12 rounded-full bg-rose-50 border border-rose-200 text-rose-600 mx-auto flex items-center justify-center">
             <AlertCircle className="w-6 h-6" />
           </div>
           <div className="space-y-1">
-            <h3 className="text-base font-bold text-[#F8F9FA]">No investigations match your filters</h3>
-            <p className="text-xs text-slate-400 max-w-md mx-auto">
+            <h3 className="text-base font-bold text-zinc-900">No investigations match your filters</h3>
+            <p className="text-xs text-zinc-500 max-w-md mx-auto">
               We couldn&apos;t find any NASA PSI studies matching your active search keywords or filter criteria.
             </p>
           </div>
@@ -223,7 +224,7 @@ export default function ExplorerPage() {
             type="button"
             data-testid="empty-reset-btn"
             onClick={handleResetFilters}
-            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#4CC9F0] hover:bg-[#38b6dd] text-slate-950 font-bold text-xs transition-colors cursor-pointer"
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#0B2374] hover:bg-[#081b59] text-white font-bold text-xs transition-colors cursor-pointer shadow-xs"
           >
             <RotateCcw className="w-3.5 h-3.5" />
             <span>Reset All Filters</span>

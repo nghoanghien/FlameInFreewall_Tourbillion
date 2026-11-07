@@ -29,6 +29,16 @@ import { toastStore } from '../src/components/toast/toast-store';
 const mockPush = vi.fn();
 let mockParams: { id?: string } = { id: 'bass' };
 
+expect.extend({
+  toBeInTheDocument(received) {
+    const pass = Boolean(received);
+    return {
+      pass,
+      message: () => `expected element ${pass ? 'not ' : ''}to be in document`,
+    };
+  },
+});
+
 vi.mock('next/navigation', () => ({
   usePathname: () => '/explorer',
   useRouter: () => ({
@@ -51,6 +61,18 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
       window.URL.createObjectURL = vi.fn(() => 'blob:mock-url');
       window.URL.revokeObjectURL = vi.fn();
     }
+  });
+
+  // -------------------------------------------------------------------------
+  // 0. Explorer Page Light Theme (StructPaper Redesign)
+  // -------------------------------------------------------------------------
+  describe('Explorer Page Light Theme', () => {
+    it('renders light search bar, filter tabs, and investigation cards', () => {
+      render(<ExplorerPage />);
+      expect(screen.getByPlaceholderText(/Search investigations/i)).toBeInTheDocument();
+      expect(screen.getByText(/All Domains/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/FLEX/i)[0]).toBeInTheDocument();
+    });
   });
 
   // -------------------------------------------------------------------------
