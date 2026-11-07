@@ -34,9 +34,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable} dark`}
+      className={`${plusJakartaSans.variable} ${inter.variable} ${jetbrainsMono.variable}`}
     >
-      <body className="min-h-screen bg-[var(--surface-cosmic)] text-[#F8F9FA] antialiased selection:bg-[#D4FC02]/30 selection:text-[#D4FC02]">
+      <body className="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] antialiased selection:bg-[#D4FC02]/30 selection:text-[#0B2374]">
         {children}
       </body>
     </html>

@@ -14,10 +14,10 @@ export interface AppShellProps {
 
 export const AppShell: React.FC<AppShellProps> = ({ children }) => {
   return (
-    <div className="min-h-screen flex flex-col sm:flex-row bg-[#080C18] text-[#F8F9FA] relative selection:bg-[#D4FC02]/30 selection:text-[#D4FC02]">
+    <div className="min-h-screen flex flex-col sm:flex-row bg-[#F8F9FA] text-[#1A1A1A] relative selection:bg-[#D4FC02]/30 selection:text-[#0B2374]">
       {/* Background Subtle Gradient Grid Overlay */}
       <div
-        className="fixed inset-0 pointer-events-none opacity-40 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0B2374]/30 via-transparent to-transparent"
+        className="fixed inset-0 pointer-events-none opacity-40 z-0 bg-[radial-gradient(ellipse_at_top,_var(--tw-gradient-stops))] from-[#0B2374]/5 via-transparent to-transparent"
         aria-hidden="true"
       />
 
