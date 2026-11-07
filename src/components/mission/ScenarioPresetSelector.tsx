@@ -22,12 +22,12 @@ export const ScenarioPresetSelector: React.FC<ScenarioPresetSelectorProps> = ({
         onClick={() => onSelectPreset('iss-baseline')}
         className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer ${
           isPresetActive('iss-baseline')
-            ? 'bg-emerald-50 border-2 border-emerald-500 text-emerald-950 shadow-xs'
+            ? 'bg-lime-50 border-2 border-lime-500 text-lime-950 shadow-xs'
             : 'bg-gray-100 hover:bg-gray-200 text-zinc-800 border-gray-200'
         }`}
       >
         <div className="flex items-center gap-1.5 mb-1">
-          <Orbit className="w-3.5 h-3.5 text-emerald-600" />
+          <Orbit className="w-3.5 h-3.5 text-lime-700" />
           <span className="text-[11px] font-bold">ISS Baseline</span>
         </div>
         <div className="text-[10px] font-mono text-zinc-500">0.00g · 21% O₂</div>

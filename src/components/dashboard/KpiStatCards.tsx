@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
   Database,
   Flame,
@@ -33,7 +34,7 @@ export const KpiStatCards: React.FC = () => {
           </p>
         </div>
         <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-[11px] font-mono text-[#64748B] shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#10B981]" />
+          <span className="w-1.5 h-1.5 rounded-full bg-[#84CC16]" />
           <span>Repository Status: Synchronized (2026-11)</span>
         </div>
       </div>
@@ -43,13 +44,16 @@ export const KpiStatCards: React.FC = () => {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 sm:gap-4"
       >
         {/* KPI 1: NASA PSI Studies */}
-        <div
+        <motion.div
           data-testid="kpi-studies"
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px]"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-blue-50 text-[#0B2374] border border-blue-200/60">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs bg-blue-50 text-[#0B2374] border border-blue-200/60">
                 PSI Catalog
               </span>
               <div className="w-8 h-8 rounded-xl bg-blue-50 flex items-center justify-center text-[#0B2374] border border-blue-100 group-hover:scale-110 transition-transform">
@@ -66,16 +70,19 @@ export const KpiStatCards: React.FC = () => {
           <p className="text-[11px] text-[#64748B] mt-2 leading-relaxed">
             Curated microgravity experiments across MSG, CIR &amp; Cygnus platforms.
           </p>
-        </div>
+        </motion.div>
 
         {/* KPI 2: Verified Test Runs */}
-        <div
+        <motion.div
           data-testid="kpi-runs"
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px]"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-orange-50 text-orange-700 border border-orange-200/60">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs bg-orange-50 text-orange-700 border border-orange-200/60">
                 Ground &amp; Orbital
               </span>
               <div className="w-8 h-8 rounded-xl bg-orange-50 flex items-center justify-center text-orange-600 border border-orange-100 group-hover:scale-110 transition-transform">
@@ -92,16 +99,19 @@ export const KpiStatCards: React.FC = () => {
           <p className="text-[11px] text-[#64748B] mt-2 leading-relaxed">
             Complete physical boundary sets with radiometry, pyrometry &amp; spread rates.
           </p>
-        </div>
+        </motion.div>
 
         {/* KPI 3: Microgravity Data Points */}
-        <div
+        <motion.div
           data-testid="kpi-datapoints"
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px]"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-purple-50 text-purple-700 border border-purple-200/60">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs bg-purple-50 text-purple-700 border border-purple-200/60">
                 Sensor Telemetry
               </span>
               <div className="w-8 h-8 rounded-xl bg-purple-50 flex items-center justify-center text-purple-600 border border-purple-100 group-hover:scale-110 transition-transform">
@@ -118,16 +128,19 @@ export const KpiStatCards: React.FC = () => {
           <p className="text-[11px] text-[#64748B] mt-2 leading-relaxed">
             Multi-channel time-series tracking flame standoff, soot &amp; thermal profiles.
           </p>
-        </div>
+        </motion.div>
 
         {/* KPI 4: Peer-Reviewed Evidence Claims */}
-        <div
+        <motion.div
           data-testid="kpi-claims"
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px]"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-bold bg-[#D4FC02]/20 text-zinc-950 border border-[#D4FC02]">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs bg-[#D4FC02]/20 text-zinc-950 border border-[#D4FC02]">
                 AIAA &amp; Combust. Flame
               </span>
               <div className="w-8 h-8 rounded-xl bg-[#D4FC02]/25 flex items-center justify-center text-zinc-950 border border-[#D4FC02]/60 group-hover:scale-110 transition-transform">
@@ -144,16 +157,19 @@ export const KpiStatCards: React.FC = () => {
           <p className="text-[11px] text-[#64748B] mt-2 leading-relaxed">
             Scientifically validated claims with DOI provenance and confidence scores.
           </p>
-        </div>
+        </motion.div>
 
         {/* KPI 5: Partial Gravity Gap Alert */}
-        <div
+        <motion.div
           data-testid="kpi-gap-alert"
-          className="relative group bg-amber-50/70 rounded-3xl p-5 border border-amber-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.15)] transition-all flex flex-col justify-between min-h-[170px]"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="relative group bg-amber-50/70 rounded-3xl p-5 border border-amber-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.15)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
-              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1">
+              <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs bg-amber-100 text-amber-900 border border-amber-300 flex items-center gap-1">
                 <AlertTriangle className="w-3 h-3 text-amber-600" />
                 NASA Safety Void
               </span>
@@ -179,7 +195,7 @@ export const KpiStatCards: React.FC = () => {
               Simulate in Mission Lab <ArrowUpRight className="w-3 h-3" />
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

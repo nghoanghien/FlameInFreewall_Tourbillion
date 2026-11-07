@@ -68,7 +68,7 @@ export const FloatingAiDock: React.FC<FloatingAiDockProps> = ({ className = '' }
         {/* Pinned Context Dot Indicator */}
         {activeContextStudyId && (
           <span
-            className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 z-20 w-2.5 h-2.5 rounded-full bg-emerald-400 ring-2 ring-[#0B2374]"
+            className="absolute -bottom-0.5 left-1/2 -translate-x-1/2 z-20 w-2.5 h-2.5 rounded-full bg-[#D4FC02] ring-2 ring-[#0B2374]"
             title={`Active Context: ${activeContextStudyId.toUpperCase()}`}
           />
         )}

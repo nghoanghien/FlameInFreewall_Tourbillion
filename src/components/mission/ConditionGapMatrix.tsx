@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   AlertTriangle,
   CheckCircle2,
@@ -18,17 +19,17 @@ function getStatusBadgeConfig(status: GapMatchStatus) {
     case 'MATCH':
       return {
         label: 'MATCH',
-        bg: 'bg-emerald-50',
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
+        bg: 'bg-lime-50',
+        text: 'text-lime-900',
+        border: 'border-lime-300',
         icon: CheckCircle2,
       };
     case 'RELATED':
       return {
         label: 'RELATED',
-        bg: 'bg-emerald-50',
-        text: 'text-emerald-700',
-        border: 'border-emerald-200',
+        bg: 'bg-lime-50',
+        text: 'text-lime-900',
+        border: 'border-lime-300',
         icon: Info,
       };
     case 'PARTIAL':
@@ -125,10 +126,13 @@ export const ConditionGapMatrix: React.FC = () => {
           const BadgeIcon = badge.icon;
 
           return (
-            <div
+            <motion.div
               key={dim.dimension}
               data-testid={`dimension-card-${dim.dimension}`}
-              className="p-4 rounded-2xl bg-gray-50 border border-gray-200/80 hover:border-gray-300 transition-all space-y-3 flex flex-col justify-between"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="p-5 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all space-y-3 flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
@@ -161,7 +165,7 @@ export const ConditionGapMatrix: React.FC = () => {
               <p className="text-[11px] text-zinc-500 leading-relaxed border-t border-gray-200/60 pt-2">
                 {dim.explanation}
               </p>
-            </div>
+            </motion.div>
           );
         })}
       </div>

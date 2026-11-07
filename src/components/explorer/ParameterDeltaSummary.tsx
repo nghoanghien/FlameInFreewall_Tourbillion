@@ -89,13 +89,13 @@ export const ParameterDeltaSummary: React.FC<ParameterDeltaSummaryProps> = ({
           className="p-3 rounded-2xl bg-gray-100 border border-gray-200 text-zinc-800 space-y-1"
         >
           <div className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
-            <Gauge className="w-3 h-3 text-emerald-600" />
+            <Gauge className="w-3 h-3 text-lime-700" />
             <span>Spread Velocity</span>
           </div>
           <div className="font-mono font-bold text-zinc-950">
             {deltas.spreadMax !== null ? `${deltas.spreadMax.toFixed(2)} mm/s` : 'N/A'}
           </div>
-          <div className="text-[10px] text-emerald-700 font-mono font-medium">
+          <div className="text-[10px] text-lime-800 font-mono font-medium">
             {deltas.spreadRatio !== null ? `${deltas.spreadRatio}x max ratio` : 'Nominal'}
           </div>
         </div>

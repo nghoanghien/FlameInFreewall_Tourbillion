@@ -101,8 +101,8 @@ export const PsiExportTab: React.FC<PsiExportTabProps> = ({ study }) => {
             </p>
           </div>
 
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-emerald-50 border border-emerald-200 text-emerald-800 text-xs font-mono font-medium">
-            <CheckCircle2 className="w-3.5 h-3.5" />
+          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-xl bg-lime-50 border border-lime-200 text-lime-900 text-xs font-mono font-medium">
+            <CheckCircle2 className="w-3.5 h-3.5 text-lime-700" />
             <span>Open Access NASA License</span>
           </div>
         </div>
@@ -162,7 +162,7 @@ export const PsiExportTab: React.FC<PsiExportTabProps> = ({ study }) => {
 
       {/* Provenance & Citation Notice */}
       <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100 flex items-start gap-3 text-xs text-zinc-600">
-        <ShieldCheck className="w-4 h-4 text-emerald-700 shrink-0 mt-0.5" />
+        <ShieldCheck className="w-4 h-4 text-lime-700 shrink-0 mt-0.5" />
         <p className="leading-relaxed text-[11px]">
           Data courtesy of the NASA Physical Science Informatics (PSI) system. Researchers utilizing these datasets are requested to acknowledge the original Primary Investigators ({study.primaryInvestigator}) and cite the NASA PSI data archive.
         </p>

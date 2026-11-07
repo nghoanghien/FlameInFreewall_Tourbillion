@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { useRouter } from 'next/navigation';
+import { motion } from 'framer-motion';
 import { Rocket, Orbit, Moon, Globe, ArrowRight, Zap } from 'lucide-react';
 import { SCENARIO_PRESETS } from '@/data/presets';
 import { useWorkspaceStore } from '@/store/useWorkspaceStore';
@@ -32,9 +33,9 @@ export const QUICK_SCENARIOS: QuickScenarioConfig[] = [
     atmosphereDisplay: '21% O₂ · 14.7 psia · 5 cm/s flow',
     riskSummary: 'Absence of buoyant convection; spherical diffusion flame sustained by HVAC forced air ventilation.',
     badge: 'Measured',
-    cardBorder: 'border-emerald-200',
-    hoverBorder: 'hover:border-emerald-300',
-    iconBg: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
+    cardBorder: 'border-lime-200',
+    hoverBorder: 'hover:border-lime-300',
+    iconBg: 'bg-lime-50 text-lime-900 border border-lime-200',
     icon: Orbit,
   },
   {
@@ -128,10 +129,13 @@ export const QuickScenarioTrigger: React.FC = () => {
           const ScenarioIcon = scenario.icon;
 
           return (
-            <div
+            <motion.div
               key={scenario.presetId}
               data-testid={`scenario-card-${scenario.presetId}`}
-              className={`p-5 rounded-3xl bg-white border ${scenario.cardBorder} ${scenario.hoverBorder} shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between group`}
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className={`p-5 rounded-3xl bg-white border ${scenario.cardBorder} ${scenario.hoverBorder} shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between group cursor-pointer`}
             >
               <div>
                 {/* Header: Icon, Gravity Level Badge & Status Badge */}
@@ -153,9 +157,9 @@ export const QuickScenarioTrigger: React.FC = () => {
                   </div>
 
                   <span
-                    className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${
+                    className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs border ${
                       scenario.badge === 'Measured'
-                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                        ? 'bg-lime-50 text-lime-900 border-lime-300'
                         : 'bg-amber-50 text-amber-800 border-amber-200'
                     }`}
                   >
@@ -190,7 +194,7 @@ export const QuickScenarioTrigger: React.FC = () => {
                 <span>Launch in Mission Simulator</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
               </button>
-            </div>
+            </motion.div>
           );
         })}
       </div>

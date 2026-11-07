@@ -267,7 +267,7 @@ export const KurzgesagtFlameScene: React.FC = () => {
 
           <div className="bg-[#111827]/80 border border-white/10 rounded-xl p-3">
             <span className="text-slate-400 block text-[11px]">Regime</span>
-            <span className="text-[11px] font-bold text-emerald-400 truncate block" title={telemetry.regimeLabel}>
+            <span className="text-[11px] font-bold text-lime-400 truncate block" title={telemetry.regimeLabel}>
               {telemetry.regimeLabel}
             </span>
           </div>

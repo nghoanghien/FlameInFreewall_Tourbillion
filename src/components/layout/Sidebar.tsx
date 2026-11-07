@@ -70,7 +70,7 @@ export const Sidebar: React.FC = () => {
       <motion.aside
         initial={false}
         animate={{ width: isExpanded ? 280 : 58 }}
-        transition={{ type: 'spring', stiffness: 350, damping: 26 }}
+        transition={{ type: 'spring', stiffness: 160, damping: 18 }}
         className="hidden sm:flex flex-col items-start justify-between h-[calc(100vh-1.5rem)] sticky top-3 my-3 ml-3.5 flex-shrink-0 z-30 select-none self-start"
         aria-label="FlameGuard AI primary navigation dock"
       >

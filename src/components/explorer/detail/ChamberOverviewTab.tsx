@@ -158,7 +158,7 @@ export const ChamberOverviewTab: React.FC<ChamberOverviewTabProps> = ({ study })
           </div>
 
           <div className="p-4 rounded-2xl bg-gray-50 border border-gray-100 space-y-2">
-            <span className="font-bold text-emerald-700 flex items-center gap-1.5">
+            <span className="font-bold text-lime-800 flex items-center gap-1.5">
               <Globe className="w-3.5 h-3.5" />
               <span>Terrestrial Earth Applications</span>
             </span>

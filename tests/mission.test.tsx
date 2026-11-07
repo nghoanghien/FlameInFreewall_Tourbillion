@@ -158,6 +158,9 @@ describe('Mission Scenario, Evidence Gap Matrix & Predictive Lab (/mission)', ()
 
       const overallBadge = screen.getByTestId('badge-overall-status');
       expect(overallBadge.textContent).toContain('OVERALL MATCH');
+      expect(overallBadge.className).toContain('bg-lime-50');
+      expect(overallBadge.className).toContain('text-lime-900');
+      expect(overallBadge.className).not.toContain('emerald');
 
       const matchedRuns = screen.getByTestId('badge-matched-runs');
       expect(matchedRuns).toBeDefined();

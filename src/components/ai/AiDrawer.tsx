@@ -162,7 +162,7 @@ export const AiDrawer: React.FC = () => {
               <div className="space-y-4 py-2">
                 <div className="p-4 rounded-2xl bg-white border border-gray-200 shadow-xs space-y-2.5">
                   <div className="flex items-center gap-2 text-[#0B2374]">
-                    <ShieldCheck className="w-4 h-4 text-emerald-600" />
+                    <ShieldCheck className="w-4 h-4 text-lime-600" />
                     <span className="font-bold text-xs tracking-wider uppercase font-mono text-[#0B2374]">
                       Offline-First Grounded Architecture
                     </span>

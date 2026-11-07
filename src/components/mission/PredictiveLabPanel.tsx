@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   Lock,
   Unlock,
@@ -53,7 +54,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
           className={`inline-flex items-center gap-2 px-3.5 py-1.5 rounded-xl border text-xs font-mono font-bold ${
             audit.isLocked
               ? 'bg-rose-50 text-rose-700 border-rose-200'
-              : 'bg-emerald-50 text-emerald-700 border-emerald-200'
+              : 'bg-lime-50 text-lime-900 border-lime-300'
           }`}
         >
           {audit.isLocked ? (
@@ -63,7 +64,7 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
             </>
           ) : (
             <>
-              <Unlock className="w-3.5 h-3.5 text-emerald-600" />
+              <Unlock className="w-3.5 h-3.5 text-lime-700" />
               <span>MODEL ONLINE / VALIDATED DOMAIN</span>
             </>
           )}
@@ -89,12 +90,15 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-3">
           {audit.requirements.map((req) => (
-            <div
+            <motion.div
               key={req.id}
               data-testid={`readiness-req-${req.code.toLowerCase()}`}
-              className={`p-4 rounded-2xl border transition-all ${
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className={`p-4 rounded-2xl border transition-all cursor-pointer ${
                 req.isMet
-                  ? 'bg-emerald-50/50 border-emerald-200'
+                  ? 'bg-lime-50/50 border-lime-200'
                   : 'bg-rose-50/50 border-rose-200'
               }`}
             >
@@ -103,8 +107,8 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
                   {req.code}
                 </span>
                 {req.isMet ? (
-                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-emerald-700 bg-emerald-50 px-2 py-0.5 rounded-full border border-emerald-200">
-                    <CheckCircle2 className="w-3 h-3" /> VERIFIED
+                  <span className="inline-flex items-center gap-1 text-[10px] font-bold text-lime-900 bg-lime-50 px-2 py-0.5 rounded-full border border-lime-300">
+                    <CheckCircle2 className="w-3 h-3 text-lime-700" /> VERIFIED
                   </span>
                 ) : (
                   <span className="inline-flex items-center gap-1 text-[10px] font-bold text-rose-700 bg-rose-50 px-2 py-0.5 rounded-full border border-rose-200">
@@ -120,13 +124,13 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
               <div
                 className={`text-[10px] font-mono p-2 rounded-xl border leading-relaxed ${
                   req.isMet
-                    ? 'bg-white border-emerald-200 text-emerald-800'
+                    ? 'bg-white border-lime-200 text-lime-900'
                     : 'bg-white border-rose-200 text-rose-800'
                 }`}
               >
                 {req.auditDetail}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -180,18 +184,18 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
         /* In-Bounds Validated Execution Output */
         <div
           data-testid="predictive-lab-results"
-          className="p-5 sm:p-6 rounded-2xl bg-emerald-50/50 border border-emerald-200 space-y-5"
+          className="p-5 sm:p-6 rounded-2xl bg-lime-50/50 border border-lime-200 space-y-5"
         >
           <div className="flex items-center justify-between">
             <div className="flex items-center gap-2.5">
-              <div className="w-9 h-9 rounded-2xl bg-emerald-100 text-emerald-700 flex items-center justify-center border border-emerald-200">
-                <Flame className="w-5 h-5 text-emerald-600" />
+              <div className="w-9 h-9 rounded-2xl bg-lime-100 text-lime-900 flex items-center justify-center border border-lime-200">
+                <Flame className="w-5 h-5 text-lime-700" />
               </div>
               <div>
                 <h3 className="text-sm font-black text-zinc-900">
                   Empirical Flame Propagation Prediction
                 </h3>
-                <span className="text-[10px] font-mono text-emerald-700 font-bold">
+                <span className="text-[10px] font-mono text-lime-800 font-bold">
                   {audit.regime}
                 </span>
               </div>
@@ -199,16 +203,19 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
 
             <div className="text-right font-mono">
               <span className="text-xs text-zinc-500">Confidence:</span>{' '}
-              <strong className="text-emerald-800">{audit.confidenceIntervalPct}% CI</strong>
+              <strong className="text-lime-900">{audit.confidenceIntervalPct}% CI</strong>
             </div>
           </div>
 
           {/* Metrics Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
             {/* Predicted Spread Rate */}
-            <div
+            <motion.div
               data-testid="predicted-spread-rate"
-              className="p-4 rounded-2xl bg-white border border-gray-200 space-y-1 shadow-2xs"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="p-4 rounded-2xl bg-white border border-gray-200 space-y-1 shadow-2xs cursor-pointer"
             >
               <div className="text-[10px] uppercase font-bold text-zinc-500">
                 Predicted Spread Rate
@@ -220,12 +227,15 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
               <p className="text-[10px] text-zinc-400">
                 Steady-state opposed/forced flow propagation velocity
               </p>
-            </div>
+            </motion.div>
 
             {/* Quench Limit */}
-            <div
+            <motion.div
               data-testid="predicted-quench-limit"
-              className="p-4 rounded-2xl bg-white border border-gray-200 space-y-1 shadow-2xs"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="p-4 rounded-2xl bg-white border border-gray-200 space-y-1 shadow-2xs cursor-pointer"
             >
               <div className="text-[10px] uppercase font-bold text-zinc-500">
                 Quenching Extinction Limit
@@ -235,24 +245,27 @@ export const PredictiveLabPanel: React.FC<PredictiveLabPanelProps> = ({
                 <span className="text-xs text-zinc-500 font-sans">% O₂ (LOI)</span>
               </div>
               <p className="text-[10px] text-zinc-400">{audit.quenchDescription}</p>
-            </div>
+            </motion.div>
 
             {/* Uncertainty Bounds */}
-            <div
+            <motion.div
               data-testid="predicted-uncertainty-bounds"
-              className="p-4 rounded-2xl bg-white border border-gray-200 space-y-1 shadow-2xs"
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className="p-4 rounded-2xl bg-white border border-gray-200 space-y-1 shadow-2xs cursor-pointer"
             >
               <div className="text-[10px] uppercase font-bold text-zinc-500">
                 Uncertainty Bounds (95% CI)
               </div>
-              <div className="text-xl font-black font-mono text-emerald-700">
+              <div className="text-xl font-black font-mono text-lime-800">
                 [{audit.uncertaintyBoundMmS?.[0]} – {audit.uncertaintyBoundMmS?.[1]}]{' '}
                 <span className="text-xs text-zinc-500 font-sans">mm/s</span>
               </div>
               <p className="text-[10px] text-zinc-400">
                 Standard error bounds based on 12 verified test runs
               </p>
-            </div>
+            </motion.div>
           </div>
         </div>
       )}

@@ -70,7 +70,7 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
               data-testid={`comparison-confidence-${study.id}`}
               className={`px-2 py-0.5 rounded-md text-[10px] font-mono font-bold uppercase border ${
                 study.confidence === 'A'
-                  ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                  ? 'bg-lime-50 text-lime-900 border-lime-300'
                   : 'bg-amber-50 text-amber-700 border-amber-200'
               }`}
             >
@@ -160,7 +160,7 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
                 </span>
               )}
               {flags.isLowestO2Moc && !flags.isHighestO2 && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-lime-50 text-lime-900 border border-lime-300">
                   Lowest MOC
                 </span>
               )}
@@ -219,11 +219,11 @@ export const ComparisonColumn: React.FC<ComparisonColumnProps> = ({
           >
             <div className="flex items-center justify-between">
               <span className="text-[10px] uppercase font-mono text-zinc-500 flex items-center gap-1">
-                <Activity className="w-3 h-3 text-emerald-600" />
+                <Activity className="w-3 h-3 text-lime-700" />
                 <span>Flame Spread Velocity</span>
               </span>
               {flags.isFastestSpread && (
-                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-emerald-50 text-emerald-700 border border-emerald-200">
+                <span className="text-[9px] px-1.5 py-0.5 rounded font-mono font-bold bg-lime-50 text-lime-900 border border-lime-300">
                   Fastest Velocity
                 </span>
               )}

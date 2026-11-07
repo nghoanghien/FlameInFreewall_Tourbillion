@@ -201,8 +201,8 @@ export const Header: React.FC = () => {
           {/* NASA PSI Sync Badge */}
           <div className="hidden sm:flex items-center gap-1.5 px-3 py-1 rounded-full bg-slate-100 border border-slate-200 text-xs text-zinc-700">
             <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#10B981] opacity-75" />
-              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#10B981]" />
+              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#84CC16] opacity-75" />
+              <span className="relative inline-flex rounded-full h-2 w-2 bg-[#84CC16]" />
             </span>
             <Database className="w-3 h-3 text-[#0B2374]" />
             <span className="font-mono text-[11px] font-semibold">PSI 20 Studies</span>

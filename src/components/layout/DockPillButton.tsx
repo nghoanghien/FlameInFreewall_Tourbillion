@@ -123,7 +123,7 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
           href={href}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          transition={{ type: 'spring', stiffness: 160, damping: 18 }}
           className={controlClasses}
           aria-label={label}
           data-testid={testId}
@@ -138,7 +138,7 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
           disabled={disabled}
           whileHover={{ scale: 1.04 }}
           whileTap={{ scale: 0.96 }}
-          transition={{ type: 'spring', stiffness: 400, damping: 25 }}
+          transition={{ type: 'spring', stiffness: 160, damping: 15 }}
           className={controlClasses}
           aria-label={label}
           data-testid={testId}
@@ -158,7 +158,6 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
               transition={{ duration: 0.18, ease: 'easeOut' }}
               className="h-10 px-3.5 rounded-2xl flex items-center bg-[#0B2374] backdrop-blur-md border border-[#D4FC02]/30 shadow-lg text-white font-extrabold text-xs tracking-tight whitespace-nowrap"
             >
-              <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4FC02] mr-2 shadow-[0_0_8px_#D4FC02]" />
               {tooltipText}
             </motion.div>
           </div>

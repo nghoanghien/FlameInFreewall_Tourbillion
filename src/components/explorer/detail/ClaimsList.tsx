@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useMemo } from 'react';
+import { motion } from 'framer-motion';
 import {
   FileText,
   ExternalLink,
@@ -20,9 +21,9 @@ export function getProvenanceBadgeConfig(status: EvidenceBadgeType) {
     case 'Measured':
       return {
         label: 'Measured (Direct Empirical)',
-        bg: 'bg-emerald-50',
-        text: 'text-emerald-800',
-        border: 'border-emerald-200',
+        bg: 'bg-lime-50',
+        text: 'text-lime-900',
+        border: 'border-lime-200',
       };
     case 'Modeled':
       return {
@@ -86,29 +87,32 @@ export const ClaimsList: React.FC<ClaimsListProps> = ({ study }) => {
           {directClaims.map((claim) => {
             const badgeConfig = getProvenanceBadgeConfig(claim.evidenceStatus);
             return (
-              <div
+              <motion.div
                 key={claim.id}
                 data-testid={`claim-card-${claim.id}`}
-                className="p-5 rounded-3xl bg-white border border-gray-100 hover:border-gray-200 transition-all duration-200 space-y-3.5 shadow-xs"
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.98 }}
+                transition={{ duration: 0.2, ease: 'easeOut' }}
+                className="p-5 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all duration-200 space-y-3.5 cursor-pointer"
               >
                 {/* Badges Bar: ID, Category, Provenance, Review Status */}
                 <div className="flex flex-wrap items-center justify-between gap-2">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="px-2.5 py-0.5 rounded-md bg-lime-50 border border-lime-200 text-lime-900 font-mono text-[11px] font-bold">
+                    <span className="px-2.5 py-0.5 rounded-full bg-lime-50 border border-lime-200 text-lime-900 font-mono text-[11px] font-extrabold shadow-2xs">
                       {claim.id}
                     </span>
-                    <span className="px-2 py-0.5 rounded-md bg-gray-100 border border-gray-200 text-zinc-700 font-mono text-[11px] capitalize">
+                    <span className="px-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-zinc-700 font-mono text-[11px] font-extrabold shadow-2xs capitalize">
                       {claim.category.replace('_', ' ')}
                     </span>
                     <span
-                      className={`px-2 py-0.5 rounded-md font-mono text-[11px] border ${badgeConfig.bg} ${badgeConfig.text} ${badgeConfig.border}`}
+                      className={`px-2.5 py-0.5 rounded-full font-mono text-[11px] font-extrabold shadow-2xs border ${badgeConfig.bg} ${badgeConfig.text} ${badgeConfig.border}`}
                     >
                       {badgeConfig.label}
                     </span>
                   </div>
 
-                  <span className="inline-flex items-center gap-1 text-[11px] font-medium text-emerald-700">
-                    <ShieldCheck className="w-3.5 h-3.5" />
+                  <span className="inline-flex items-center gap-1 text-[11px] font-bold text-lime-900">
+                    <ShieldCheck className="w-3.5 h-3.5 text-lime-700" />
                     <span>{claim.reviewStatus}</span>
                   </span>
                 </div>
@@ -158,7 +162,7 @@ export const ClaimsList: React.FC<ClaimsListProps> = ({ study }) => {
                     </a>
                   )}
                 </div>
-              </div>
+              </motion.div>
             );
           })}
         </div>

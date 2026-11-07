@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
   Flame,
   Droplet,
@@ -73,8 +74,11 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
   const runsCount = testRunsCount ?? investigation.dataAvailability.runCount ?? 0;
 
   return (
-    <div
+    <motion.div
       data-testid={`investigation-card-${investigation.id}`}
+      whileHover={{ scale: 1.02 }}
+      whileTap={{ scale: 0.98 }}
+      transition={{ duration: 0.2, ease: 'easeOut' }}
       className={`group relative rounded-3xl p-5 flex flex-col justify-between transition-all duration-300 cursor-pointer bg-white ${
         isComparing
           ? 'border-2 border-[#D4FC02] shadow-[0_4px_24px_rgba(212,252,2,0.25)]'
@@ -86,14 +90,14 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
         <div className="flex items-center justify-between gap-2 mb-3">
           {/* Domain badge, Apparatus badge & Fuel Phase badge */}
           <div className="flex items-center gap-1.5 flex-wrap">
-            <span className="bg-blue-50 text-[#0B2374] border border-blue-100 px-2.5 py-0.5 rounded-full font-bold text-xs font-mono">
+            <span className="bg-blue-50 text-[#0B2374] border border-blue-100 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs font-mono">
               {investigation.code}
             </span>
-            <span className="bg-lime-50 text-lime-900 border border-lime-200 px-2 py-0.5 rounded-md text-xs font-semibold">
+            <span className="bg-lime-50 text-lime-900 border border-lime-200 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs">
               {investigation.hardware}
             </span>
             <span
-              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-semibold border ${fuelBadge.bg} ${fuelBadge.text} ${fuelBadge.border}`}
+              className={`inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs border ${fuelBadge.bg} ${fuelBadge.text} ${fuelBadge.border}`}
             >
               <FuelIcon className="w-3 h-3" />
               <span>{fuelBadge.label}</span>
@@ -189,14 +193,14 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
       <div className="mt-5 pt-3 border-t border-gray-100 flex items-center justify-between gap-2">
         {/* Runs Count & Confidence */}
         <div className="flex items-center gap-2">
-          <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-lg bg-gray-100 border border-gray-200 text-[11px] font-mono text-zinc-700">
+          <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full bg-gray-100 border border-gray-200 text-[11px] font-mono font-extrabold shadow-2xs text-zinc-700">
             <Activity className="w-3 h-3 text-[#0B2374]" />
             <span>{runsCount} Runs</span>
           </span>
           <span
-            className={`px-2 py-0.5 rounded-lg text-[10px] font-mono font-bold uppercase border ${
+            className={`px-2.5 py-0.5 rounded-full text-[11px] font-mono font-extrabold shadow-2xs uppercase border ${
               investigation.confidence === 'A'
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                ? 'bg-lime-50 text-lime-900 border-lime-300'
                 : 'bg-amber-50 text-amber-800 border-amber-200'
             }`}
           >
@@ -214,6 +218,6 @@ export const InvestigationCard: React.FC<InvestigationCardProps> = ({
           <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-0.5 transition-transform" />
         </Link>
       </div>
-    </div>
+    </motion.div>
   );
 };

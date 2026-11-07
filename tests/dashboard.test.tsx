@@ -106,6 +106,15 @@ describe('Research Dashboard (/dashboard)', () => {
       expect(screen.getByText('ACME CFI-G')).toBeDefined();
     });
 
+    it('applies StructPaper card styling and lime accents to curated study cards', () => {
+      render(<CuratedStudiesGrid />);
+      const card = screen.getByTestId('study-card-bass-ii');
+      expect(card.className).toContain('rounded-3xl');
+      expect(card.className).toContain('cursor-pointer');
+      expect(card.className).toContain('bg-white');
+      expect(card.innerHTML).not.toContain('emerald');
+    });
+
     it('displays fuel badges, PI name, oxygen, facility, and run counts', () => {
       render(<CuratedStudiesGrid />);
       expect(screen.getAllByText('Solid Polymers').length).toBeGreaterThan(0);

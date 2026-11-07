@@ -26,7 +26,7 @@ export const ScenarioConfigForm: React.FC = () => {
 
   // Classify ppO2 status
   let ppO2Status = 'Normoxic Alveolar Target';
-  let ppO2Color = 'text-emerald-700 border-emerald-200 bg-emerald-50';
+  let ppO2Color = 'text-lime-900 border-lime-300 bg-lime-50';
   if (ppO2Val < 2.3) {
     ppO2Status = 'Hypoxic Hazard (< 2.3 psi)';
     ppO2Color = 'text-amber-700 border-amber-200 bg-amber-50';

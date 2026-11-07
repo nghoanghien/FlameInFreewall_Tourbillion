@@ -208,7 +208,7 @@ export const AtmosphericPhysics: React.FC = () => {
                 <span
                   className={`text-xs font-mono font-bold px-3 py-1 rounded-full border ${
                     current.riskLevel === 'Nominal'
-                      ? 'bg-emerald-950/40 text-emerald-400 border-emerald-500/40'
+                      ? 'bg-lime-950/40 text-lime-400 border-lime-500/40'
                       : current.riskLevel === 'Elevated'
                       ? 'bg-amber-950/40 text-amber-400 border-amber-500/40'
                       : 'bg-red-950/40 text-red-400 border-red-500/40'
@@ -224,7 +224,7 @@ export const AtmosphericPhysics: React.FC = () => {
                 <div className="bg-[#080C18] p-4 rounded-xl border border-white/10">
                   <div className="flex items-center justify-between mb-1.5">
                     <span className="font-semibold text-slate-200">Human Respiration Impact</span>
-                    <span className="text-xs font-mono text-emerald-400 font-bold flex items-center gap-1">
+                    <span className="text-xs font-mono text-lime-400 font-bold flex items-center gap-1">
                       <CheckCircle2 className="w-3.5 h-3.5" /> Nominal Oxygenation
                     </span>
                   </div>
@@ -260,7 +260,7 @@ export const AtmosphericPhysics: React.FC = () => {
                 <div
                   className={`h-full rounded-full transition-all duration-300 ${
                     current.flammabilityIndex <= 1.0
-                      ? 'bg-emerald-400'
+                      ? 'bg-lime-400'
                       : current.flammabilityIndex < 2.0
                       ? 'bg-amber-400'
                       : 'bg-gradient-to-r from-amber-400 to-red-500'

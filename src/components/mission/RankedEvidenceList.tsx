@@ -77,7 +77,7 @@ export const RankedEvidenceList: React.FC = () => {
                     <span
                       className={`text-[10px] font-bold px-2 py-0.5 rounded-full border ${
                         inv.badge === 'Measured'
-                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                          ? 'bg-lime-50 text-lime-900 border-lime-300'
                           : 'bg-amber-50 text-amber-700 border-amber-200'
                       }`}
                     >

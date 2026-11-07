@@ -138,7 +138,7 @@ export const InvestigationTable: React.FC<InvestigationTableProps> = ({
                       <span
                         className={`px-2 py-0.5 rounded text-[10px] font-mono font-bold uppercase border ${
                           study.confidence === 'A'
-                            ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                            ? 'bg-lime-50 text-lime-900 border-lime-300'
                             : 'bg-amber-50 text-amber-800 border-amber-200'
                         }`}
                       >

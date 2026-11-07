@@ -78,7 +78,7 @@ export const StudyHeader: React.FC<StudyHeaderProps> = ({
           <span
             className={`px-2.5 py-1 rounded-xl text-xs font-mono font-bold uppercase border ${
               study.confidence === 'A'
-                ? 'bg-emerald-50 text-emerald-800 border-emerald-200'
+                ? 'bg-lime-50 text-lime-900 border-lime-300'
                 : 'bg-amber-50 text-amber-800 border-amber-200'
             }`}
           >

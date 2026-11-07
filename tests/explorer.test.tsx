@@ -289,7 +289,11 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
         />
       );
 
-      expect(screen.getByTestId(`investigation-card-${study.id}`)).toBeDefined();
+      const card = screen.getByTestId(`investigation-card-${study.id}`);
+      expect(card).toBeDefined();
+      expect(card.className).toContain('rounded-3xl');
+      expect(card.className).toContain('cursor-pointer');
+      expect(card.innerHTML).not.toContain('emerald');
       expect(screen.getByText(study.code)).toBeDefined();
       expect(screen.getByText(study.title)).toBeDefined();
       expect(screen.getByText(study.primaryInvestigator)).toBeDefined();

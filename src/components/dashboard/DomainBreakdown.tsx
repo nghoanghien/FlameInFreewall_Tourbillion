@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import { Flame, Box, AlertTriangle, ArrowRight, Orbit, Layers } from 'lucide-react';
 import { INVESTIGATIONS } from '@/data/investigations';
 import { useWorkspaceStore } from '@/store/useWorkspaceStore';
@@ -50,7 +51,13 @@ export const DomainBreakdown: React.FC = () => {
 
       <div data-testid="domain-breakdown" className="grid grid-cols-1 lg:grid-cols-3 gap-4 sm:gap-5">
         {/* Card 1: Fuel Categories */}
-        <div data-testid="fuel-distribution" className="bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between">
+        <motion.div
+          data-testid="fuel-distribution"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between cursor-pointer"
+        >
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs uppercase font-extrabold tracking-wider text-[#64748B] flex items-center gap-2">
@@ -84,10 +91,16 @@ export const DomainBreakdown: React.FC = () => {
             </div>
           </div>
           <p className="text-[10px] text-[#64748B] mt-4 pt-3 border-t border-gray-100">Tip: Click any fuel category to apply filtered subset in Explorer.</p>
-        </div>
+        </motion.div>
 
         {/* Card 2: Facilities Breakdown */}
-        <div data-testid="facility-distribution" className="bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between">
+        <motion.div
+          data-testid="facility-distribution"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between cursor-pointer"
+        >
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs uppercase font-extrabold tracking-wider text-[#64748B] flex items-center gap-2">
@@ -121,10 +134,16 @@ export const DomainBreakdown: React.FC = () => {
             </div>
           </div>
           <p className="text-[10px] text-[#64748B] mt-4 pt-3 border-t border-gray-100">All 3 platforms operate in true orbital freefall on or departing ISS.</p>
-        </div>
+        </motion.div>
 
         {/* Card 3: Gravity Regimes Telemetry */}
-        <div data-testid="gravity-distribution" className="bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between">
+        <motion.div
+          data-testid="gravity-distribution"
+          whileHover={{ scale: 1.02 }}
+          whileTap={{ scale: 0.98 }}
+          transition={{ duration: 0.2, ease: 'easeOut' }}
+          className="bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between cursor-pointer"
+        >
           <div>
             <div className="flex items-center justify-between mb-4">
               <span className="text-xs uppercase font-extrabold tracking-wider text-[#64748B] flex items-center gap-2">
@@ -135,12 +154,12 @@ export const DomainBreakdown: React.FC = () => {
 
             <div className="space-y-3">
               {/* ISS Microgravity (0.00g) */}
-              <div className="p-3 rounded-2xl bg-emerald-50/70 border border-emerald-200/80">
+              <div className="p-3 rounded-2xl bg-lime-50/70 border border-lime-200/80">
                 <div className="flex items-center justify-between mb-1">
-                  <span className="text-xs font-extrabold text-emerald-800 flex items-center gap-1.5">
-                    <span className="w-2 h-2 rounded-full bg-emerald-500" /> ISS Microgravity (0.00g)
+                  <span className="text-xs font-extrabold text-lime-900 flex items-center gap-1.5">
+                    <span className="w-2 h-2 rounded-full bg-lime-500" /> ISS Microgravity (0.00g)
                   </span>
-                  <span className="text-xs font-mono font-bold text-emerald-700">20 Studies (100%)</span>
+                  <span className="text-xs font-mono font-bold text-lime-800">20 Studies (100%)</span>
                 </div>
                 <p className="text-[11px] text-[#64748B]">Rich empirical dataset in pure diffusion regime with forced airflow.</p>
               </div>
@@ -175,7 +194,7 @@ export const DomainBreakdown: React.FC = () => {
               Analyze Gap Matrix <ArrowRight className="w-3 h-3" />
             </Link>
           </div>
-        </div>
+        </motion.div>
       </div>
     </section>
   );

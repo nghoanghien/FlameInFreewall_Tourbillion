@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import { motion } from 'framer-motion';
 import {
   Flame,
   Droplet,
@@ -132,10 +133,13 @@ export const CuratedStudiesGrid: React.FC = () => {
           const FuelIcon = fuelConfig.icon;
 
           return (
-            <article
+            <motion.article
               key={inv.id}
               data-testid={`study-card-${inv.id}`}
-              className={`rounded-3xl p-5 bg-white border transition-all duration-300 flex flex-col justify-between relative group select-none shadow-[0_2px_8px_rgba(0,0,0,0.04)] ${
+              whileHover={{ scale: 1.02 }}
+              whileTap={{ scale: 0.98 }}
+              transition={{ duration: 0.2, ease: 'easeOut' }}
+              className={`rounded-3xl p-5 bg-white border transition-all duration-300 flex flex-col justify-between relative group select-none shadow-[0_2px_8px_rgba(0,0,0,0.04)] cursor-pointer ${
                 isComparing
                   ? 'border-2 border-[#D4FC02] shadow-[0_4px_24px_rgba(212,252,2,0.25)]'
                   : 'border-gray-100 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] hover:border-gray-200'
@@ -145,20 +149,20 @@ export const CuratedStudiesGrid: React.FC = () => {
                 {/* Header Row: Fuel Badge, Apparatus Pill & Evidence Badge */}
                 <div className="flex items-center justify-between gap-2 mb-3">
                   <span
-                    className={`px-2.5 py-1 rounded-full text-[11px] font-bold border flex items-center gap-1.5 ${fuelConfig.bg} ${fuelConfig.text} ${fuelConfig.border}`}
+                    className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs border flex items-center gap-1.5 ${fuelConfig.bg} ${fuelConfig.text} ${fuelConfig.border}`}
                   >
                     <FuelIcon className="w-3 h-3" />
                     {fuelConfig.label}
                   </span>
 
                   <div className="flex items-center gap-1.5">
-                    <span className="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-50 text-[#0B2374] border border-blue-100">
+                    <span className="px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs bg-blue-50 text-[#0B2374] border border-blue-100">
                       {inv.hardware}
                     </span>
                     <span
-                      className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${
+                      className={`px-2.5 py-0.5 rounded-full text-[11px] font-extrabold shadow-2xs border ${
                         inv.badge === 'Measured'
-                          ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                          ? 'bg-lime-50 text-lime-900 border-lime-300'
                           : inv.badge === 'Modeled'
                           ? 'bg-purple-50 text-purple-700 border-purple-200'
                           : 'bg-slate-100 text-slate-700 border-slate-200'
@@ -265,7 +269,7 @@ export const CuratedStudiesGrid: React.FC = () => {
                   )}
                 </button>
               </div>
-            </article>
+            </motion.article>
           );
         })}
       </div>

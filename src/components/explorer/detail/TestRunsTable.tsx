@@ -188,8 +188,8 @@ export const TestRunsTable: React.FC<TestRunsTableProps> = ({ study }) => {
 
                     {/* Status */}
                     <td className="py-3 px-3.5 text-right font-sans">
-                      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[10px] font-medium bg-emerald-50 text-emerald-800 border border-emerald-200">
-                        <CheckCircle2 className="w-2.5 h-2.5" />
+                      <span className="inline-flex items-center gap-1 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold shadow-2xs bg-lime-50 text-lime-900 border border-lime-200">
+                        <CheckCircle2 className="w-2.5 h-2.5 text-lime-700" />
                         <span>{run.dataStatus}</span>
                       </span>
                     </td>

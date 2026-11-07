@@ -12,10 +12,10 @@ export interface CitationBadgeProps {
 
 const BADGE_STYLES: Record<EvidenceBadgeType, { bg: string; text: string; border: string; dot: string }> = {
   Measured: {
-    bg: 'bg-emerald-50 hover:bg-emerald-100',
-    text: 'text-emerald-900',
-    border: 'border-emerald-300',
-    dot: 'bg-emerald-500',
+    bg: 'bg-lime-50 hover:bg-lime-100',
+    text: 'text-lime-900',
+    border: 'border-lime-300',
+    dot: 'bg-lime-500',
   },
   Modeled: {
     bg: 'bg-cyan-50 hover:bg-cyan-100',
