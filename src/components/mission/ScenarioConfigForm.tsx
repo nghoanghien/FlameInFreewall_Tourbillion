@@ -49,7 +49,7 @@ export const ScenarioConfigForm: React.FC = () => {
   return (
     <div
       data-testid="scenario-config-form"
-      className="p-5 sm:p-6 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-6"
+      className="p-5 space-y-6"
     >
       {/* Header & Presets Selector */}
       <div className="space-y-3">
@@ -75,7 +75,7 @@ export const ScenarioConfigForm: React.FC = () => {
             title={`Oxygen Partial Pressure ppO2 = ${activeScenario.pressurePsi} psia × ${activeScenario.oxygenPct}% = ${ppO2Display} psia`}
           >
             <Activity className="w-3.5 h-3.5 shrink-0" />
-            <div className="text-left font-mono">
+            <div className="text-left">
               <span className="text-xs font-bold">ppO₂: {ppO2Display} psia</span>
               <span className="hidden sm:inline text-[10px] opacity-75 ml-1.5">({ppO2Status})</span>
             </div>
@@ -98,7 +98,7 @@ export const ScenarioConfigForm: React.FC = () => {
               <Orbit className="w-3.5 h-3.5 text-[#0B2374]" />
               Gravitational Acceleration
             </label>
-            <span className="font-mono text-xs font-bold text-[#0B2374]">
+            <span className="text-xs font-bold text-[#0B2374]">
               {activeScenario.gravity.toFixed(2)}g
             </span>
           </div>
@@ -120,7 +120,7 @@ export const ScenarioConfigForm: React.FC = () => {
             }}
             className="w-full accent-[#0B2374] cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-mono text-zinc-400">
+          <div className="flex justify-between text-[10px] text-zinc-500">
             <span>0.00g (Microgravity)</span>
             <span>0.16g</span>
             <span>0.38g</span>
@@ -135,7 +135,7 @@ export const ScenarioConfigForm: React.FC = () => {
               <Flame className="w-3.5 h-3.5 text-orange-600" />
               Oxygen Concentration
             </label>
-            <span className="font-mono text-xs font-bold text-orange-600">
+            <span className="text-xs font-bold text-orange-600">
               {activeScenario.oxygenPct.toFixed(1)}% O₂
             </span>
           </div>
@@ -155,7 +155,7 @@ export const ScenarioConfigForm: React.FC = () => {
             }}
             className="w-full accent-orange-600 cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-mono text-zinc-400">
+          <div className="flex justify-between text-[10px] text-zinc-500">
             <span>15.0% (Hypoxic)</span>
             <span>21.0% (Earth)</span>
             <span>30.0% (Artemis)</span>
@@ -170,7 +170,7 @@ export const ScenarioConfigForm: React.FC = () => {
               <Gauge className="w-3.5 h-3.5 text-purple-700" />
               Cabin Total Pressure
             </label>
-            <span className="font-mono text-xs font-bold text-purple-700">
+            <span className="text-xs font-bold text-purple-700">
               {activeScenario.pressurePsi.toFixed(1)} psia
             </span>
           </div>
@@ -190,7 +190,7 @@ export const ScenarioConfigForm: React.FC = () => {
             }}
             className="w-full accent-purple-700 cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-mono text-zinc-400">
+          <div className="flex justify-between text-[10px] text-zinc-500">
             <span>7.0 psia</span>
             <span>8.2 (Mars)</span>
             <span>10.2 (Moon)</span>
