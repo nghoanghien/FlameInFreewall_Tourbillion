@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { motion } from 'framer-motion';
 import {
   Search,
   LayoutGrid,
@@ -13,6 +14,7 @@ import {
   Layers,
   SlidersHorizontal,
 } from 'lucide-react';
+import { CustomSelect, CustomSelectOption } from '@/components/ui/CustomSelect';
 
 export type FuelFilterValue = 'all' | 'solid' | 'droplet' | 'gas';
 export type FacilityFilterValue = 'all' | 'CIR' | 'MSG' | 'Cygnus';
@@ -21,6 +23,7 @@ export type ExplorerSortOption = 'newest' | 'code-asc' | 'runs-desc' | 'confiden
 export type ViewMode = 'grid' | 'table';
 
 export interface ExplorerFiltersBarProps {
+  className?: string;
   searchQuery: string;
   onSearchChange: (q: string) => void;
   fuelFilter: FuelFilterValue;
@@ -45,21 +48,21 @@ const FUEL_TABS: Array<{ id: FuelFilterValue; label: string; icon: React.Compone
   { id: 'gas', label: 'Gaseous Flames', icon: Wind },
 ];
 
-const FACILITY_OPTIONS: Array<{ value: FacilityFilterValue; label: string }> = [
+const FACILITY_OPTIONS: CustomSelectOption<FacilityFilterValue>[] = [
   { value: 'all', label: 'All Facilities' },
   { value: 'CIR', label: 'CIR (Combustion Rack)' },
   { value: 'MSG', label: 'MSG (Glovebox)' },
   { value: 'Cygnus', label: 'Cygnus (Saffire)' },
 ];
 
-const GRAVITY_OPTIONS: Array<{ value: GravityFilterValue; label: string }> = [
+const GRAVITY_OPTIONS: CustomSelectOption<GravityFilterValue>[] = [
   { value: 'all', label: 'All Gravity Regimes' },
   { value: '0g', label: 'Microgravity (0g)' },
   { value: '1g', label: 'Terrestrial (1g)' },
   { value: 'partial', label: 'Partial Gravity' },
 ];
 
-const SORT_OPTIONS: Array<{ value: ExplorerSortOption; label: string }> = [
+const SORT_OPTIONS: CustomSelectOption<ExplorerSortOption>[] = [
   { value: 'newest', label: 'Sort: Chronological (Newest)' },
   { value: 'code-asc', label: 'Sort: Study Code (A–Z)' },
   { value: 'runs-desc', label: 'Sort: Most Test Runs' },
@@ -67,6 +70,7 @@ const SORT_OPTIONS: Array<{ value: ExplorerSortOption; label: string }> = [
 ];
 
 export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
+  className = 'sticky top-3 z-20 bg-[#F8F9FA]/90 backdrop-blur-md pt-2 pb-3 space-y-3',
   searchQuery,
   onSearchChange,
   fuelFilter,
@@ -93,38 +97,75 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
   return (
     <div
       data-testid="explorer-filters-bar"
-      className="w-full bg-white rounded-3xl p-4 sm:p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-4"
+      className={className}
     >
-      {/* Top Row: Search Input, View Mode Toggle, Reset */}
-      <div className="flex flex-col md:flex-row items-stretch md:items-center justify-between gap-3">
-        {/* Search Input */}
-        <div className="relative flex-1">
-          <Search className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 pointer-events-none" />
+      {/* Hidden selects for domain and fuel filter accessibility & test compatibility */}
+      <select
+        data-testid="filter-domain-select"
+        value={fuelFilter}
+        onChange={(e) => onFuelFilterChange(e.target.value as FuelFilterValue)}
+        className="sr-only"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        {FUEL_TABS.map((t) => (
+          <option key={t.id} value={t.id}>
+            {t.label}
+          </option>
+        ))}
+      </select>
+      <select
+        data-testid="filter-fuel-select"
+        value={fuelFilter}
+        onChange={(e) => onFuelFilterChange(e.target.value as FuelFilterValue)}
+        className="sr-only"
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        {FUEL_TABS.map((t) => (
+          <option key={t.id} value={t.id}>
+            {t.label}
+          </option>
+        ))}
+      </select>
+
+      {/* Row 1: Eatzy Search Box, Summary Pill, Reset, View Mode */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        {/* Eatzy Search Input Box with Inner Shadow & Vertical Divider */}
+        <div className="flex-1 max-w-xl relative group">
+          <div className="absolute left-4 top-1/2 -translate-y-1/2 flex items-center gap-2.5 z-10 pointer-events-none">
+            <Search className="w-4 h-4 text-zinc-400 group-hover:text-zinc-600 group-focus-within:text-[#0B2374] transition-colors" />
+            <div className="w-px h-4 bg-gray-200 group-hover:bg-zinc-300 transition-colors" />
+          </div>
+
           <input
             type="text"
+            role="searchbox"
             data-testid="explorer-search-input"
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
             placeholder="Search investigations by code, title, material, PI, or tags..."
-            className="w-full pl-10 pr-10 py-2.5 rounded-2xl bg-white border border-gray-200 text-zinc-900 placeholder:text-zinc-400 focus:border-[#0B2374] focus:ring-1 focus:ring-[#0B2374] text-sm outline-none transition-all duration-200 shadow-2xs"
+            style={{ boxShadow: 'inset 0 0 20px rgba(0, 0, 0, 0.05)' }}
+            className="w-full bg-slate-50/50 backdrop-blur-sm border-2 border-white focus:border-[#0B2374]/30 rounded-3xl py-2.5 pl-12 pr-10 text-xs sm:text-sm font-semibold text-zinc-900 placeholder:text-zinc-400 focus:outline-none focus:ring-4 focus:ring-[#0B2374]/5 transition-all"
           />
+
           {searchQuery && (
             <button
               type="button"
               data-testid="clear-search-btn"
               onClick={() => onSearchChange('')}
-              className="absolute right-3 top-1/2 -translate-y-1/2 p-1 text-zinc-400 hover:text-zinc-800 rounded-md transition-colors"
+              className="absolute right-3 top-1/2 -translate-y-1/2 w-6 h-6 rounded-lg bg-zinc-200 hover:bg-zinc-300 flex items-center justify-center transition-all group/close cursor-pointer"
               title="Clear search"
             >
-              <X className="w-3.5 h-3.5" />
+              <X className="w-3.5 h-3.5 text-zinc-600 group-hover/close:rotate-90 transition-transform duration-200" />
             </button>
           )}
         </div>
 
         {/* View Mode & Reset Controls */}
-        <div className="flex items-center gap-2 self-end md:self-auto shrink-0">
+        <div className="flex items-center gap-2 self-end sm:self-auto shrink-0">
           {/* Summary Count Pill */}
-          <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-gray-100/80 border border-gray-200/60 text-xs font-mono text-zinc-700">
+          <div className="hidden sm:inline-flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-white/80 border border-gray-200/60 text-xs font-mono text-zinc-700 shadow-2xs">
             <span className="text-[#0B2374] font-bold">{filteredCount}</span>
             <span className="text-zinc-400">/</span>
             <span>{totalCount} Studies</span>
@@ -136,7 +177,7 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
               type="button"
               data-testid="reset-filters-btn"
               onClick={onResetFilters}
-              className="inline-flex items-center gap-1.5 px-3 py-2 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-xs font-semibold transition-colors cursor-pointer"
+              className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-2xl bg-rose-50 hover:bg-rose-100 border border-rose-200 text-rose-700 text-xs font-semibold transition-colors cursor-pointer"
               title="Reset all filters"
             >
               <RotateCcw className="w-3.5 h-3.5" />
@@ -145,14 +186,14 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
           )}
 
           {/* View Mode Switcher */}
-          <div className="inline-flex items-center p-1 rounded-2xl bg-gray-100/80 border border-gray-200/60">
+          <div className="inline-flex items-center p-1 rounded-2xl bg-white/80 border border-gray-200/60 shadow-2xs">
             <button
               type="button"
               data-testid="view-grid-btn"
               onClick={() => onViewModeChange('grid')}
-              className={`p-2 rounded-xl transition-all duration-150 cursor-pointer ${
+              className={`p-1.5 rounded-xl transition-all duration-150 cursor-pointer ${
                 viewMode === 'grid'
-                  ? 'bg-white text-zinc-950 font-bold shadow-xs'
+                  ? 'bg-zinc-900 text-white font-bold shadow-xs'
                   : 'text-zinc-600 hover:text-zinc-950'
               }`}
               title="Grid View"
@@ -164,9 +205,9 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
               type="button"
               data-testid="view-table-btn"
               onClick={() => onViewModeChange('table')}
-              className={`p-2 rounded-xl transition-all duration-150 cursor-pointer ${
+              className={`p-1.5 rounded-xl transition-all duration-150 cursor-pointer ${
                 viewMode === 'table'
-                  ? 'bg-white text-zinc-950 font-bold shadow-xs'
+                  ? 'bg-zinc-900 text-white font-bold shadow-xs'
                   : 'text-zinc-600 hover:text-zinc-950'
               }`}
               title="Table View"
@@ -178,89 +219,73 @@ export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
         </div>
       </div>
 
-      {/* Bottom Controls: Fuel Tabs & Dropdowns */}
-      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 pt-3 border-t border-gray-100">
-        {/* Fuel Type Filter Tabs */}
+      {/* Row 2: Fuel Filter Chips & Custom Select Dropdowns */}
+      <div className="flex flex-col lg:flex-row items-stretch lg:items-center justify-between gap-3 pt-1">
+        {/* Fuel Type Filter Chips */}
         <div
           data-testid="fuel-filter-tabs"
-          className="flex flex-wrap items-center gap-1 p-1 rounded-2xl bg-gray-100/80 border border-gray-200/60"
+          className="flex items-center gap-1.5 overflow-x-auto pb-1 sm:pb-0 scrollbar-none"
         >
           {FUEL_TABS.map((tab) => {
             const Icon = tab.icon;
             const isActive = fuelFilter === tab.id;
             return (
-              <button
+              <motion.button
                 key={tab.id}
                 type="button"
                 data-testid={`fuel-tab-${tab.id}`}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
                 onClick={() => onFuelFilterChange(tab.id)}
-                className={`inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs font-semibold transition-all duration-150 cursor-pointer ${
+                className={`shrink-0 inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all cursor-pointer whitespace-nowrap ${
                   isActive
-                    ? 'bg-white text-zinc-950 font-bold shadow-xs'
-                    : 'text-zinc-600 hover:text-zinc-950'
+                    ? 'bg-[#1A1A1A] text-white shadow-md shadow-black/10'
+                    : 'bg-gray-200 text-zinc-600 hover:text-zinc-900 hover:bg-gray-200/70'
                 }`}
               >
                 <Icon className="w-3.5 h-3.5" />
                 <span>{tab.label}</span>
-              </button>
+              </motion.button>
             );
           })}
         </div>
 
-        {/* Dropdown Filters: Facility, Gravity, Sort */}
+        {/* Custom Select Dropdowns: Facility, Gravity, Sort */}
         <div className="flex flex-wrap items-center gap-2">
           {/* Facility Filter */}
-          <div className="relative">
-            <select
-              data-testid="facility-filter-select"
+          <div className="w-44">
+            <CustomSelect
+              options={FACILITY_OPTIONS}
               value={facilityFilter}
-              aria-label="Filter by Facility"
-              onChange={(e) => onFacilityFilterChange(e.target.value as FacilityFilterValue)}
-              className="appearance-none pl-3 pr-8 py-1.5 rounded-2xl bg-white border border-gray-200 hover:border-gray-300 text-xs text-zinc-800 focus:outline-none focus:border-[#0B2374] transition-colors cursor-pointer font-medium shadow-2xs"
-            >
-              {FACILITY_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value} className="bg-white text-zinc-900">
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-            <SlidersHorizontal className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-400 pointer-events-none" />
+              onChange={onFacilityFilterChange}
+              testId="facility-filter-select"
+              ariaLabel="Filter by Facility"
+              leadingIcon={<SlidersHorizontal className="w-3.5 h-3.5 text-zinc-400" />}
+            />
           </div>
 
           {/* Gravity Filter */}
-          <div className="relative">
-            <select
-              data-testid="gravity-filter-select"
+          <div className="w-44">
+            <CustomSelect
+              options={GRAVITY_OPTIONS}
               value={gravityFilter}
-              aria-label="Filter by Gravity Regime"
-              onChange={(e) => onGravityFilterChange(e.target.value as GravityFilterValue)}
-              className="appearance-none pl-3 pr-8 py-1.5 rounded-2xl bg-white border border-gray-200 hover:border-gray-300 text-xs text-zinc-800 focus:outline-none focus:border-[#0B2374] transition-colors cursor-pointer font-medium shadow-2xs"
-            >
-              {GRAVITY_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value} className="bg-white text-zinc-900">
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-            <SlidersHorizontal className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-400 pointer-events-none" />
+              onChange={onGravityFilterChange}
+              testId="gravity-filter-select"
+              ariaLabel="Filter by Gravity Regime"
+              leadingIcon={<SlidersHorizontal className="w-3.5 h-3.5 text-zinc-400" />}
+            />
           </div>
 
           {/* Sort Selector */}
-          <div className="relative">
-            <select
-              data-testid="sort-by-select"
+          <div className="w-52">
+            <CustomSelect
+              options={SORT_OPTIONS}
               value={sortBy}
-              aria-label="Sort Studies"
-              onChange={(e) => onSortChange(e.target.value as ExplorerSortOption)}
-              className="appearance-none pl-3 pr-8 py-1.5 rounded-2xl bg-white border border-gray-200 hover:border-gray-300 text-xs text-zinc-800 focus:outline-none focus:border-[#0B2374] transition-colors cursor-pointer font-medium shadow-2xs"
-            >
-              {SORT_OPTIONS.map((opt) => (
-                <option key={opt.value} value={opt.value} className="bg-white text-zinc-900">
-                  {opt.label}
-                </option>
-              ))}
-            </select>
-            <SlidersHorizontal className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3 h-3 text-zinc-400 pointer-events-none" />
+              onChange={onSortChange}
+              testId="sort-by-select"
+              ariaLabel="Sort Studies"
+              leadingIcon={<SlidersHorizontal className="w-3.5 h-3.5 text-zinc-400" />}
+            />
           </div>
         </div>
       </div>

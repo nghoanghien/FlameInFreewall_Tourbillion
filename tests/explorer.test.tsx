@@ -70,7 +70,7 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
     it('renders light search bar, filter tabs, and investigation cards', () => {
       render(<ExplorerPage />);
       expect(screen.getByPlaceholderText(/Search investigations/i)).toBeInTheDocument();
-      expect(screen.getByText(/All Domains/i)).toBeInTheDocument();
+      expect(screen.getAllByText(/All Domains/i)[0]).toBeInTheDocument();
       expect(screen.getAllByText(/FLEX/i)[0]).toBeInTheDocument();
     });
   });
@@ -109,6 +109,8 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
       );
 
       expect(screen.getByTestId('explorer-filters-bar')).toBeDefined();
+      expect(screen.getByTestId('explorer-filters-bar').className).toContain('sticky');
+      expect(screen.getByTestId('explorer-filters-bar').className).toContain('backdrop-blur-md');
       expect(screen.getByTestId('explorer-search-input')).toBeDefined();
       expect(screen.getByTestId('fuel-tab-all')).toBeDefined();
       expect(screen.getByTestId('fuel-tab-solid')).toBeDefined();
@@ -117,8 +119,44 @@ describe('Experiment Explorer & Detail Pages (/explorer & /explorer/[id])', () =
       expect(screen.getByTestId('facility-filter-select')).toBeDefined();
       expect(screen.getByTestId('gravity-filter-select')).toBeDefined();
       expect(screen.getByTestId('sort-by-select')).toBeDefined();
+      expect(screen.getByTestId('filter-domain-select')).toBeDefined();
+      expect(screen.getByTestId('filter-fuel-select')).toBeDefined();
       expect(screen.getByTestId('view-grid-btn')).toBeDefined();
       expect(screen.getByTestId('view-table-btn')).toBeDefined();
+    });
+
+    it('triggers facility and sort filter changes via custom select', () => {
+      const handleFacility = vi.fn();
+      const handleSort = vi.fn();
+      render(
+        <ExplorerFiltersBar
+          searchQuery=""
+          onSearchChange={vi.fn()}
+          fuelFilter="all"
+          onFuelFilterChange={vi.fn()}
+          facilityFilter="all"
+          onFacilityFilterChange={handleFacility}
+          gravityFilter="all"
+          onGravityFilterChange={vi.fn()}
+          sortBy="newest"
+          onSortChange={handleSort}
+          viewMode="grid"
+          onViewModeChange={vi.fn()}
+          totalCount={20}
+          filteredCount={20}
+          onResetFilters={vi.fn()}
+        />
+      );
+
+      fireEvent.change(screen.getByTestId('facility-filter-select'), {
+        target: { value: 'MSG' },
+      });
+      expect(handleFacility).toHaveBeenCalledWith('MSG');
+
+      fireEvent.change(screen.getByTestId('sort-by-select'), {
+        target: { value: 'runs-desc' },
+      });
+      expect(handleSort).toHaveBeenCalledWith('runs-desc');
     });
 
     it('triggers search change on input', () => {

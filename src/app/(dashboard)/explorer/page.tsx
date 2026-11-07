@@ -174,8 +174,9 @@ export default function ExplorerPage() {
         </div>
       </header>
 
-      {/* Filter Toolbar */}
+      {/* Sticky Filter Toolbar with Eatzy Backdrop Blur */}
       <ExplorerFiltersBar
+        className="sticky top-3 z-20 bg-[#F8F9FA]/90 backdrop-blur-md pt-2 pb-3 space-y-3"
         searchQuery={searchQuery}
         onSearchChange={setSearchQuery}
         fuelFilter={fuelFilter}
