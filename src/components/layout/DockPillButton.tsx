@@ -57,14 +57,14 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
     };
   }, []);
 
-  const controlClasses = `flex items-center transition-[width,height,background-color,box-shadow,border-color,transform] duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] select-none cursor-pointer relative overflow-hidden group outline-none ${
+  const controlClasses = `flex items-center transition-[width,height,background-color,box-shadow,border-color,transform] duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] select-none cursor-pointer relative overflow-hidden group outline-none ${
     isExpanded
       ? 'pl-2.5 rounded-[30px] w-[280px] h-[70px] justify-start'
       : 'rounded-full w-[58px] h-[58px] justify-center p-0'
   } ${
     active
-      ? 'bg-[#D4FC02] border-2 border-[#E2FF3B] text-[#080C18] shadow-[0_0_18px_rgba(212,252,2,0.40)] scale-[1.01]'
-      : 'bg-[#0B2374]/60 hover:bg-[#102B82]/80 backdrop-blur-md border border-white/10 hover:border-white/20 text-zinc-300 hover:text-white shadow-[0_4px_16px_rgba(0,0,0,0.3)] hover:scale-[1.02] active:scale-[0.98]'
+      ? 'bg-[#D4FC02] border-4 border-lime-200 shadow-[0_0_18px_rgba(212,252,2,0.40)] text-zinc-950 scale-[1.01]'
+      : 'bg-white/80 hover:bg-white backdrop-blur-md shadow-[0_0_14px_rgba(0,0,0,0.08),0_0_3px_rgba(0,0,0,0.04)] text-zinc-700 hover:text-zinc-950 border border-white/80 hover:scale-[1.02]'
   } ${disabled ? 'opacity-50 cursor-not-allowed pointer-events-none' : ''}`;
 
   const innerContent = (
@@ -80,7 +80,7 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
 
       {/* Animated Text Slot: 0 width and 0 padding when collapsed to never shift icon */}
       <div
-        className={`flex flex-col justify-center text-left whitespace-nowrap transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] ${
+        className={`flex flex-col justify-center text-left whitespace-nowrap transition-all duration-300 ease-[cubic-bezier(0.4,0,0.2,1)] ${
           isExpanded
             ? 'flex-1 min-w-0 pr-4 pl-1 opacity-100 max-w-[210px]'
             : 'w-0 max-w-0 p-0 m-0 opacity-0 overflow-hidden pointer-events-none'
@@ -88,7 +88,7 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
       >
         <span
           className={`font-extrabold text-[13px] leading-tight block truncate ${
-            active ? 'text-[#080C18]' : 'text-zinc-100 group-hover:text-white'
+            active ? 'text-zinc-950' : 'text-zinc-800 group-hover:text-zinc-950'
           }`}
         >
           {label}
@@ -96,7 +96,7 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
         {description && (
           <span
             className={`text-[11px] font-semibold leading-tight block truncate mt-0.5 ${
-              active ? 'text-[#080C18]/80' : 'text-zinc-400 group-hover:text-zinc-300'
+              active ? 'text-zinc-900/80' : 'text-zinc-500 group-hover:text-zinc-700'
             }`}
           >
             {description}
@@ -148,7 +148,7 @@ export const DockPillButton: React.FC<DockPillButtonProps> = ({
               animate={{ opacity: 1, x: 0, scale: 1 }}
               exit={{ opacity: 0, x: -8, scale: 0.95 }}
               transition={{ duration: 0.18, ease: 'easeOut' }}
-              className="h-10 px-3.5 rounded-2xl flex items-center bg-[#0B2374]/90 backdrop-blur-md border border-[#D4FC02]/30 shadow-[0_4px_24px_rgba(0,0,0,0.5)] text-white font-extrabold text-xs tracking-tight drop-shadow-xl whitespace-nowrap"
+              className="h-10 px-3.5 rounded-2xl flex items-center bg-[#0B2374] backdrop-blur-md border border-[#D4FC02]/30 shadow-lg text-white font-extrabold text-xs tracking-tight whitespace-nowrap"
             >
               <span className="inline-block w-1.5 h-1.5 rounded-full bg-[#D4FC02] mr-2 shadow-[0_0_8px_#D4FC02]" />
               {tooltipText}

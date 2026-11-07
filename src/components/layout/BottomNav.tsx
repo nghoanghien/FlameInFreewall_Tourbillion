@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { LayoutDashboard, Compass, Rocket, Settings } from 'lucide-react';
+import { LayoutDashboard, Layers, Rocket } from 'lucide-react';
 
 interface MobileTab {
   path: string;
@@ -13,9 +13,8 @@ interface MobileTab {
 
 const TABS: MobileTab[] = [
   { path: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
-  { path: '/explorer', label: 'Explorer', icon: Compass },
+  { path: '/explorer', label: 'Explorer', icon: Layers },
   { path: '/mission', label: 'Mission', icon: Rocket },
-  { path: '/settings', label: 'Settings', icon: Settings },
 ];
 
 export const BottomNav: React.FC = () => {
@@ -32,7 +31,7 @@ export const BottomNav: React.FC = () => {
       aria-label="Mobile bottom navigation"
       data-testid="bottom-nav"
     >
-      <div className="pointer-events-auto bg-[#080C18]/90 backdrop-blur-xl border border-white/10 rounded-[32px] px-2 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.6)] flex items-center justify-around max-w-md mx-auto">
+      <div className="pointer-events-auto bg-white/90 backdrop-blur-md border border-gray-100 rounded-[32px] px-2 py-1.5 shadow-[0_8px_32px_rgba(0,0,0,0.08)] flex items-center justify-around max-w-md mx-auto text-zinc-700">
         {TABS.map((tab) => {
           const Icon = tab.icon;
           const isActive = isNavActive(tab.path);
@@ -47,15 +46,15 @@ export const BottomNav: React.FC = () => {
               <div
                 className={`flex items-center justify-center rounded-full transition-all duration-300 ${
                   isActive
-                    ? 'w-10 h-10 bg-[#D4FC02] text-[#080C18] shadow-[0_0_14px_rgba(212,252,2,0.4)] scale-105'
-                    : 'w-9 h-9 text-zinc-400 active:scale-95 hover:text-white'
+                    ? 'w-10 h-10 bg-[#D4FC02] text-zinc-950 shadow-[0_0_14px_rgba(212,252,2,0.4)] scale-105'
+                    : 'w-9 h-9 text-zinc-500 active:scale-95 hover:text-zinc-900'
                 }`}
               >
                 <Icon className="w-4 h-4" strokeWidth={2.5} />
               </div>
               <span
                 className={`text-[10px] tracking-tight transition-all duration-200 ${
-                  isActive ? 'text-[#D4FC02] font-extrabold mt-0.5' : 'text-zinc-500 font-medium'
+                  isActive ? 'text-zinc-950 font-extrabold mt-0.5' : 'text-zinc-500 font-medium'
                 }`}
               >
                 {tab.label}

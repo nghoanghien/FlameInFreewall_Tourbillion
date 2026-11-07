@@ -75,7 +75,7 @@ describe('Layout System & StructPaper DockPill Navigation', () => {
 
       const button = screen.getByRole('button', { name: 'Mission Scenario' });
       expect(button.className).toContain('bg-[#D4FC02]');
-      expect(button.className).toContain('text-[#080C18]');
+      expect(button.className).toContain('text-zinc-950');
     });
 
     it('handles click callbacks properly', () => {
@@ -111,13 +111,13 @@ describe('Layout System & StructPaper DockPill Navigation', () => {
   });
 
   describe('Sidebar Navigation Dock', () => {
-    it('renders all primary routes (/dashboard, /explorer, /mission, /settings)', () => {
+    it('renders all primary routes (/dashboard, /explorer, /mission) and no settings', () => {
       render(<Sidebar />);
 
       expect(screen.getByTestId('nav-pill-dashboard')).toBeDefined();
       expect(screen.getByTestId('nav-pill-explorer')).toBeDefined();
       expect(screen.getByTestId('nav-pill-mission')).toBeDefined();
-      expect(screen.getByTestId('nav-pill-settings')).toBeDefined();
+      expect(screen.queryByTestId('nav-pill-settings')).toBeNull();
     });
 
     it('toggles expansion state when chevron button is clicked', () => {
@@ -233,13 +233,13 @@ describe('Layout System & StructPaper DockPill Navigation', () => {
   });
 
   describe('BottomNav (Mobile Navigation)', () => {
-    it('renders mobile navigation tabs with correct links', () => {
+    it('renders mobile navigation tabs with correct links and no settings', () => {
       render(<BottomNav />);
 
       expect(screen.getByTestId('bottom-nav-dashboard')).toBeDefined();
       expect(screen.getByTestId('bottom-nav-explorer')).toBeDefined();
       expect(screen.getByTestId('bottom-nav-mission')).toBeDefined();
-      expect(screen.getByTestId('bottom-nav-settings')).toBeDefined();
+      expect(screen.queryByTestId('bottom-nav-settings')).toBeNull();
     });
   });
 

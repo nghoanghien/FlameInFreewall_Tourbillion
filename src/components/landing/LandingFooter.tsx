@@ -49,11 +49,6 @@ export const LandingFooter: React.FC = () => {
                   Mission Scenario &amp; Gap Matrix
                 </Link>
               </li>
-              <li>
-                <Link href="/settings" className="hover:text-[#D4FC02] transition-colors">
-                  System Settings &amp; Data Export
-                </Link>
-              </li>
             </ul>
           </div>
 
