@@ -32,7 +32,7 @@ function MissionContent() {
   return (
     <div
       data-testid="mission-workbench"
-      className="w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 py-2"
+      className="w-full max-w-7xl mx-auto space-y-6 sm:space-y-8 py-2 pt-0"
     >
       {/* Top Header - StructPaper Minimalist Templates Style */}
       <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 pt-2 pb-1">
@@ -49,13 +49,13 @@ function MissionContent() {
         {/* View Mode Switcher */}
         <div
           data-testid="mission-view-switcher"
-          className="flex items-center p-1 rounded-2xl bg-white border border-gray-200/80 shrink-0 self-start md:self-auto shadow-2xs"
+          className="flex items-center p-1 rounded-3xl bg-gray-200/70 shrink-0 self-start md:self-auto shadow-2xs"
         >
           <button
             type="button"
             data-testid="view-tab-evidence"
             onClick={() => handleViewChange('evidence')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-4 py-2 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
               currentView === 'evidence'
                 ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
                 : 'text-zinc-600 hover:text-zinc-900 hover:bg-gray-100/60'
@@ -69,7 +69,7 @@ function MissionContent() {
             type="button"
             data-testid="view-tab-prediction"
             onClick={() => handleViewChange('prediction')}
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-2xl text-xs font-bold transition-all cursor-pointer ${
               currentView === 'prediction'
                 ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
                 : 'text-zinc-600 hover:text-zinc-900 hover:bg-gray-100/60'

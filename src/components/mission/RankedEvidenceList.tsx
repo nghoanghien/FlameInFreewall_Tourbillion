@@ -23,10 +23,10 @@ export const RankedEvidenceList: React.FC = () => {
   return (
     <div
       data-testid="ranked-evidence-list"
-      className="p-5 sm:p-6 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-6"
+      className="p-5 space-y-6"
     >
       {/* Header */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-gray-100">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 pb-4 border-b border-gray-200">
         <div>
           <div className="flex items-center gap-2">
             <Compass className="w-5 h-5 text-[#0B2374]" />
@@ -49,7 +49,7 @@ export const RankedEvidenceList: React.FC = () => {
       </div>
 
       {/* Studies List */}
-      <div className="space-y-3.5">
+      <div className="space-y-2.5">
         {topRanked.map((item: RankedInvestigation) => {
           const { investigation: inv, rank, similarityScore, closestRun, rationale } = item;
           const rankFormatted = rank < 10 ? `0${rank}` : `${rank}`;
@@ -58,20 +58,20 @@ export const RankedEvidenceList: React.FC = () => {
             <div
               key={inv.id}
               data-testid={`ranked-study-card-${inv.id}`}
-              className="p-5 rounded-3xl bg-white border border-gray-100 hover:border-gray-200 shadow-xs transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 group"
+              className="p-5 rounded-[34px] bg-gray-200/50 hover:border-gray-200 transition-all flex flex-col md:flex-row md:items-center justify-between gap-4 group"
             >
               {/* Left Column: Rank + Study Info */}
               <div className="flex items-start gap-3.5">
-                <div className="w-9 h-9 rounded-2xl bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0 font-mono text-sm font-black text-[#0B2374]">
+                <div className="w-9 h-9 rounded-2xl bg-gray-100 border border-gray-200 flex items-center justify-center shrink-0 text-sm font-black text-[#0B2374]">
                   {rankFormatted}
                 </div>
 
                 <div className="space-y-1.5">
                   <div className="flex flex-wrap items-center gap-2">
-                    <span className="font-mono text-sm font-black text-zinc-950 group-hover:text-[#0B2374] transition-colors">
+                    <span className="text-sm font-black text-zinc-950 group-hover:text-[#0B2374] transition-colors">
                       {inv.code}
                     </span>
-                    <span className="text-[10px] font-mono px-2 py-0.5 rounded-md bg-gray-100 text-zinc-600 border border-gray-200">
+                    <span className="text-[10px] px-2 py-0.5 rounded-md bg-gray-100 text-zinc-600 border border-gray-200">
                       {inv.hardware}
                     </span>
                     <span
@@ -97,7 +97,7 @@ export const RankedEvidenceList: React.FC = () => {
                   {closestRun && (
                     <div
                       data-testid={`closest-run-${inv.id}`}
-                      className="inline-flex items-center gap-2 pt-1 font-mono text-[10px] text-zinc-500"
+                      className="inline-flex items-center gap-2 pt-1 text-[10px] text-zinc-500"
                     >
                       <span className="text-zinc-400">Closest PSI Run:</span>
                       <span className="text-[#0B2374] font-semibold">{closestRun.id}</span>
@@ -116,7 +116,7 @@ export const RankedEvidenceList: React.FC = () => {
               <div className="flex items-center justify-between md:flex-col md:items-end gap-3 shrink-0 pt-2 md:pt-0 border-t md:border-t-0 border-gray-100">
                 <div
                   data-testid={`similarity-badge-${inv.id}`}
-                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200 font-mono text-xs font-bold text-[#0B2374]"
+                  className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-blue-50 border border-blue-200 text-xs font-bold text-[#0B2374]"
                 >
                   <Award className="w-3.5 h-3.5" />
                   <span>{similarityScore}% Match</span>

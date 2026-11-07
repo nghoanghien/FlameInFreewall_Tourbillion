@@ -54,12 +54,12 @@ export default function DashboardPage() {
       {compareList.length > 0 && (
         <div
           data-testid="dashboard-compare-banner"
-          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs bg-white p-3 px-4 rounded-xl border border-gray-200 shadow-xs -mt-4"
+          className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-3 text-xs bg-white p-3 px-4 rounded-[36px] border-4 border-gray-200 shadow-xs -mt-4"
         >
           <div className="flex items-center gap-2.5 text-[#1A1A1A]">
             <span className="w-2 h-2 rounded-full bg-[#0B2374]" />
             <span className="font-semibold">Active Study Comparison:</span>
-            <span className="font-mono px-2 py-0.5 rounded-full bg-[#D4FC02]/30 text-zinc-950 font-bold border border-[#D4FC02]">
+            <span className="px-2 py-0.5 rounded-full bg-[#D4FC02]/30 text-zinc-950 font-bold border border-[#D4FC02]">
               {compareList.length} of 3 selected
             </span>
           </div>
@@ -75,7 +75,7 @@ export default function DashboardPage() {
             </button>
             <Link
               href="/explorer"
-              className="px-3 py-1.5 rounded-lg bg-[#0B2374] hover:bg-[#102B82] text-xs font-bold text-white transition-colors flex items-center gap-1 shadow-xs"
+              className="px-3 py-1.5 rounded-2xl bg-[#0B2374] hover:bg-[#102B82] text-xs font-bold text-white transition-colors flex items-center gap-1 shadow-xs"
             >
               <span>Open in Explorer Comparison</span>
               <ArrowRight className="w-3 h-3" />

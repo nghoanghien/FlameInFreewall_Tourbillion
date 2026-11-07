@@ -62,19 +62,16 @@ export const ConditionGapMatrix: React.FC = () => {
   return (
     <div
       data-testid="condition-gap-matrix"
-      className="p-5 sm:p-6 rounded-3xl bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] space-y-6"
+      className="p-5 space-y-6"
     >
       {/* Header and Overall Match Status */}
-      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-gray-100">
+      <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4 pb-4 border-b border-gray-200">
         <div className="space-y-1">
           <div className="flex items-center gap-2">
             <Layers className="w-5 h-5 text-[#0B2374]" />
             <h2 className="text-lg font-black text-zinc-950 tracking-tight">
               Evidence Gap Matrix
             </h2>
-            <span className="text-xs px-2 py-0.5 rounded-full bg-gray-100 text-zinc-600 font-mono border border-gray-200">
-              6-Dimension Audit
-            </span>
           </div>
           <p className="text-xs text-zinc-500">
             Rigorous cross-comparison of scenario parameters against 160 NASA PSI experimental runs.
@@ -84,7 +81,7 @@ export const ConditionGapMatrix: React.FC = () => {
         <div className="flex items-center gap-3">
           <div
             data-testid="badge-matched-runs"
-            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-100 border border-gray-200 text-xs font-mono text-zinc-700"
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-gray-100 font-semibold border border-gray-200 text-xs text-zinc-700"
           >
             <Database className="w-3.5 h-3.5 text-[#0B2374]" />
             <span>Matched PSI Runs:</span>
@@ -93,7 +90,7 @@ export const ConditionGapMatrix: React.FC = () => {
 
           <div
             data-testid="badge-overall-status"
-            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border ${overallBadge.bg} ${overallBadge.text} ${overallBadge.border} font-mono font-bold text-xs`}
+            className={`flex items-center gap-1.5 px-3 py-1.5 rounded-xl border ${overallBadge.bg} ${overallBadge.text} ${overallBadge.border} font-bold text-xs`}
           >
             <OverallIcon className="w-3.5 h-3.5" />
             <span>OVERALL {overallBadge.label}</span>
@@ -120,7 +117,7 @@ export const ConditionGapMatrix: React.FC = () => {
       )}
 
       {/* 6-Dimension Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3.5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-2">
         {gapResult.dimensions.map((dim) => {
           const badge = getStatusBadgeConfig(dim.status);
           const BadgeIcon = badge.icon;
@@ -132,7 +129,7 @@ export const ConditionGapMatrix: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className="p-5 rounded-3xl bg-gray-200/50 hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] transition-all space-y-3 flex flex-col justify-between cursor-pointer"
+              className="p-5 rounded-[34px] bg-gray-200/50 transition-all space-y-3 flex flex-col justify-between cursor-pointer"
             >
               <div>
                 <div className="flex items-center justify-between gap-2 mb-2">
@@ -171,7 +168,7 @@ export const ConditionGapMatrix: React.FC = () => {
       </div>
 
       {/* Mandatory NASA Safety Protocol Notice */}
-      <div
+      {/* <div
         data-testid="nasa-safety-disclaimer"
         className="p-4 rounded-2xl bg-rose-50 border border-rose-200 flex items-start gap-3"
       >
@@ -184,7 +181,7 @@ export const ConditionGapMatrix: React.FC = () => {
             {gapResult.safetyVerdictNotice}
           </p>
         </div>
-      </div>
+      </div> */}
     </div>
   );
 };

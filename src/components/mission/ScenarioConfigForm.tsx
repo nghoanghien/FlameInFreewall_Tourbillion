@@ -90,9 +90,9 @@ export const ScenarioConfigForm: React.FC = () => {
       </div>
 
       {/* Interactive Controls Form */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 pt-2 border-t border-gray-100">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-3 pt-2 border-t border-gray-200">
         {/* Control 1: Gravity Slider */}
-        <div className="space-y-2 p-3.5 rounded-2xl bg-gray-50 border border-gray-200/80">
+        <div className="space-y-2 p-3.5 rounded-3xl bg-gray-200/50">
           <div className="flex items-center justify-between">
             <label htmlFor="gravity-slider" className="text-xs font-bold text-zinc-800 flex items-center gap-1.5">
               <Orbit className="w-3.5 h-3.5 text-[#0B2374]" />
@@ -129,7 +129,7 @@ export const ScenarioConfigForm: React.FC = () => {
         </div>
 
         {/* Control 2: Oxygen % Slider */}
-        <div className="space-y-2 p-3.5 rounded-2xl bg-gray-50 border border-gray-200/80">
+        <div className="space-y-2 p-3.5 rounded-3xl bg-gray-200/50">
           <div className="flex items-center justify-between">
             <label htmlFor="oxygen-slider" className="text-xs font-bold text-zinc-800 flex items-center gap-1.5">
               <Flame className="w-3.5 h-3.5 text-orange-600" />
@@ -164,7 +164,7 @@ export const ScenarioConfigForm: React.FC = () => {
         </div>
 
         {/* Control 3: Total Pressure psia Slider */}
-        <div className="space-y-2 p-3.5 rounded-2xl bg-gray-50 border border-gray-200/80">
+        <div className="space-y-2 p-3.5 rounded-3xl bg-gray-200/50">
           <div className="flex items-center justify-between">
             <label htmlFor="pressure-slider" className="text-xs font-bold text-zinc-800 flex items-center gap-1.5">
               <Gauge className="w-3.5 h-3.5 text-purple-700" />
@@ -200,13 +200,13 @@ export const ScenarioConfigForm: React.FC = () => {
         </div>
 
         {/* Control 4: Material Select */}
-        <div className="space-y-2 p-3.5 rounded-2xl bg-gray-50 border border-gray-200/80">
+        <div className="space-y-2 p-3.5 rounded-3xl bg-gray-200/50">
           <div className="flex items-center justify-between">
             <label htmlFor="material-select" className="text-xs font-bold text-zinc-800 flex items-center gap-1.5">
               <Flame className="w-3.5 h-3.5 text-[#0B2374]" />
               Combustible Fuel Material
             </label>
-            <span className="font-mono text-[10px] text-zinc-500">
+            <span className="text-[10px] text-zinc-500">
               PSI Verified Baseline
             </span>
           </div>
@@ -234,13 +234,13 @@ export const ScenarioConfigForm: React.FC = () => {
         </div>
 
         {/* Control 5: Airflow Velocity Slider */}
-        <div className="space-y-2 p-3.5 rounded-2xl bg-gray-50 border border-gray-200/80 md:col-span-2 lg:col-span-2">
+        <div className="space-y-2 p-3.5 rounded-3xl bg-gray-200/50 md:col-span-2 lg:col-span-2">
           <div className="flex items-center justify-between">
             <label htmlFor="airflow-slider" className="text-xs font-bold text-zinc-800 flex items-center gap-1.5">
               <Wind className="w-3.5 h-3.5 text-[#0B2374]" />
               HVAC Forced Ventilation Speed
             </label>
-            <span className="font-mono text-xs font-bold text-[#0B2374]">
+            <span className="text-xs font-bold text-[#0B2374]">
               {activeScenario.airflowVelocity.toFixed(1)} cm/s
             </span>
           </div>
@@ -260,7 +260,7 @@ export const ScenarioConfigForm: React.FC = () => {
             }}
             className="w-full accent-[#0B2374] cursor-pointer"
           />
-          <div className="flex justify-between text-[10px] font-mono text-zinc-400">
+          <div className="flex justify-between text-[10px] text-zinc-500">
             <span>0.0 cm/s (Quiescent)</span>
             <span>2.0–8.0 cm/s (ISS Nominal)</span>
             <span>15.0 cm/s</span>

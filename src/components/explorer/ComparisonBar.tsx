@@ -46,7 +46,7 @@ export const ComparisonBar: React.FC<ComparisonBarProps> = ({
     <aside
       aria-label="Study Comparison Dock"
       data-testid="explorer-comparison-dock"
-      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-11/12 max-w-4xl bg-white/95 backdrop-blur-2xl border-2 border-white/80 rounded-full p-2.5 sm:p-3 shadow-[0_12px_40px_rgba(0,0,0,0.12)] ring-1 ring-black/5 transition-all duration-300"
+      className="fixed bottom-6 left-1/2 -translate-x-1/2 z-40 w-11/12 max-w-4xl bg-white/60 backdrop-blur-sm rounded-full p-2.5 sm:p-3 border-2 border-white/20 shadow-[0_12px_40px_rgba(0,0,0,0.12)] transition-all duration-300"
     >
       <div className="flex flex-col md:flex-row items-center justify-between gap-3">
         {/* Left: Indicator & Chips */}
