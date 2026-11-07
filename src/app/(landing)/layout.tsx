@@ -6,7 +6,7 @@ export default function LandingLayout({
   children: React.ReactNode;
 }) {
   return (
-    <div className="min-h-screen bg-[#080C18] text-[#F8F9FA] flex flex-col selection:bg-[#D4FC02]/30 selection:text-[#D4FC02]">
+    <div className="min-h-screen bg-[#F8F9FA] text-[#1A1A1A] flex flex-col selection:bg-[#D4FC02] selection:text-zinc-950 font-sans antialiased">
       {children}
     </div>
   );

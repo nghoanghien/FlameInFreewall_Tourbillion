@@ -1,6 +1,6 @@
 /**
  * Landing Page - FlameGuard AI
- * Kurzgesagt cosmic vector art style landing page directing to StructPaper light dashboard.
+ * Kurzgesagt cosmic vector art style landing page synchronized with StructPaper light theme.
  */
 
 import React from 'react';
@@ -18,7 +18,7 @@ export const metadata = {
 
 export default function LandingPage() {
   return (
-    <main className="min-h-screen flex flex-col bg-[#080C18] text-[#F8F9FA] overflow-x-hidden">
+    <main className="min-h-screen flex flex-col bg-[#F8F9FA] text-[#1A1A1A] overflow-x-hidden">
       <LandingHero />
       <KurzgesagtFlameScene />
       <AtmosphericPhysics />
