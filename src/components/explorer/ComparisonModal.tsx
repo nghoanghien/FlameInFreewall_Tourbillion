@@ -103,7 +103,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/85 backdrop-blur-md cursor-pointer"
+            className="fixed inset-0 bg-zinc-950/40 backdrop-blur-md cursor-pointer"
             aria-hidden="true"
           />
 
@@ -117,25 +117,25 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             exit={{ opacity: 0, scale: 0.96, y: 16 }}
             transition={{ type: 'spring', damping: 25, stiffness: 300 }}
             onClick={(e) => e.stopPropagation()}
-            className="relative z-10 w-full max-w-6xl max-h-[92vh] flex flex-col rounded-3xl bg-[#080C18]/95 border border-white/15 shadow-[0_20px_70px_rgba(0,0,0,0.85)] ring-1 ring-cyan-500/20 backdrop-blur-2xl overflow-hidden"
+            className="relative z-10 w-full max-w-5xl max-h-[92vh] flex flex-col rounded-3xl bg-white border border-gray-100 shadow-[0_25px_50px_-12px_rgba(0,0,0,0.25)] text-[#1A1A1A] overflow-hidden"
           >
             {/* Header */}
-            <header className="px-5 sm:px-7 py-4 sm:py-5 border-b border-white/10 flex items-center justify-between gap-4 shrink-0 bg-white/[0.02]">
+            <header className="px-6 py-5 border-b border-gray-100 flex items-center justify-between gap-4 shrink-0 bg-white">
               <div className="flex items-center gap-3">
-                <div className="w-10 h-10 rounded-2xl bg-cyan-500/10 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                <div className="w-10 h-10 rounded-2xl bg-blue-50 border border-blue-200 flex items-center justify-center text-[#0B2374]">
                   <Columns3 className="w-5 h-5" />
                 </div>
                 <div>
                   <h2
                     id="comparison-modal-title"
-                    className="text-lg sm:text-xl font-black text-white tracking-tight flex items-center gap-2"
+                    className="text-lg sm:text-xl font-black text-zinc-950 tracking-tight flex items-center gap-2"
                   >
                     Multi-Study Comparison
-                    <span className="text-xs font-mono font-bold text-[#D4FC02] px-2 py-0.5 rounded-full bg-[#D4FC02]/15 border border-[#D4FC02]/30">
+                    <span className="text-xs font-mono font-bold text-zinc-950 px-2.5 py-0.5 rounded-full bg-[#D4FC02] border border-lime-300">
                       {comparedStudies.length}/3 Studies
                     </span>
                   </h2>
-                  <p className="text-xs text-slate-400">
+                  <p className="text-xs text-zinc-500">
                     Side-by-side chamber parameter deltas, quench thresholds &amp; combustion kinetics
                   </p>
                 </div>
@@ -145,7 +145,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                 type="button"
                 data-testid="comparison-modal-close-icon"
                 onClick={onClose}
-                className="p-2 rounded-xl text-slate-400 hover:text-white hover:bg-white/10 transition-colors cursor-pointer"
+                className="p-2 rounded-xl text-zinc-400 hover:text-zinc-700 hover:bg-gray-100 transition-colors cursor-pointer"
                 aria-label="Close Comparison Modal"
               >
                 <X className="w-5 h-5" />
@@ -153,12 +153,12 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             </header>
 
             {/* Content Body */}
-            <div className="flex-1 overflow-y-auto px-5 sm:px-7 py-5 space-y-5">
+            <div className="flex-1 overflow-y-auto px-6 py-5 space-y-5 bg-gray-50/50">
               {comparedStudies.length < 2 ? (
                 <div className="text-center py-16 space-y-3">
-                  <Flame className="w-10 h-10 text-amber-400 mx-auto opacity-75" />
-                  <h4 className="text-base font-bold text-white">Select at least 2 studies</h4>
-                  <p className="text-xs text-slate-400 max-w-sm mx-auto">
+                  <Flame className="w-10 h-10 text-amber-500 mx-auto opacity-75" />
+                  <h4 className="text-base font-bold text-zinc-900">Select at least 2 studies</h4>
+                  <p className="text-xs text-zinc-500 max-w-sm mx-auto">
                     Multi-study comparative analysis requires 2 or 3 active investigations to calculate parameter deltas.
                   </p>
                 </div>
@@ -188,16 +188,16 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
             </div>
 
             {/* Footer Action Buttons */}
-            <footer className="px-5 sm:px-7 py-4 border-t border-white/10 flex flex-wrap items-center justify-between gap-3 shrink-0 bg-white/[0.02]">
+            <footer className="px-6 py-4 border-t border-gray-100 flex flex-wrap items-center justify-between gap-3 shrink-0 bg-white">
               <div className="flex items-center gap-2">
                 <button
                   type="button"
                   data-testid="export-comparison-csv-btn"
                   onClick={handleExportCsv}
                   disabled={comparedStudies.length < 2}
-                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white/10 hover:bg-white/15 text-slate-200 hover:text-white font-medium text-xs border border-white/10 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="inline-flex items-center gap-2 px-3.5 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-zinc-800 font-semibold text-xs border border-gray-200 transition-colors disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
-                  <Download className="w-4 h-4 text-cyan-400" />
+                  <Download className="w-4 h-4 text-[#0B2374]" />
                   <span>Export Comparison CSV</span>
                 </button>
               </div>
@@ -207,7 +207,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                   type="button"
                   data-testid="close-comparison-modal-btn"
                   onClick={onClose}
-                  className="px-4 py-2 rounded-xl bg-white/5 hover:bg-white/10 text-slate-300 hover:text-white font-medium text-xs border border-white/10 transition-colors cursor-pointer"
+                  className="px-4 py-2 rounded-xl bg-gray-100 hover:bg-gray-200 text-zinc-700 font-semibold text-xs border border-gray-200 transition-colors cursor-pointer"
                 >
                   Close
                 </button>
@@ -217,7 +217,7 @@ export const ComparisonModal: React.FC<ComparisonModalProps> = ({
                   data-testid="open-mission-workbench-btn"
                   onClick={handleOpenWorkbench}
                   disabled={comparedStudies.length < 2}
-                  className="inline-flex items-center gap-2 px-4 py-2 rounded-xl bg-[#4CC9F0] hover:bg-[#38b6dd] text-slate-950 font-bold text-xs shadow-lg shadow-[#4CC9F0]/25 transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
+                  className="inline-flex items-center gap-2 px-4 py-2 rounded-2xl bg-[#D4FC02] hover:bg-[#c3e802] text-zinc-950 font-bold text-xs shadow-xs transition-all disabled:opacity-50 disabled:cursor-not-allowed cursor-pointer"
                 >
                   <span>Open in Mission Workbench</span>
                   <ArrowRight className="w-3.5 h-3.5 stroke-[2.5]" />

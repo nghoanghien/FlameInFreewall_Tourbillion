@@ -16,6 +16,16 @@ import { calculateTopicalRankings } from '../src/lib/rankingEngine';
 const mockPush = vi.fn();
 let mockSearchParams = new URLSearchParams();
 
+expect.extend({
+  toBeInTheDocument(received) {
+    const pass = Boolean(received);
+    return {
+      pass,
+      message: () => `expected element ${pass ? 'not ' : ''}to be in document`,
+    };
+  },
+});
+
 vi.mock('next/navigation', () => ({
   usePathname: () => '/mission',
   useRouter: () => ({
@@ -371,6 +381,18 @@ describe('Mission Scenario, Evidence Gap Matrix & Predictive Lab (/mission)', ()
       // In predictive lab, 0.16g should cause locked state
       expect(screen.getByTestId('predictive-lab-locked-state')).toBeDefined();
       expect(screen.getByTestId('model-status-badge').textContent).toContain('MODEL OFFLINE');
+    });
+  });
+
+  describe('Mission Scenario Light Theme', () => {
+    it('renders scenario configuration and gap matrix with light white cards and badges', () => {
+      render(<MissionPage />);
+      expect(screen.getAllByText(/Mission Scenario/i).length).toBeGreaterThan(0);
+      expect(screen.getAllByText(/Evidence Gap Matrix/i).length).toBeGreaterThan(0);
+      expect(screen.getByTestId('mission-workbench')).toBeInTheDocument();
+      expect(screen.getByTestId('scenario-config-form')).toBeInTheDocument();
+      expect(screen.getByTestId('condition-gap-matrix')).toBeInTheDocument();
+      expect(screen.getByTestId('ranked-evidence-list')).toBeInTheDocument();
     });
   });
 });

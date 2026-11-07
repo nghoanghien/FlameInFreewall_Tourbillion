@@ -22,15 +22,15 @@ export const ScenarioPresetSelector: React.FC<ScenarioPresetSelectorProps> = ({
         onClick={() => onSelectPreset('iss-baseline')}
         className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer ${
           isPresetActive('iss-baseline')
-            ? 'bg-emerald-500/20 border-emerald-400 text-white shadow-[0_0_15px_rgba(16,185,129,0.2)]'
-            : 'bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/25 hover:bg-white/[0.06]'
+            ? 'bg-emerald-50 border-2 border-emerald-500 text-emerald-950 shadow-xs'
+            : 'bg-gray-100 hover:bg-gray-200 text-zinc-800 border-gray-200'
         }`}
       >
         <div className="flex items-center gap-1.5 mb-1">
-          <Orbit className="w-3.5 h-3.5 text-emerald-400" />
+          <Orbit className="w-3.5 h-3.5 text-emerald-600" />
           <span className="text-[11px] font-bold">ISS Baseline</span>
         </div>
-        <div className="text-[10px] font-mono text-slate-400">0.00g · 21% O₂</div>
+        <div className="text-[10px] font-mono text-zinc-500">0.00g · 21% O₂</div>
       </button>
 
       <button
@@ -39,15 +39,15 @@ export const ScenarioPresetSelector: React.FC<ScenarioPresetSelectorProps> = ({
         onClick={() => onSelectPreset('artemis-lunar-base')}
         className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer ${
           isPresetActive('artemis-lunar-base')
-            ? 'bg-amber-500/20 border-amber-400 text-white shadow-[0_0_15px_rgba(245,158,11,0.2)]'
-            : 'bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/25 hover:bg-white/[0.06]'
+            ? 'bg-amber-50 border-2 border-amber-500 text-amber-950 shadow-xs'
+            : 'bg-gray-100 hover:bg-gray-200 text-zinc-800 border-gray-200'
         }`}
       >
         <div className="flex items-center gap-1.5 mb-1">
-          <Moon className="w-3.5 h-3.5 text-amber-400" />
+          <Moon className="w-3.5 h-3.5 text-amber-600" />
           <span className="text-[11px] font-bold">Artemis Moon</span>
         </div>
-        <div className="text-[10px] font-mono text-slate-400">0.16g · 30% O₂</div>
+        <div className="text-[10px] font-mono text-zinc-500">0.16g · 30% O₂</div>
       </button>
 
       <button
@@ -56,15 +56,15 @@ export const ScenarioPresetSelector: React.FC<ScenarioPresetSelectorProps> = ({
         onClick={() => onSelectPreset('mars-surface-habitat')}
         className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer ${
           isPresetActive('mars-surface-habitat')
-            ? 'bg-rose-500/20 border-rose-400 text-white shadow-[0_0_15px_rgba(244,63,94,0.2)]'
-            : 'bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/25 hover:bg-white/[0.06]'
+            ? 'bg-rose-50 border-2 border-rose-500 text-rose-950 shadow-xs'
+            : 'bg-gray-100 hover:bg-gray-200 text-zinc-800 border-gray-200'
         }`}
       >
         <div className="flex items-center gap-1.5 mb-1">
-          <Globe className="w-3.5 h-3.5 text-rose-400" />
+          <Globe className="w-3.5 h-3.5 text-rose-600" />
           <span className="text-[11px] font-bold">Mars Colony</span>
         </div>
-        <div className="text-[10px] font-mono text-slate-400">0.38g · 28% O₂</div>
+        <div className="text-[10px] font-mono text-zinc-500">0.38g · 28% O₂</div>
       </button>
 
       <button
@@ -73,15 +73,15 @@ export const ScenarioPresetSelector: React.FC<ScenarioPresetSelectorProps> = ({
         onClick={() => onSelectPreset('custom-sandbox')}
         className={`p-2.5 rounded-2xl border text-left transition-all cursor-pointer ${
           isPresetActive('custom-sandbox')
-            ? 'bg-[#4CC9F0]/20 border-[#4CC9F0] text-white shadow-[0_0_15px_rgba(76,201,240,0.2)]'
-            : 'bg-white/[0.03] border-white/10 text-slate-300 hover:border-white/25 hover:bg-white/[0.06]'
+            ? 'bg-blue-50 border-2 border-blue-500 text-blue-950 shadow-xs'
+            : 'bg-gray-100 hover:bg-gray-200 text-zinc-800 border-gray-200'
         }`}
       >
         <div className="flex items-center gap-1.5 mb-1">
-          <Sparkles className="w-3.5 h-3.5 text-[#4CC9F0]" />
+          <Sparkles className="w-3.5 h-3.5 text-blue-600" />
           <span className="text-[11px] font-bold">Custom Sandbox</span>
         </div>
-        <div className="text-[10px] font-mono text-slate-400">User Tuned</div>
+        <div className="text-[10px] font-mono text-zinc-500">User Tuned</div>
       </button>
     </div>
   );

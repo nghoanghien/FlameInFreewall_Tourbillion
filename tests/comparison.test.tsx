@@ -386,6 +386,22 @@ describe('Multi-Study Comparison System (Task 8)', () => {
       fireEvent.keyDown(window, { key: 'Escape' });
       expect(handleClose).toHaveBeenCalledTimes(1);
     });
+
+    it('renders comparison dialog with light theme container and backdrop', () => {
+      render(
+        <ComparisonModal
+          isOpen={true}
+          onClose={vi.fn()}
+          compareList={['bass', 'flex']}
+        />
+      );
+
+      const backdrop = screen.getByTestId('comparison-modal-backdrop');
+      expect(backdrop.className).toContain('bg-zinc-950/40');
+      const dialog = screen.getByRole('dialog');
+      expect(dialog.className).toContain('bg-white');
+      expect(dialog.className).toContain('border-gray-100');
+    });
   });
 
   // ---------------------------------------------------------------------------

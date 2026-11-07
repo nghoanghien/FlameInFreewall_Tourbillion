@@ -6,9 +6,6 @@ import {
   Rocket,
   Layers,
   Sparkles,
-  ShieldAlert,
-  Sliders,
-  Compass,
 } from 'lucide-react';
 import { ScenarioConfigForm } from '@/components/mission/ScenarioConfigForm';
 import { ConditionGapMatrix } from '@/components/mission/ConditionGapMatrix';
@@ -39,21 +36,21 @@ function MissionContent() {
       {/* Page Title & Context Header */}
       <section
         aria-label="Mission Simulator Header"
-        className="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-gradient-to-br from-[#0B2374]/80 via-[#080C18]/95 to-[#080C18] border border-white/10 shadow-2xl backdrop-blur-xl"
+        className="relative overflow-hidden rounded-3xl p-6 sm:p-8 bg-white border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)]"
       >
         <div className="absolute top-0 right-0 -mr-16 -mt-16 w-64 h-64 rounded-full bg-[#D4FC02]/10 blur-3xl pointer-events-none" />
-        <div className="absolute bottom-0 left-1/3 -mb-20 w-80 h-80 rounded-full bg-[#4CC9F0]/10 blur-3xl pointer-events-none" />
+        <div className="absolute bottom-0 left-1/3 -mb-20 w-80 h-80 rounded-full bg-[#0B2374]/5 blur-3xl pointer-events-none" />
 
         <div className="relative z-10 flex flex-col md:flex-row md:items-center md:justify-between gap-6">
           <div className="space-y-2 max-w-3xl">
-            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4FC02]/15 border border-[#D4FC02]/30 text-[#D4FC02] text-xs font-mono font-bold">
-              <Rocket className="w-3.5 h-3.5 text-[#D4FC02]" />
+            <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#D4FC02] border border-lime-300 text-zinc-950 text-xs font-mono font-bold">
+              <Rocket className="w-3.5 h-3.5 text-zinc-950" />
               Mission Scenario &amp; Evidence Gap Matrix
             </div>
-            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-[#F8F9FA] tracking-tight">
+            <h1 className="text-2xl sm:text-3xl lg:text-4xl font-black text-zinc-950 tracking-tight">
               Mission Environment Scenario Workbench
             </h1>
-            <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
+            <p className="text-xs sm:text-sm text-zinc-600 leading-relaxed">
               Synthesize planetary mission parameters (ISS, Moon, Mars) against 160 NASA PSI test runs. Audit 6-dimensional empirical condition gaps and execute guarded predictive models.
             </p>
           </div>
@@ -61,7 +58,7 @@ function MissionContent() {
           {/* View Mode Switcher */}
           <div
             data-testid="mission-view-switcher"
-            className="flex items-center p-1.5 rounded-2xl bg-[#080C18]/90 border border-white/15 backdrop-blur-xl shrink-0 self-start md:self-auto"
+            className="flex items-center p-1.5 rounded-2xl bg-gray-100 border border-gray-200 shrink-0 self-start md:self-auto"
           >
             <button
               type="button"
@@ -69,11 +66,11 @@ function MissionContent() {
               onClick={() => handleViewChange('evidence')}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 currentView === 'evidence'
-                  ? 'bg-gradient-to-r from-[#0B2374] to-[#102B82] text-white border border-[#D4FC02]/40 shadow-lg text-[#D4FC02]'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
+                  : 'text-zinc-500 hover:text-zinc-800 hover:bg-gray-200/50'
               }`}
             >
-              <Layers className="w-3.5 h-3.5" />
+              <Layers className="w-3.5 h-3.5 text-[#0B2374]" />
               <span>NASA Evidence Analysis</span>
             </button>
 
@@ -83,11 +80,11 @@ function MissionContent() {
               onClick={() => handleViewChange('prediction')}
               className={`flex items-center gap-2 px-4 py-2.5 rounded-xl text-xs font-bold transition-all cursor-pointer ${
                 currentView === 'prediction'
-                  ? 'bg-gradient-to-r from-[#0B2374] to-[#102B82] text-white border border-purple-400/40 shadow-lg text-purple-300'
-                  : 'text-slate-400 hover:text-white hover:bg-white/5'
+                  ? 'bg-white text-zinc-950 border border-gray-200 shadow-xs'
+                  : 'text-zinc-500 hover:text-zinc-800 hover:bg-gray-200/50'
               }`}
             >
-              <Sparkles className="w-3.5 h-3.5 text-[#A78BFA]" />
+              <Sparkles className="w-3.5 h-3.5 text-purple-600" />
               <span>Predictive Lab (Could Have)</span>
             </button>
           </div>
@@ -120,7 +117,7 @@ export default function MissionPage() {
   return (
     <Suspense
       fallback={
-        <div className="w-full max-w-7xl mx-auto py-12 text-center text-slate-400 font-mono text-sm animate-pulse">
+        <div className="w-full max-w-7xl mx-auto py-12 text-center text-zinc-400 font-mono text-sm animate-pulse">
           Loading Mission Scenario Workbench...
         </div>
       }
