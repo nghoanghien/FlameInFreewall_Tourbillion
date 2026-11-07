@@ -32,9 +32,9 @@ export const QUICK_SCENARIOS: QuickScenarioConfig[] = [
     atmosphereDisplay: '21% O₂ · 14.7 psia · 5 cm/s flow',
     riskSummary: 'Absence of buoyant convection; spherical diffusion flame sustained by HVAC forced air ventilation.',
     badge: 'Measured',
-    cardBorder: 'border-emerald-500/30',
-    hoverBorder: 'hover:border-emerald-400',
-    iconBg: 'bg-emerald-500/20 text-emerald-300',
+    cardBorder: 'border-emerald-200',
+    hoverBorder: 'hover:border-emerald-300',
+    iconBg: 'bg-emerald-50 text-emerald-700 border border-emerald-200',
     icon: Orbit,
   },
   {
@@ -46,9 +46,9 @@ export const QUICK_SCENARIOS: QuickScenarioConfig[] = [
     atmosphereDisplay: '30% O₂ · 10.2 psia · 8 cm/s flow',
     riskSummary: 'High-O₂ exploration atmosphere removes N₂ dilution, drastically accelerating polymer flame spread.',
     badge: 'Illustrative',
-    cardBorder: 'border-amber-500/40',
-    hoverBorder: 'hover:border-amber-400',
-    iconBg: 'bg-amber-500/20 text-amber-300',
+    cardBorder: 'border-amber-200',
+    hoverBorder: 'hover:border-amber-300',
+    iconBg: 'bg-amber-50 text-amber-700 border border-amber-200',
     icon: Moon,
   },
   {
@@ -60,9 +60,9 @@ export const QUICK_SCENARIOS: QuickScenarioConfig[] = [
     atmosphereDisplay: '28% O₂ · 8.2 psia · 10 cm/s flow',
     riskSummary: 'Intermediate buoyancy and low total pressure produce mixed-convection boundary layer; zero empirical PSI data.',
     badge: 'Illustrative',
-    cardBorder: 'border-red-500/30',
-    hoverBorder: 'hover:border-red-400',
-    iconBg: 'bg-red-500/20 text-red-300',
+    cardBorder: 'border-red-200',
+    hoverBorder: 'hover:border-red-300',
+    iconBg: 'bg-red-50 text-red-700 border border-red-200',
     icon: Globe,
   },
 ];
@@ -106,16 +106,16 @@ export const QuickScenarioTrigger: React.FC = () => {
     <section aria-label="Quick Scenario Triggers" className="w-full space-y-4">
       <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-2">
         <div>
-          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#F8F9FA] flex items-center gap-2.5">
-            <Rocket className="w-5 h-5 text-[#D4FC02]" />
+          <h2 className="text-xl sm:text-2xl font-black tracking-tight text-[#1A1A1A] flex items-center gap-2.5">
+            <Rocket className="w-5 h-5 text-[#0B2374]" />
             Quick Scenario Launchpads
           </h2>
-          <p className="text-xs sm:text-sm text-slate-400">
+          <p className="text-xs sm:text-sm text-[#64748B]">
             One-click ignition into orbital, lunar, and Martian fire physics environments in the Mission Simulator.
           </p>
         </div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/5 border border-white/10 text-[11px] font-mono text-slate-300">
-          <Zap className="w-3.5 h-3.5 text-[#D4FC02]" />
+        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-[11px] font-mono text-[#64748B] shadow-sm">
+          <Zap className="w-3.5 h-3.5 text-[#0B2374]" />
           Direct Parameter Injection
         </div>
       </div>
@@ -131,7 +131,7 @@ export const QuickScenarioTrigger: React.FC = () => {
             <div
               key={scenario.presetId}
               data-testid={`scenario-card-${scenario.presetId}`}
-              className={`p-5 rounded-3xl bg-[#111827]/80 backdrop-blur-md border ${scenario.cardBorder} ${scenario.hoverBorder} hover:shadow-[0_8px_30px_rgba(212,252,2,0.12)] transition-all duration-300 flex flex-col justify-between group`}
+              className={`p-5 rounded-3xl bg-white border ${scenario.cardBorder} ${scenario.hoverBorder} shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between group`}
             >
               <div>
                 {/* Header: Icon, Gravity Level Badge & Status Badge */}
@@ -143,10 +143,10 @@ export const QuickScenarioTrigger: React.FC = () => {
                       <ScenarioIcon className="w-5 h-5" />
                     </div>
                     <div>
-                      <div className="text-sm font-black text-[#F8F9FA] tracking-tight group-hover:text-[#D4FC02] transition-colors">
+                      <div className="text-sm font-black text-[#1A1A1A] tracking-tight group-hover:text-[#0B2374] transition-colors">
                         {scenario.label}
                       </div>
-                      <div className="text-[10px] font-mono text-slate-400">
+                      <div className="text-[10px] font-mono text-[#64748B]">
                         g = {scenario.gravityDisplay}
                       </div>
                     </div>
@@ -155,8 +155,8 @@ export const QuickScenarioTrigger: React.FC = () => {
                   <span
                     className={`px-2 py-0.5 rounded-full text-[10px] font-extrabold border ${
                       scenario.badge === 'Measured'
-                        ? 'bg-emerald-500/20 text-emerald-300 border-emerald-500/30'
-                        : 'bg-amber-500/20 text-amber-300 border-amber-500/30'
+                        ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                        : 'bg-amber-50 text-amber-800 border-amber-200'
                     }`}
                   >
                     {scenario.badge}
@@ -164,28 +164,28 @@ export const QuickScenarioTrigger: React.FC = () => {
                 </div>
 
                 {/* Subtitle / Name */}
-                <h3 className="text-xs font-bold text-slate-200 mb-2">
+                <h3 className="text-xs font-bold text-[#1A1A1A] mb-2">
                   {scenario.name}
                 </h3>
 
                 {/* Atmosphere Tag */}
-                <div className="px-2.5 py-1.5 rounded-xl bg-[#080C18]/60 border border-white/5 mb-3 font-mono text-[11px] text-slate-300 flex items-center gap-1.5">
-                  <span className="w-1.5 h-1.5 rounded-full bg-[#D4FC02]" />
+                <div className="px-2.5 py-1.5 rounded-xl bg-gray-50 border border-gray-200 mb-3 font-mono text-[11px] text-[#1A1A1A] flex items-center gap-1.5">
+                  <span className="w-1.5 h-1.5 rounded-full bg-[#0B2374]" />
                   <span>{scenario.atmosphereDisplay}</span>
                 </div>
 
                 {/* Risk / Physics Summary */}
-                <p className="text-[11px] text-slate-400 leading-relaxed line-clamp-3 mb-4">
+                <p className="text-[11px] text-[#64748B] leading-relaxed line-clamp-3 mb-4">
                   {scenario.riskSummary}
                 </p>
               </div>
 
-              {/* Action Trigger Button */}
+              {/* Action Trigger Button: Electric Lime */}
               <button
                 type="button"
                 data-testid={`launch-btn-${scenario.presetId}`}
                 onClick={() => handleLaunchScenario(scenario)}
-                className="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-[#0B2374] to-[#102B82] hover:from-[#102B82] hover:to-[#0B2374] text-[#F8F9FA] hover:text-[#D4FC02] text-xs font-bold transition-all flex items-center justify-center gap-2 border border-white/10 group-hover:border-[#D4FC02]/50 shadow-md cursor-pointer"
+                className="w-full py-2.5 px-4 bg-[#D4FC02] text-zinc-950 hover:bg-[#c3e802] font-extrabold rounded-2xl shadow-md text-xs transition-all flex items-center justify-center gap-2 border border-[#c5eb02] cursor-pointer"
               >
                 <span>Launch in Mission Simulator</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />
