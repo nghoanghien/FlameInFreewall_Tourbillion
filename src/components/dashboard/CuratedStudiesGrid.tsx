@@ -111,9 +111,6 @@ export const CuratedStudiesGrid: React.FC = () => {
             <Sparkles className="w-5 h-5 text-[#0B2374]" />
             Curated PSI Investigations
           </h2>
-          <p className="text-xs sm:text-sm text-[#64748B]">
-            Featured flagship investigations spanning solid polymers, droplet extinction, cool flames, and spacecraft safety.
-          </p>
         </div>
         <Link
           href="/explorer"
@@ -125,7 +122,7 @@ export const CuratedStudiesGrid: React.FC = () => {
 
       <div
         data-testid="curated-studies-grid"
-        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5"
+        className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-4"
       >
         {featuredInvestigations.map((inv) => {
           const isComparing = compareList.includes(inv.id);
@@ -139,7 +136,7 @@ export const CuratedStudiesGrid: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className={`rounded-3xl p-5 bg-gray-200/50 transition-all duration-300 flex flex-col justify-between relative group select-none cursor-pointer hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] ${
+              className={`rounded-[36px] p-5 bg-gray-200/50 transition-all duration-300 flex flex-col justify-between relative group select-none cursor-pointer hover:bg-white hover:shadow-[0_8px_30px_rgb(0,0,0,0.12)] ${
                 isComparing
                   ? 'ring-2 ring-[#D4FC02] shadow-[0_8px_30px_rgba(212,252,2,0.3)] bg-white'
                   : ''

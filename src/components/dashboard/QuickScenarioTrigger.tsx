@@ -111,13 +111,6 @@ export const QuickScenarioTrigger: React.FC = () => {
             <Rocket className="w-5 h-5 text-[#0B2374]" />
             Quick Scenario Launchpads
           </h2>
-          <p className="text-xs sm:text-sm text-[#64748B]">
-            One-click ignition into orbital, lunar, and Martian fire physics environments in the Mission Simulator.
-          </p>
-        </div>
-        <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white border border-gray-200 text-[11px] font-mono text-[#64748B] shadow-sm">
-          <Zap className="w-3.5 h-3.5 text-[#0B2374]" />
-          Direct Parameter Injection
         </div>
       </div>
 
@@ -135,7 +128,7 @@ export const QuickScenarioTrigger: React.FC = () => {
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               transition={{ duration: 0.2, ease: 'easeOut' }}
-              className={`p-5 rounded-3xl bg-white border ${scenario.cardBorder} ${scenario.hoverBorder} shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between group cursor-pointer`}
+              className={`p-5 rounded-[36px] bg-gray-200/50 ${scenario.hoverBorder} hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between group cursor-pointer`}
             >
               <div>
                 {/* Header: Icon, Gravity Level Badge & Status Badge */}
@@ -150,7 +143,7 @@ export const QuickScenarioTrigger: React.FC = () => {
                       <div className="text-sm font-black text-[#1A1A1A] tracking-tight group-hover:text-[#0B2374] transition-colors">
                         {scenario.label}
                       </div>
-                      <div className="text-[10px] font-mono text-[#64748B]">
+                      <div className="text-[10px] text-[#64748B]">
                         g = {scenario.gravityDisplay}
                       </div>
                     </div>
@@ -173,7 +166,7 @@ export const QuickScenarioTrigger: React.FC = () => {
                 </h3>
 
                 {/* Atmosphere Tag */}
-                <div className="px-2.5 py-1.5 rounded-xl bg-gray-50 border border-gray-200 mb-3 font-mono text-[11px] text-[#1A1A1A] flex items-center gap-1.5">
+                <div className="px-2.5 py-1.5 rounded-xl bg-gray-50 border border-gray-200 mb-3 text-[11px] text-[#1A1A1A] flex items-center gap-1.5">
                   <span className="w-1.5 h-1.5 rounded-full bg-[#0B2374]" />
                   <span>{scenario.atmosphereDisplay}</span>
                 </div>
@@ -189,7 +182,7 @@ export const QuickScenarioTrigger: React.FC = () => {
                 type="button"
                 data-testid={`launch-btn-${scenario.presetId}`}
                 onClick={() => handleLaunchScenario(scenario)}
-                className="w-full py-2.5 px-4 bg-[#D4FC02] text-zinc-950 hover:bg-[#c3e802] font-extrabold rounded-2xl shadow-md text-xs transition-all flex items-center justify-center gap-2 border border-[#c5eb02] cursor-pointer"
+                className="w-full py-2.5 px-4 bg-[#D4FC02] text-zinc-950 hover:bg-[#c3e802] font-extrabold rounded-2xl shadow-md text-xs transition-all flex items-center justify-center gap-2 cursor-pointer"
               >
                 <span>Launch in Mission Simulator</span>
                 <ArrowRight className="w-3.5 h-3.5 group-hover:translate-x-1 transition-transform" />

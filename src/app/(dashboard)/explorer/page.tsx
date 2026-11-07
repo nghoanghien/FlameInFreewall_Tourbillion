@@ -122,7 +122,7 @@ export default function ExplorerPage() {
 
       {/* Top Sticky Filter Toolbar matching Eatzy/StructPaper */}
       <div className="sticky top-0 z-30 -mx-3 px-3 sm:-mx-6 sm:px-6 py-3 pb-5 transition-all duration-300">
-        <div className="absolute inset-0 bg-[#F8F9FA]/80 backdrop-blur-md pointer-events-none -z-10 [mask-image:linear-gradient(to_bottom,black_85%,transparent)]" />
+        <div className="absolute inset-0 bg-[#F8F9FA]/50 backdrop-blur-sm pointer-events-none -z-10 [mask-image:linear-gradient(to_bottom,black_85%,transparent)]" />
         <ExplorerFiltersBar
           searchQuery={searchQuery}
           onSearchChange={handleSearchChange}

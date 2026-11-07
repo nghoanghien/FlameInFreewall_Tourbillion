@@ -33,15 +33,11 @@ export const KpiStatCards: React.FC = () => {
             Real-time catalog metrics synthesized from NASA Physical Science Informatics (PSI) repository.
           </p>
         </div>
-        <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white border border-gray-200 text-[11px] font-mono text-[#64748B] shadow-sm">
-          <span className="w-1.5 h-1.5 rounded-full bg-[#84CC16]" />
-          <span>Repository Status: Synchronized (2026-11)</span>
-        </div>
       </div>
 
       <div
         data-testid="kpi-stat-cards"
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3.5 sm:gap-4"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-3"
       >
         {/* KPI 1: NASA PSI Studies */}
         <motion.div
@@ -49,7 +45,7 @@ export const KpiStatCards: React.FC = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
+          className="relative group bg-gray-200/50 rounded-[36px] p-5 border border-gray-100 hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -78,7 +74,7 @@ export const KpiStatCards: React.FC = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
+          className="relative group bg-gray-200/50 rounded-[36px] p-5 border border-gray-100 hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -107,7 +103,7 @@ export const KpiStatCards: React.FC = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
+          className="relative group bg-gray-200/50 rounded-[36px] p-5 border border-gray-100 hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -136,7 +132,7 @@ export const KpiStatCards: React.FC = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="relative group bg-white rounded-3xl p-5 border border-gray-100 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
+          className="relative group bg-gray-200/50 rounded-[36px] p-5 border border-gray-100 hover:bg-white hover:shadow-[0_8px_30px_rgba(0,0,0,0.08)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">
@@ -165,7 +161,7 @@ export const KpiStatCards: React.FC = () => {
           whileHover={{ scale: 1.02 }}
           whileTap={{ scale: 0.98 }}
           transition={{ duration: 0.2, ease: 'easeOut' }}
-          className="relative group bg-amber-50/70 rounded-3xl p-5 border border-amber-200 shadow-[0_2px_8px_rgba(0,0,0,0.04)] hover:shadow-[0_8px_30px_rgba(245,158,11,0.15)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
+          className="relative group bg-amber-100/60 rounded-[36px] p-5 hover:shadow-[0_8px_30px_rgba(245,158,11,0.15)] transition-all flex flex-col justify-between min-h-[170px] cursor-pointer"
         >
           <div>
             <div className="flex items-center justify-between mb-3">

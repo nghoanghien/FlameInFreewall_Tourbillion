@@ -70,7 +70,7 @@ const SORT_OPTIONS: CustomSelectOption<ExplorerSortOption>[] = [
 ];
 
 export const ExplorerFiltersBar: React.FC<ExplorerFiltersBarProps> = ({
-  className = 'sticky top-0 z-30 space-y-3 backdrop-blur-md',
+  className = 'sticky top-0 z-30 space-y-3',
   searchQuery,
   onSearchChange,
   fuelFilter,
